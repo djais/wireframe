@@ -1,0 +1,142 @@
+<div class="col-xs-12" ng-controller="customerCtrl" ng-init="init()" ng-cloak>
+<!--   <div class="row" style="margin-bottom:10px;" ng-controller="minidashCtrl">
+    <div class="col-md-3 col-sm-6 col-xs-6" ng-repeat="info in topic.customers">
+      <div style='background-color:#276b8c; color:#ffffff; padding:1px; border-radius:2px; margin-bottom:5px;'>
+        <div class="inner">
+          <center><h4><b>{{info.main}}</b></h4></center>
+          <center><p>{{info.sub}}</p></center>
+        </div>
+      </div>
+    </div>
+  </div> -->
+    
+    <div class='col-xs-12 x_panel tile' style="padding:15px 2px 15px 2px;">
+      <div class="col-xs-3">
+        <div class="input-group">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{filterby}}
+            </button>
+            <div class="dropdown-menu">
+              <li ng-repeat="filterby in filters.filterby" ng-click="setcriteria(filterby)"><a class="dropdown-item">{{filterby}}</a></li>
+            </div>
+          </div>
+          <input class='form-control' type='text' typeahead="state for state in states | filter:$viewValue | limitTo:8" typeahead-editable='false'/>
+          <div class="input-group-btn">
+            <button class="btn btn-info" type="submit"><i class="fa fa-filter"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-3">
+      	<div class="input-group add-on dropdown-toggle">
+          <input class="form-control" ng-model="searchKey" placeholder="Search" type="text">
+          <div class="input-group-btn">
+            <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6" align="right">
+    	  <button class="btn btn-info"><i class="fa fa-download"></i> Export</button>
+        <button class="btn btn-info" ng-click="route('/advancefiltercust')"><i class="fa fa-filter"></i>Advance Filters</button>
+        <button class="btn btn-info" ng-show="!newcustomer" ng-click="newcustomer=!newcustomer"><i class="fa fa-plus"></i>Add Customer</button>
+        <button class="btn btn-info" ng-show="newcustomer" ng-click="newcustomer=!newcustomer"><i class="fa fa-eye"></i>View Customers</button>
+    	  <button class="btn btn-info" ng-click="route('/uploadexcel')"><i class="fa fa-upload"></i>Bulk Add Customer</button>
+      </div>
+    </div>
+    
+    <div class="row" ng-show="newcustomer">
+      <div class='col-md-8 col-md-offset-2 col-sm-12 col-xs-12'>
+        <div class="x_panel tile">
+          <label style="font-weight:300; font-size:18px; padding:10px;">Add New Customer</label>
+          <hr style="margin-bottom: 0px;">
+          <div class="x_content" style="padding:15px;">
+          <small class="pull-right" style="color:red; font-weight: 400; font-size:14px"><sup>*All fields are required</sup></small>
+            <form role="form" name="myForm">
+          <div class="form-group">
+            <label class='text-muted'>Name</label> 
+            <input type="text" ng-model="user.name" class="form-control ryt-input" placeholder=""/>
+          </div>
+          <div class="form-group">
+            <label class='text-muted'>Phone Number</label>
+            <input type="number" ng-model="user.phone" name="phone" class="form-control" pattern=".{10,}"
+                 placeholder="">
+            <span class="error" ng-show="myForm.phone.$error.pattern">Minimum 10 characters required
+            </span>
+          </div>
+          <div class="form-group">
+            <label class='text-muted'>Email</label>
+            <input type="email"  class="form-control ryt-input" ng-pattern="/^[aA-zZ]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" name="input" ng-model="user.email" placeholder="">
+            <span class="error" ng-show="myForm.input.$error.required">Required!</span>
+            <span class="error" ng-show="myForm.input.$error.email || myForm.input.$error.pattern">
+            Please enter a valid email id!</span>
+          </div>
+          <div class="form-group">
+            <label class='text-muted'>Loyalty Card Number</label>
+            <input type="number" ng-model="user.card" name="card" class="form-control">
+          </div>
+        <div class="form-group">
+          <label class='text-muted' for="day">Age group</label><br>
+          <div class='col-xs-6' ng-click="setVal('age','below 25')">
+            <div class='ryt-whynot5-btn text-muted' ng-class='{"ryt-whynot5-btn-selected":user.age=="below 25" }' style="line-height:30px;">
+              Above 25
+            </div>
+          </div>
+          <div class='col-xs-6' ng-click="setVal('age','above 25')">
+            <div class='ryt-whynot5-btn text-muted' ng-class='{"ryt-whynot5-btn-selected":user.age=="above 25" }' style="line-height:30px;">
+              Above 25
+            </div>
+          </div>
+        </div>
+        <div class=" form-group">
+          <div style="margin-top:5px">
+            <label class='text-muted'>Gender</label>
+          </div>
+          <div class="form-group col-xs-6" style="text-align:center" ng-click="setVal('gender','f')">
+            <img src="assets/img/female-black.png" ng-show="user.gender!='f'" style="height:40px;"/>
+            <img src="assets/img/female-green.png" ng-show="user.gender=='f'" style="height:40px;"/>
+
+            <!-- <span class="rytgender" ng-class="{'rytgendersel':user.gender=='m'}" ng-click="setVal('gender','m')"><i class="fa fa-male fa-2x"></i><i class="fa fa-check" ng-show="user.gender=='m'"></i></span> -->
+          </div>
+          <div class="rytgender" class=" col-xs-6" style="text-align:center" ng-click="setVal('gender','m')">
+            <img src="assets/img/male-black.png" ng-show="user.gender!='m'" style="height:40px;"/>
+            <img src="assets/img/male-green.png" ng-show="user.gender=='m'" style="height:40px;"/>
+
+            <!-- <span  ng-class="{'rytgendersel':user.gender=='f'}" ng-click="setVal('gender','f')"><i class="fa fa-female fa-2x"></i><i class="fa fa-check" ng-show="user.gender=='f'"></i></span> -->
+          </div>
+        </div>
+      </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="row" ng-show="!newcustomer">
+    <div class='col-md-12 col-sm-12 col-xs-12'>
+      <div class="x_panel tile">
+        <div class="x_content">
+          <table class="table table-hover" style="width:100%">
+            <thead>
+              <tr>
+               <th ng-repeat='item in head'>{{item.name}}</th>
+             </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="entry in customers | filter:searchKey" style='cursor:pointer;' ng-click="gotoDetail(entry,'/custdtls')">
+                <td ng-repeat="item in entry.customer">{{item}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div align="center">
+          <ul class="pagination">
+            <li class="active"><a>1</a></li>
+            <li><a>2</a></li>
+            <li><a>..</a></li>
+            <li><a>..</a></li>
+            <li><a>447</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
