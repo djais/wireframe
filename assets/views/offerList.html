@@ -1,1 +1,25 @@
-List of all Offers
+<div class="x_panel tile" ng-controller="offerListCtrl" ng-cloak>
+        <div class="x_content" >
+          <table class="table table-hover" style="width:100%">
+            <thead>
+              <th> Availability </th>
+              <th> Image </th>
+              <th> Details </th>
+              <th> Base Price </th>
+              <th> Offer Price </th>
+              <th> Last Updated </th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in offers" style='cursor:pointer;'>
+                <td style='text-align:center;vertical-align:middle'> <i class='fa fa-check' style='color:green' ng-show='item.avail'></i> <i class='fa fa-ban' style='color:red' ng-show='!item.avail'></i></td>
+                <td style='text-align:center; vertical-align:middle'> <img src={{item.img}} style='width:40px; height:40px;' /></td>
+                <td> <h4> {{item.name}}</h4><p>{{item.shortdesc}} </p></td>
+                <td style='text-align:center; vertical-align:middle'> {{item.bprice}}</td>
+                <td style='text-align:center; vertical-align:middle'> {{item.offprice}}</td>
+                <td style='text-align:center; vertical-align:middle'> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 style='color:#bbbbbb; text-align:center' ng-show='!offers.length'> No Data Found</h2>
+        </div>
+      </div>

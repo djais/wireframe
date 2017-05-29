@@ -1,1 +1,28 @@
-List of Locations
+<div class="x_panel tile" ng-controller="locationListCtrl" ng-cloak>
+        <div class="x_content" >
+          <table class="table table-hover" style="width:100%">
+            <thead>
+             <th> Active </th>
+              <th> Location Name </th>
+              <th> City </th>
+              <th> Country </th>
+              <th> Longitude </th>
+              <th> Latitude </th>
+              <th> Last Updated </th>
+
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in locations" style='cursor:pointer;'>
+              <td style='text-align:left;vertical-align:middle'> <i class='fa fa-check' style='color:green' ng-show='item.avail'></i> <i class='fa fa-ban' style='color:red' ng-show='!item.avail'></i></td>
+                <td> {{item.location}}</td>
+                <td> {{item.city}}</td>
+                <td> {{item.country}}</td>
+                <td> {{item.longitude}}</td>
+                <td> {{item.latitude}}</td>
+                <td> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 style='color:#bbbbbb; text-align:center' ng-show='!locations.length'> No Data Found</h2>
+        </div>
+      </div>
