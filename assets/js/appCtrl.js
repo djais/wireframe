@@ -261,6 +261,14 @@ app.controller("chatCtrl", function($scope,$rootScope, $http){
 
 });
 
+/* -- chatListCtrl : --*/
+
+app.controller("chatListCtrl", function($scope,$rootScope, $http){
+  $scope.init = function(){
+  
+  };/* init() */
+
+});
 
 /* -- agentCtrl : --*/
 

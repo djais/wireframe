@@ -565,10 +565,13 @@
   border-left: 3px solid transparent;
   font-weight: 600;
 }
-.skin-black-light .sidebar-menu > li:hover > a,
+.skin-black-light .sidebar-menu > li:hover > a{
+  background-color:#888;
+  color:#eee;
+}
 .skin-black-light .sidebar-menu > li.active > a {
-  color: #000000;
-  background: #f4f4f5;
+  background-color:#003F69;
+  color:#fff;
 }
 .skin-black-light .sidebar-menu > li.active {
   border-left-color: #ffffff;
@@ -578,6 +581,7 @@
 }
 .skin-black-light .sidebar-menu > li > .treeview-menu {
   background: #f4f4f5;
+
 }
 .skin-black-light .sidebar a {
   color: #444444;

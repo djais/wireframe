@@ -34,12 +34,19 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
 
 
     $rootScope.products = [
-      {avail:true, img:"/rytbot-wireframe/assets/images/1.jpg", name:"Pager", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:7500, tags:["product", "pager", "retro"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
-      {avail:false, img:"/rytbot-wireframe/assets/images/2.jpg", name:"Kitchenware : Some utensils", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:2600, tags:['product',"kitchen items"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
-      {avail:true, img:"/rytbot-wireframe/assets/images/4.png", name:"DSLR Cannon Awesomeness", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:32999, tags:["product","camera", "dslr", "great pictures", "most liked"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
-      {avail:false, img:"/rytbot-wireframe/assets/images/3.png", name:"Retro Camera", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:17250, tags:["product", "camera","retro"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
-    ]
+      {id:'0001',avail:true, img:"/rytbot-wireframe/assets/images/1.jpg", name:"Pager", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:7500, tags:["product", "pager", "retro"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
+      {id:'0002',avail:false, img:"/rytbot-wireframe/assets/images/2.jpg", name:"Kitchenware : Some utensils", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:2600, tags:['product',"kitchen items"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
+      {id:'0003',avail:true, img:"/rytbot-wireframe/assets/images/4.png", name:"DSLR Cannon Awesomeness", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:32999, tags:["product","camera", "dslr", "great pictures", "most liked"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
+      {id:'0004',avail:false, img:"/rytbot-wireframe/assets/images/3.png", name:"Retro Camera", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:17250, tags:["product", "camera","retro"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
+    ];
 
+    $rootScope.chats = [
+      {id:'0001',status:"active",pic:'/rytbot-wireframe/assets/img/usericon.png',custId:"123456", name:"Rahul Mishra" , msg:"Hey last time the price was 23 $", agent:'bot', platform:'web' ,updateTs:1496050225},
+      {id:'0002',status:"away",pic:'/rytbot-wireframe/assets/images/flash.png',custId:"123457", name:"Flash Gordon" , msg:"Do you know I am a superfast hero", agent:'bot', platform:'facebook' ,updateTs:1496050225},
+      {id:'0003',status:"struggling",pic:'/rytbot-wireframe/assets/images/superman.jpg',custId:"123458", name:"Super Mann" , msg:"I am asking a tough question that you'll ask for human help", agent:'bot', platform:'facebook' ,updateTs:1496050225},
+      {id:'0004',status:"active",pic:'/rytbot-wireframe/assets/img/usericon.png',custId:"123459", name:"Some Guy" , msg:"Whats your best price", agent:'Vinod', platform:'web' ,updateTs:1496050225},
+      {id:'0005',status:"offline",pic:'/rytbot-wireframe/assets/img/usericon.png',custId:"123459", name:"Some Other Guy" , msg:"I'll check and may be come back later", agent:'Byomkesh Bakshi', platform:'web' ,updateTs:1496050225, feedback:"like"}
+    ];
 
 
 
