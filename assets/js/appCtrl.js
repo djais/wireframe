@@ -18,6 +18,15 @@ app.config(function($routeProvider) {
 
 app.run(function($rootScope, $http){
 
+
+      $rootScope.onClickTab = function (tab) {
+        $rootScope.currentTab = tab.url;
+      }
+
+      $rootScope.isActiveTab = function(tabUrl) {
+          return tabUrl == $rootScope.currentTab;
+      }
+
 });
 
 /*---- appCtrl : <reason> ---*/
@@ -50,8 +59,7 @@ app.controller('sideBarCtrl',function($scope, $rootScope){
                  "contents":[
                               {"title":"Dashboard","url":"dashboard","icon":"fa fa-dashboard"},
                               {"title":"Chats","url":"chats","icon":"fa fa-comments-o"},
-                              {"title":"Customers","url":"customers","icon":"fa fa-user"},
-                              // {"title":"Tickets","url":"tickets","icon":"fa fa-edit"},
+                              {"title":"Customers","url":"customers","icon":"fa fa-user"}
                             ]
                 },
                 {"title":"BOTS",
@@ -101,12 +109,12 @@ app.controller('customerCtrl',function($rootScope,$scope,$location){
 
 });
 
-/*--- TabsCtrl --- <Make it a factory function>*/
+/* -- custdtlsCtrl: customer details controller */
 
-app.controller('TabsCtrl', function ($scope,$rootScope) {
+app.controller('custdtlsCtrl', function ($scope,$rootScope) {
 
-  $scope.tabs = {
-    "customers":[
+  $scope.init = function(){
+    $scope.tabs=[
       {
         title: 'Activity Log',
         url: 'assets/views/activitylog.html'
@@ -114,40 +122,7 @@ app.controller('TabsCtrl', function ($scope,$rootScope) {
         title: 'Add note',
         url: 'assets/views/addnote.html'
       }
-    ],
-    "products":[
-      {
-        title: 'Products',
-        url: 'assets/views/productList.html'
-      }, {
-        title: 'Add New',
-        url: 'assets/views/addProduct.html'
-      }
-    ]
-  };/* scope.tabs */
-
-
-
-    $rootScope.onClickTab = function (tab) {
-      console.log("onClickTab")
-      console.log(tab)
-      console.log(tab.url)
-      $rootScope.currentTab = tab.url;
-      console.log($scope.currentTab)
-    }
-
-    $scope.isActiveTab = function(tabUrl) {
-        return tabUrl == $scope.currentTab;
-    }
-});
-
-/* Other controller */
-
-
-
-app.controller('custdtlsCtrl', function ($scope,$rootScope) {
-
-  $scope.init = function(){
+    ];
     $rootScope.currentTab = 'assets/views/activitylog.html';
     }
 
@@ -157,7 +132,142 @@ app.controller('custdtlsCtrl', function ($scope,$rootScope) {
 
 app.controller("productsCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
+    $scope.tabs=[
+      {
+        title: 'Products',
+        url: 'assets/views/productList.html'
+      }, {
+        title: 'Add New',
+        url: 'assets/views/addProduct.html'
+      }
+    ];
       $rootScope.currentTab = 'assets/views/productList.html';
+  };/* init() */
+
+});
+
+/* -- faqCtrl : --*/
+
+app.controller("faqCtrl", function($scope,$rootScope, $http){
+  $scope.init = function(){
+    $scope.tabs=[
+      {
+        title: 'FAQs',
+        url: 'assets/views/faqList.html'
+      }, {
+        title: 'Add New',
+        url: 'assets/views/addFaq.html'
+      }
+    ];
+      $rootScope.currentTab = 'assets/views/faqList.html';
+  };/* init() */
+
+});
+
+/* -- locationCtrl : --*/
+
+app.controller("locationCtrl", function($scope,$rootScope, $http){
+  $scope.init = function(){
+    $scope.tabs=[
+      {
+        title: 'Locations',
+        url: 'assets/views/locationList.html'
+      }, {
+        title: 'Add New',
+        url: 'assets/views/addLocation.html'
+      }
+    ];
+      $rootScope.currentTab = 'assets/views/locationList.html';
+  };/* init() */
+
+});
+
+/* -- offersCtrl : --*/
+
+app.controller("offersCtrl", function($scope,$rootScope, $http){
+  $scope.init = function(){
+    $scope.tabs=[
+      {
+        title: 'Offers',
+        url: 'assets/views/offerList.html'
+      }, {
+        title: 'Add New',
+        url: 'assets/views/addOffer.html'
+      }
+    ];
+      $rootScope.currentTab = 'assets/views/offerList.html';
+  };/* init() */
+
+});
+
+/* -- servicesCtrl : --*/
+
+app.controller("servicesCtrl", function($scope,$rootScope, $http){
+  $scope.init = function(){
+    $scope.tabs=[
+      {
+        title: 'Services',
+        url: 'assets/views/serviceList.html'
+      }, {
+        title: 'Add New',
+        url: 'assets/views/addService.html'
+      }
+    ];
+      $rootScope.currentTab = 'assets/views/serviceList.html';
+  };/* init() */
+
+});
+
+/* -- multimediaCtrl : --*/
+
+app.controller("multimediaCtrl", function($scope,$rootScope, $http){
+  $scope.init = function(){
+    $scope.tabs=[
+      {
+        title: 'Multimedia Files',
+        url: 'assets/views/multimediaList.html'
+      }, {
+        title: 'Add New',
+        url: 'assets/views/addMultimedia.html'
+      }
+    ];
+      $rootScope.currentTab = 'assets/views/multimediaList.html';
+  };/* init() */
+
+});
+
+
+/* -- chatCtrl : --*/
+
+app.controller("chatCtrl", function($scope,$rootScope, $http){
+  $scope.init = function(){
+    $scope.tabs=[
+      {
+        title: 'Customer Messages',
+        url: 'assets/views/chatList.html'
+      }
+    ];
+      $rootScope.currentTab = 'assets/views/chatList.html';
+  };/* init() */
+
+});
+
+
+/* -- agentCtrl : --*/
+
+app.controller("agentCtrl", function($scope,$rootScope, $http){
+  $scope.init = function(){
+    $scope.tabs=[
+      {
+        title: 'Agents',
+        url: 'assets/views/agentList.html'
+      },
+      {
+        title: 'Add New',
+        url: 'assets/views/addAgent.html'
+      }
+    ];
+      $rootScope.currentTab = 'assets/views/agentList.html';
   };/* init() */
 
 });
