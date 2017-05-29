@@ -10,11 +10,11 @@
             </thead>
             <tbody>
               <tr ng-repeat="item in products" style='cursor:pointer;'>
-                <td> {{item.avail}}</td>
-                <td> <img src={{item.img}} style='width:40px; height:40px;' /></td>
+                <td style='text-align:center;vertical-align:middle'> <i class='fa fa-check' style='color:green' ng-show='item.avail'></i> <i class='fa fa-ban' style='color:red' ng-show='!item.avail'></i></td>
+                <td style='text-align:center; vertical-align:middle'> <img src={{item.img}} style='width:40px; height:40px;' /></td>
                 <td> <h4> {{item.name}}</h4><p>{{item.shortdesc}} </p></td>
-                <td> {{item.price}}</td>
-                <td> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
+                <td style='text-align:center; vertical-align:middle'> {{item.price}}</td>
+                <td style='text-align:center; vertical-align:middle'> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
               </tr>
             </tbody>
           </table>
