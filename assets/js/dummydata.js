@@ -31,6 +31,43 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
     ];
 
     $rootScope.modelfb = { id: '101', customer: { name: 'Rahul', phone: '9611876767', email: 'rahul@rytangle.com', gender: 'Male', age_group: 'Above 25' }, feedback: { npsScore: '3', rating: '5', service: '', facilities: '', staff: '', comment: 'Improve service' }, derived: { source: 'web', keyParam: 'detractor', sentiment: "positive", concerns: ['staff behavior', 'service'], location: 'Bangalore', time: '18:44', date: '13-Jan-17' } };
+    
+    // $rootScope.faqlist = [
+    //    { id: '100',
+    //     faqs: { que: 'what bot do?', 
+    //     ans: 'bot does noting but it replies you witout human interaction', 
+    //     author: 'rytangle team',
+    //      status: false,attachment:"", LS: '04-Sept-17'
+    //     }
+    //    },
+       
+    //    { id: '101', faqs:
+    //     { que: 'How do I create a bot?', 
+    //     ans: 'Creating Telegram bots is super-easy, but you will need at least some skills at computer programming. In order for a bot to work, set up a bot account with @BotFather, then connect it to your backend server via our API', 
+    //     author: 'core.telegram.org',
+    //      status: true,
+    //      attachment:"", LS: '04-Sept-16'} },
+     
+  
+    // ];
+    $rootScope.faqlist=[{faqs:{ que: 'How do I create a bot?', 
+        ans: 'Creating Telegram bots is super-easy, but you will need at least some skills at computer programming. In order for a bot to work, set up a bot account with @BotFather, then connect it to your backend server via our API', 
+        author: 'core.telegram.org',
+         status: true,
+         attachment:"file is attached",
+         src:"assets/img/usericon.png", LS: '1496060971'}},
+         {faqs:{ que: 'How ?', 
+         attachment:"video is attached",
+        ans: 'Creating Telegram bots is super-easy, but you will need at least some skills at computer programming. In order for a bot to work, set up a bot account with @BotFather, then connect it to your backend server via our API', 
+        author: 'core.telegram.org',
+         status: true,
+         src:"assets/img/movie.ogg", LS: '1496058793'}},
+        { faqs: { que: 'what bot do?', 
+        attachment:"sound is attached",
+        ans: 'bot does noting but it replies you witout human interaction', 
+        Author: 'rytangle team',
+         Status: false,src:"assets/img/sound.ogg", LS: '1496058746'
+        }}];
 
 
     $rootScope.products = [
