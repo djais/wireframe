@@ -146,7 +146,6 @@ app.controller("productsCtrl", function($scope,$rootScope, $http){
 
 });
 
-
 /*-- productListCtrl ---*/
 
 app.controller("productListCtrl", function($scope, $rootScope){
@@ -191,6 +190,13 @@ app.controller("locationCtrl", function($scope,$rootScope, $http){
 
 });
 
+/*-- locationListCtrl: --*/
+app.controller("locationListCtrl", function($scope, $rootScope){
+    $scope.init = function(){
+      // initilization variables
+    };
+})
+
 /* -- offersCtrl : --*/
 
 app.controller("offersCtrl", function($scope,$rootScope, $http){
@@ -208,7 +214,12 @@ app.controller("offersCtrl", function($scope,$rootScope, $http){
   };/* init() */
 
 });
-
+/*-- offersCtrl : --*/
+app.controller("offerListCtrl", function($scope, $rootScope){
+    $scope.init = function(){
+      // initilization variables
+    };
+})
 /* -- servicesCtrl : --*/
 
 app.controller("servicesCtrl", function($scope,$rootScope, $http){
