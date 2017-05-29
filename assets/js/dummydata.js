@@ -40,7 +40,6 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
       {id:'0004',avail:false, img:"/rytbot-wireframe/assets/images/3.png", name:"Retro Camera", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:17250, tags:["product", "camera","retro"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
     ];
 
-<<<<<<< HEAD
     $rootScope.chats = [
       {id:'0001',status:"active",pic:'/rytbot-wireframe/assets/img/usericon.png',custId:"123456", name:"Rahul Mishra" , msg:"Hey last time the price was 23 $", agent:'bot', platform:'web' ,updateTs:1496050225},
       {id:'0002',status:"away",pic:'/rytbot-wireframe/assets/images/flash.png',custId:"123457", name:"Flash Gordon" , msg:"Do you know I am a superfast hero", agent:'bot', platform:'facebook' ,updateTs:1496050225},
@@ -49,10 +48,8 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
       {id:'0005',status:"offline",pic:'/rytbot-wireframe/assets/img/usericon.png',custId:"123459", name:"Some Other Guy" , msg:"I'll check and may be come back later", agent:'Byomkesh Bakshi', platform:'web' ,updateTs:1496050225, feedback:"like"}
     ];
 
-    $rootScope.offers = [
-=======
+
      $rootScope.offers = [
->>>>>>> 93a6467da03e9baed54edc96e167c7972c7d203c
       {avail:true, img:"/rytbot-wireframe/assets/images/1.jpg", name:"Pager", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:7500, offprice:6500, tags:["product", "pager", "retro"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
       {avail:false, img:"/rytbot-wireframe/assets/images/2.jpg", name:"Kitchenware : Some utensils", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:2600, offprice:2000, tags:['product',"kitchen items"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
       {avail:true, img:"/rytbot-wireframe/assets/images/4.png", name:"DSLR Cannon Awesomeness", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:32999, offprice:30000, tags:["product","camera", "dslr", "great pictures", "most liked"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
@@ -64,23 +61,9 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
       {avail:true,  location:"Indiranagar", city:"Bangalore", country:"India", updateTs:1496050225,longitude:"77.6271° E",latitude:"12.9279° N",},
       {avail:false, location:"BTM Layout", city:"Bangalore", country:"India", updateTs:1496050225,longitude:"77.6271° E",latitude:"12.9279° N",},
       {avail:true,  location:"WhiteField", city:"Bangalore", country:"India", updateTs:1496050225,longitude:"77.6271° E",latitude:"12.9279° N",},
-
-<<<<<<< HEAD
        ]
-=======
-$rootScope.locations = [
-      {avail:true,  location:"Kormangala", city:"Bangalore", country:"India", updateTs:1496050225,longitude:"77.6271° E",latitude:"12.9279° N",},
-      {avail:true,  location:"Indiranagar", city:"Bangalore", country:"India", updateTs:1496050225,longitude:"77.6271° E",latitude:"12.9279° N",},
-      {avail:false, location:"BTM Layout", city:"Bangalore", country:"India", updateTs:1496050225,longitude:"77.6271° E",latitude:"12.9279° N",},
-      {avail:true,  location:"WhiteField", city:"Bangalore", country:"India", updateTs:1496050225,longitude:"77.6271° E",latitude:"12.9279° N",},
->>>>>>> 93a6467da03e9baed54edc96e167c7972c7d203c
-
-       ]
-
 
 
     // ALL Dummy Data before this line.
 
 });
-
-    
