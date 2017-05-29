@@ -5,6 +5,14 @@ app.config(function($routeProvider) {
   $routeProvider.when('/customers',         {templateUrl: 'assets/views/customers.html', reloadOnSearch: false});
   $routeProvider.when('/custdtls',          {templateUrl: 'assets/views/customerdtls.html', reloadOnSearch: false});
   $routeProvider.when('/dashboard',         {templateUrl: 'assets/views/dashboard.html', reloadOnSearch: false});
+  $routeProvider.when("/products",  {templateUrl: 'assets/views/products.html', reloadOnSearch: false});
+  $routeProvider.when("/faqs",  {templateUrl: 'assets/views/faqs.html', reloadOnSearch: false});
+  $routeProvider.when("/locations",  {templateUrl: 'assets/views/locations.html', reloadOnSearch: false});
+  $routeProvider.when("/chats",  {templateUrl: 'assets/views/chats.html', reloadOnSearch: false});
+  $routeProvider.when("/services",  {templateUrl: 'assets/views/services.html', reloadOnSearch: false});
+  $routeProvider.when("/offers",  {templateUrl: 'assets/views/offers.html', reloadOnSearch: false});
+  $routeProvider.when("/multimedia",  {templateUrl: 'assets/views/multimedia.html', reloadOnSearch: false});
+  $routeProvider.when("/agents",  {templateUrl: 'assets/views/agents.html', reloadOnSearch: false});
 }); /* app.config */
 
 
@@ -106,6 +114,15 @@ app.controller('TabsCtrl', function ($scope,$rootScope) {
         title: 'Add note',
         url: 'assets/views/addnote.html'
       }
+    ],
+    "products":[
+      {
+        title: 'Products',
+        url: 'assets/views/productList.html'
+      }, {
+        title: 'Add New',
+        url: 'assets/views/addProduct.html'
+      }
     ]
   };/* scope.tabs */
 
@@ -133,5 +150,14 @@ app.controller('custdtlsCtrl', function ($scope,$rootScope) {
   $scope.init = function(){
     $rootScope.currentTab = 'assets/views/activitylog.html';
     }
+
+});
+
+/* -- productsCtrl : --*/
+
+app.controller("productsCtrl", function($scope,$rootScope, $http){
+  $scope.init = function(){
+      $rootScope.currentTab = 'assets/views/productList.html';
+  };/* init() */
 
 });
