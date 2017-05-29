@@ -146,6 +146,15 @@ app.controller("productsCtrl", function($scope,$rootScope, $http){
 
 });
 
+
+/*-- productListCtrl ---*/
+
+app.controller("productListCtrl", function($scope, $rootScope){
+    $scope.init = function(){
+      // initilization variables
+    };
+})
+
 /* -- faqCtrl : --*/
 
 app.controller("faqCtrl", function($scope,$rootScope, $http){
