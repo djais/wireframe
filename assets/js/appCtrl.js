@@ -163,7 +163,12 @@ app.controller("faqCtrl", function($scope,$rootScope, $http){
   };/* init() */
 
 });
+/* -- faqListCtrl : --*/
 
+app.controller("faqListCtrl", function($scope,$rootScope, $http){
+   $scope.letterLimit = 100;
+$scope.faqs=true;
+});
 /* -- locationCtrl : --*/
 
 app.controller("locationCtrl", function($scope,$rootScope, $http){
