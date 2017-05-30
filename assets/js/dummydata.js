@@ -89,6 +89,13 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
      {id:'0004', pic:'/rytbot-wireframe/assets/images/mickey.png', status:"idle", name:"Mickey Mishra", chats:89, lastTs:1496127518, likes:25, dislikes:10} 
       ]
 
+$rootScope.multimedias = [
+{text:"Lorem ipsum dolor",  img:"/rytbot-wireframe/assets/images/1.jpg", audio:"/rytbot-wireframe/assets/images/beep1.mp3", video:"http://techslides.com/demos/sample-videos/small.mp4", updateTs:1496050225,gif:"/rytbot-wireframe/assets/images/icon-animation.gif",weblink:"View link",},
+{text:"Lorem ipsum dolor",  img:"/rytbot-wireframe/assets/images/1.jpg", audio:"/rytbot-wireframe/assets/images/beep1.mp3", video:"India", updateTs:1496050225,gif:"/rytbot-wireframe/assets/images/icon_gif.gif",weblink:"View link",},
+{text:"Lorem ipsum dolor",  img:"/rytbot-wireframe/assets/images/1.jpg", audio:"/rytbot-wireframe/assets/images/beep1.mp3", video:"India", updateTs:1496050225,gif:"/rytbot-wireframe/assets/images/icon-animation.gif",weblink:"View link",},
+
+]
+ 
     // ALL Dummy Data before this line.
 
 });

@@ -260,8 +260,11 @@ app.controller("multimediaCtrl", function($scope,$rootScope, $http){
   };/* init() */
 
 });
-
-
+/* -- multimediaListCtrl : --*/
+app.controller("multimediaListCtrl", function($scope,$rootScope, $http){
+   $scope.letterLimit = 100;
+$scope.multimedia=true;
+});
 /* -- chatCtrl : --*/
 
 app.controller("chatCtrl", function($scope,$rootScope, $http){
