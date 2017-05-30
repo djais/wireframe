@@ -56,8 +56,13 @@ $rootScope.locations = [
 
        ]
 
+$rootScope.multimedias = [
+{text:"Lorem ipsum dolor",  img:"/rytbot-wireframe/assets/images/1.jpg", audio:"/rytbot-wireframe/assets/images/beep1.mp3", video:"http://techslides.com/demos/sample-videos/small.mp4", updateTs:1496050225,gif:"/rytbot-wireframe/assets/images/icon-animation.gif",weblink:"View link",},
+{text:"Lorem ipsum dolor",  img:"/rytbot-wireframe/assets/images/1.jpg", audio:"/rytbot-wireframe/assets/images/beep1.mp3", video:"India", updateTs:1496050225,gif:"/rytbot-wireframe/assets/images/icon_gif.gif",weblink:"View link",},
+{text:"Lorem ipsum dolor",  img:"/rytbot-wireframe/assets/images/1.jpg", audio:"/rytbot-wireframe/assets/images/beep1.mp3", video:"India", updateTs:1496050225,gif:"/rytbot-wireframe/assets/images/icon-animation.gif",weblink:"View link",},
 
-
+]
+ 
     // ALL Dummy Data before this line.
 
 });
