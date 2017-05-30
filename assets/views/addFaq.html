@@ -1,22 +1,157 @@
-   <div class="row" >
-      <div class='col-md-8 col-md-offset-2 col-sm-12 col-xs-12'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.1/css/fileinput.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.1/js/fileinput.js">
+<div class="row" ng-controller="addFaqCtrl">
+    <div class='col-md-8 col-md-offset-2 col-sm-12 col-xs-12'>
         <div class="x_panel tile">
-          <label style="font-weight:300; font-size:18px; padding:10px;">Add New Faq</label>
-          <hr style="margin-bottom: 0px;">
-          <div class="x_content" style="padding:15px;">
-          <small class="pull-right" style="color:red; font-weight: 400; font-size:14px"><sup>*All fields are required</sup></small>
-            <form role="form" name="myForm">
-          <div class="form-group">
-            <label class='text-muted'>Question</label> 
-            <input type="text" ng-model="user.que" class="form-control ryt-input" placeholder=""/>
-          </div>
-           <div class="form-group">
-            <label class='text-muted'>Answer</label> 
-            <input type="text" ng-model="user.ans" class="form-control ryt-input" placeholder=""/>
-          </div>
-          
-      </form>
-          </div>
+            <label style="font-weight:300; font-size:18px; padding:10px;">Add New Faq</label>
+            <hr style="margin-bottom: 0px;">
+            <div class="x_content" style="padding:15px;">
+                <!--<small class="pull-right" style="color:red; font-weight: 400; font-size:14px"><sup>*All fields are required</sup></small>-->
+                <form role="form" name="myForm">
+                    <div class="form-group">
+                        <label class='text-muted'>Question</label>
+                        <input type="text" ng-model="que" class="form-control ryt-input" placeholder="Type a Question" />
+                    </div>
+                    <div class="form-group">
+                        <label class='text-muted'>Answer</label>
+                        <textarea type="text" ng-model="ans" class="form-control ryt-input" placeholder="Type an answer" rows="4"></textarea>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-4 col-sm-6">
+                            <label class='text-muted'>Lead options</label>
+                            <div class="popup" ng-click="leadme()">
+                                <i class="glyphicon glyphicon-question-sign"></i>
+                                <span class="popuptext" id="myPopup">leading option</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-6 col-md-6 "><label class='text-muted'>Tags</label> &nbsp;
+
+                            <textarea id="ref" type="text" runat="server" ng-init="refval=''" ng-model="refval" placeholder="Add a tag" rows="4" cols="100"></textarea>
+                            <span ng-repeat="r in ref" class="badge">{{r.toString()}} <i class="fa fa-times" ng-show="showrmv>1" ng-click="removetag(r)"></i> </span>
+
+                        </div>
+                        <div class="col-xs-6 col-md-6 ">
+
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col-xs-6 col-md-6 ">
+                            <label>Attachments</label><small style="color:red; font-weight: 400; font-size:14px"><sup>*Click to attach your file</sup></small>                            <br>
+
+                            <!--<input type = "file" file-model = "myFile"  ng-model="img" name="attach"/>-->
+                            <!--<label class="control-label">Select File</label>
+<input id="input-id" type="file" class="file" data-preview-file-type="text"ng-model="img">
+<img ng-src="{{img}}">-->
+                            <input type="file" id="files" multiple />
+                            <output id="list"></output>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group"><label class='text-muted'>Ref links</label>
+
+                            <textarea type="url" id="myURL" value="" ng-model="url" rows="2" cols="100" placeholder="Ex:https://www.rytangle.com"></textarea>
+                            <span>{{url}} </span>
+
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+
+                        </div>
+                    </div>
+
+
+                    <!--<button class="btn danger pull-left" style="color:red;" type="reset">reset</button>-->
+                    <input type="reset" value="reset">
+                    <!--<button class="btn success pull-right" style="color:green;" ng-click="submit()">submit</button>-->
+                    <button class="btn btn-info pull-right" ng-click="submit()">Submit</button>
+                </form>
+
+            </div>
         </div>
-      </div>
     </div>
+</div>
+
+<style>
+    .image-upload>input {
+        display: none;
+    }
+
+    .image-upload img {
+        width: 80px;
+        cursor: pointer;
+    }
+
+    #phone>span,
+    #email>span {
+        cursor: pointer;
+        display: block;
+        float: left;
+        color: #fff;
+        background: #789;
+        padding: 5px;
+        padding-right: 25px;
+        margin: 4px;
+    }
+
+    #phone>span:hover,
+    #email>span:hover {
+        opacity: 0.7;
+    }
+
+    #phone>span:after,
+    #email>span:after {
+        position: absolute;
+        content: "×";
+        border: 1px solid;
+        padding: 2px 5px;
+        margin-left: 3px;
+        font-size: 11px;
+    }
+</style>
+
+
+<script>
+    function handleFileSelect(evt) {
+        var files = evt.target.files;
+
+        // Loop through the FileList and render image files as thumbnails.
+        for (var i = 0, f; f = files[i]; i++) {
+
+            // Only process image files.
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+
+            var reader = new FileReader();
+
+            // Closure to capture the file information.
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    // Render thumbnail.
+                    var span = document.createElement('span');
+                    span.innerHTML =
+                        [
+                            '<img style="height: 75px; border: 1px solid #000; margin: 5px" src="',
+                            e.target.result,
+                            '" title="', escape(theFile.name),
+                            '"/>'
+                        ].join('');
+
+                    document.getElementById('list').insertBefore(span, null);
+                };
+            })(f);
+
+            // Read in the image file as a data URL.
+            reader.readAsDataURL(f);
+        }
+    }
+
+    document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+</script>
