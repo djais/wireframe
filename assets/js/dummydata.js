@@ -31,40 +31,22 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
     ];
 
     $rootScope.modelfb = { id: '101', customer: { name: 'Rahul', phone: '9611876767', email: 'rahul@rytangle.com', gender: 'Male', age_group: 'Above 25' }, feedback: { npsScore: '3', rating: '5', service: '', facilities: '', staff: '', comment: 'Improve service' }, derived: { source: 'web', keyParam: 'detractor', sentiment: "positive", concerns: ['staff behavior', 'service'], location: 'Bangalore', time: '18:44', date: '13-Jan-17' } };
-    
-    // $rootScope.faqlist = [
-    //    { id: '100',
-    //     faqs: { que: 'what bot do?', 
-    //     ans: 'bot does noting but it replies you witout human interaction', 
-    //     author: 'rytangle team',
-    //      status: false,attachment:"", LS: '04-Sept-17'
-    //     }
-    //    },
-       
-    //    { id: '101', faqs:
-    //     { que: 'How do I create a bot?', 
-    //     ans: 'Creating Telegram bots is super-easy, but you will need at least some skills at computer programming. In order for a bot to work, set up a bot account with @BotFather, then connect it to your backend server via our API', 
-    //     author: 'core.telegram.org',
-    //      status: true,
-    //      attachment:"", LS: '04-Sept-16'} },
-     
-  
-    // ];
-    $rootScope.faqlist=[{faqs:{ que: 'How do I create a bot?', 
-        ans: 'Creating Telegram bots is super-easy, but you will need at least some skills at computer programming. In order for a bot to work, set up a bot account with @BotFather, then connect it to your backend server via our API', 
+
+    $rootScope.faqlist=[{faqs:{ que: 'How do I create a bot?',
+        ans: 'Creating Telegram bots is super-easy, but you will need at least some skills at computer programming. In order for a bot to work, set up a bot account with @BotFather, then connect it to your backend server via our API',
         author: 'core.telegram.org',
          status: true,
          attachment:"file is attached",
          src:"assets/img/usericon.png", LS: '1496060971'}},
-         {faqs:{ que: 'How ?', 
+         {faqs:{ que: 'How ?',
          attachment:"video is attached",
-        ans: 'Creating Telegram bots is super-easy, but you will need at least some skills at computer programming. In order for a bot to work, set up a bot account with @BotFather, then connect it to your backend server via our API', 
+        ans: 'Creating Telegram bots is super-easy, but you will need at least some skills at computer programming. In order for a bot to work, set up a bot account with @BotFather, then connect it to your backend server via our API',
         author: 'core.telegram.org',
          status: true,
          src:"assets/img/movie.ogg", LS: '1496058793'}},
-        { faqs: { que: 'what bot do?', 
+        { faqs: { que: 'what bot do?',
         attachment:"sound is attached",
-        ans: 'bot does noting but it replies you witout human interaction', 
+        ans: 'bot does noting but it replies you witout human interaction',
         Author: 'rytangle team',
          Status: false,src:"assets/img/sound.ogg", LS: '1496058746'
         }}];
@@ -100,6 +82,12 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
       {avail:true,  location:"WhiteField", city:"Bangalore", country:"India", updateTs:1496050225,longitude:"77.6271° E",latitude:"12.9279° N",},
        ]
 
+   $rootScope.agents = [
+     {id:'0001', pic:'/rytbot-wireframe/assets/images/flash.png',status:"active", name:"Flash Gordon", chats:224, lastTs:1496127568, likes:120, dislikes:40} ,
+     {id:'0002', pic:'/rytbot-wireframe/assets/images/superman.jpg', status:"idle", name:"Superman", chats:176, lastTs:1496127468, likes:80, dislikes:23} ,
+     {id:'0003', pic:'/rytbot-wireframe/assets/images/nagraj.jpg', status:"offline", name:"Naag Raj", chats:283, lastTs:1496127368, likes:180, dislikes:60} ,
+     {id:'0004', pic:'/rytbot-wireframe/assets/images/mickey.png', status:"idle", name:"Mickey Mishra", chats:89, lastTs:1496127518, likes:25, dislikes:10} 
+      ]
 
     // ALL Dummy Data before this line.
 

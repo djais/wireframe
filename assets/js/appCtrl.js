@@ -79,7 +79,7 @@ app.controller('sideBarCtrl',function($scope, $rootScope){
                             ]
                 }
                  ,
-                 {"title":"ADMIN",
+                 {"title":"TEAM",
                   "contents":[
                                {"title":"Agents","url":"agents","icon":"fa fa-users"}
                              ]
@@ -281,7 +281,7 @@ app.controller("chatCtrl", function($scope,$rootScope, $http){
 
 app.controller("chatListCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
-  
+
   };/* init() */
 
 });
@@ -301,6 +301,14 @@ app.controller("agentCtrl", function($scope,$rootScope, $http){
       }
     ];
       $rootScope.currentTab = 'assets/views/agentList.html';
+  };/* init() */
+
+});
+
+/*--- agentListCtrl --*/
+app.controller("agentListCtrl", function($scope,$rootScope, $http){
+  $scope.init = function(){
+    //init function
   };/* init() */
 
 });

@@ -1,1 +1,31 @@
-List of all Agents
+<div class="x_panel tile" ng-controller="agentListCtrl" ng-cloak>
+        <div class="x_content" >
+          <table class="table table-hover" style="width:100%">
+            <thead>
+              <th> </th>
+              <th>  </th>
+              <th> Name </th>
+              <th> Total Chats </th>
+              <th> Likes </th>
+              <th> Dislikes </th>
+              <th> Last Active </th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in agents" style='cursor:pointer;'>
+                <td style='text-align:center;vertical-align:middle; font-size:20px'>
+                  <i class='fa fa-check-circle' style='color:green' ng-show='item.status=="active"'></i>
+                  <i class='fa fa-clock-o' style='color:orange' ng-show='item.status=="idle"'></i>
+                  <i class='fa fa-minus-circle' style='color:#555' ng-show='item.status=="offline"'></i>
+                </td>
+                <td style='text-align:center; vertical-align:middle'> <img ng-src={{item.pic}} class='profile-user-img img-responsive img-circle' style='width:75px; height:75px;' /></td>
+                <td style='vertical-align:middle'> <h4> {{item.name}}</h4></td>
+                <td style=' vertical-align:middle'> {{item.chats}}</td>
+                <td style=' vertical-align:middle;font-size:16px'><span class="label label-success">{{item.likes}}</span></td>
+                <td style='vertical-align:middle;font-size:16px'> <span class="label label-danger">{{item.dislikes}}</span></td>
+                <td style='vertical-align:middle'> {{item.lastTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 style='color:#bbbbbb; text-align:center' ng-show='!agents.length'> No Data Found</h2>
+        </div>
+      </div>
