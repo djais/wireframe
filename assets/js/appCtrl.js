@@ -5,6 +5,7 @@ app.config(function($routeProvider) {
   $routeProvider.when('/customers',         {templateUrl: 'assets/views/customers.html', reloadOnSearch: false});
   $routeProvider.when('/custdtls',          {templateUrl: 'assets/views/customerdtls.html', reloadOnSearch: false});
   $routeProvider.when('/dashboard',         {templateUrl: 'assets/views/dashboard.html', reloadOnSearch: false});
+  $routeProvider.when('/chartflow',         {templateUrl: 'assets/views/chartflow.html', reloadOnSearch: false});
   $routeProvider.when("/products",  {templateUrl: 'assets/views/products.html', reloadOnSearch: false});
   $routeProvider.when("/faqs",  {templateUrl: 'assets/views/faqs.html', reloadOnSearch: false});
   $routeProvider.when("/locations",  {templateUrl: 'assets/views/locations.html', reloadOnSearch: false});
@@ -57,6 +58,10 @@ app.run(function($rootScope, $http){
                             chart: {
                             height: 300,
                             width:300,
+                            spacingBottom: 15,
+                            spacingTop: 0,
+                            spacingLeft: 10,
+                            spacingRight: 100,
                             plotBackgroundColor: null,
                             plotBorderWidth: null,
                             plotShadow: false,
@@ -77,7 +82,8 @@ app.run(function($rootScope, $http){
                                                    dataLabels: {
                                                     enabled: false
                                                  },
-                                                showInLegend: true
+                                                showInLegend: true,
+                                                animation: false
                                               }
                                         },
                             series: [{
@@ -160,6 +166,7 @@ app.controller('sideBarCtrl',function($scope, $rootScope){
                 {"title":"OVERVIEW",
                  "contents":[
                               {"title":"Dashboard","url":"dashboard","icon":"fa fa-dashboard"},
+                              {"title":"Chatflow","url":"chartflow","icon":"fa fa-arrow-right"},
                               {"title":"Chats","url":"chats","icon":"fa fa-comments-o"},
                               {"title":"Customers","url":"customers","icon":"fa fa-user"}
                             ]
@@ -218,32 +225,34 @@ app.controller('dashboardCtrl',function($rootScope,$scope,$location){
                         y: 10.38
                     }]
     $scope.responsedata = [{
-                        name: "Buy",
+                        name: "Bot Response",
                         y: 15
                     }, {
-                        name: "Book Table",
+                        name: "Initiated",
                         y: 3000,
-                        sliced: true,
+                        sliced: false,
                         selected: true
                     }, {
-                        name: "Location",
+                        name: "Agent Respond",
                         y: 1000
                     }, {
-                        name: "Contact",
+                        name: "Not Responded",
                         y: 5000
                 }]
      $scope.chartConfig = {
             xAxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+                categories: ['Buy', 'Book Table', 'Location', 'Contact', 'Product Enquiry','Unknown']
             },
                         title: {
-                text: 'Intention'
+                text: 'Intent'
             },           
-            yAxis: { title: { text: 'Temperature (Celsius)' } },
-            tooltip: { valueSuffix: ' celsius' },
+            yAxis: { title: { text: '' } },
+            tooltip: { valueSuffix: ' ' },
             legend: { align: 'center', verticalAlign: 'bottom', borderWidth: 0 },
                plotOptions: {
                 area: {
+                  animation: false,
+                   
                     fillColor: {
                         linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
                         stops: [
@@ -251,6 +260,7 @@ app.controller('dashboardCtrl',function($rootScope,$scope,$location){
                             [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
                         ]
                     },
+                    
                     marker: {
                         radius: 2
                     },
@@ -261,11 +271,31 @@ app.controller('dashboardCtrl',function($rootScope,$scope,$location){
                         }
                     },
                     threshold: null
+
                 }
             },
+            responsive: {
+                                          rules: [{
+                                            condition: {
+                                              maxWidth: 1000
+                                            },
+                                            chartOptions: {
+                                              legend: {
+                                                enabled: true
+                                              }
+                                            }
+                                          }]
+                                        },
+            credits: {
+                         enabled: false
+                    },
             series: [{
               type:'bar',
-                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5]
+              spacingBottom: 15,
+                            spacingTop: 0,
+                            spacingLeft: 10,
+                            spacingRight: 100,
+                data: [12,36,75,50, 45,30]
             }]
     };
 
@@ -273,186 +303,250 @@ app.controller('dashboardCtrl',function($rootScope,$scope,$location){
 
 
    
-console.log("hello Dashboard")
+
 
 /*Flow-chart start*/
-var treeData = [
+var treeData =
   {
-    "name": "Greeting:1500",
-    "parent": "null",
+    "name": "HI:900",
     "children": [
-      {
-        "name": "Intent 1: 100",
-        "parent": "Top Level",
+      { 
+        "name": "Intent1: 200",
         "children": [
-          {
-            "name": "Intent 1:100"
-            
-          },
-          {
-            "name": "Dropoff:20"
-            
-          }
-        ]
-      },
-      {
-        "name": "Intent 2: 200",
-        "children": [
-          {
-            "name": "Intent 1:100"
-            
-          },
-          {
-            "name": "Intent 2:20"
-            
-          },
-          {
-            "name": "Dropoff:20"
-            
-          }
-        ]
-      },
-      {
-        "name": "Intent 3: 50"
-        
-      },
+          { "name": "Intent3: 100" },
+          { "name": "intent6: 70",
+              "children": [
+                            { "name": "Intent4: 20" },
+                            { "name": "intent5: 40" },
+                            { "name": "Dropoff: 10" }
+                          ]
 
-      {
-        "name": "Dropoff:50"
-        
-      }
+           },
+
+           { "name": "Dropoff: 30" }
+        ]
+      },
+      { "name": "Intent 2: 400" ,
+                    "children": [
+                            { "name": "Intent4: 200" },
+                            { "name": "intent5: 150" },
+                            { "name": "Dropoff: 50" }
+                          ]
+      },
+      { "name": "Intent 7: 150" },
+       { "name": "Dropoff: 50" }
     ]
-  }
-];
+  };
 
 
-// ************** Generate the tree diagram  *****************
-var margin = {top: 20, right: 120, bottom: 20, left: 120},
-  width = 960 - margin.right - margin.left,
-  height = 200 - margin.top - margin.bottom;
-  
-var i = 0,
-  duration = 750,
-  root;
+// Set the dimensions and margins of the diagram
+var margin = {top: 20, right: 90, bottom: 30, left: 90},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
-var tree = d3.layout.tree()
-  .size([height, width]);
-
-var diagonal = d3.svg.diagonal()
-  .projection(function(d) { return [d.y, d.x]; });
-
+// append the svg object to the body of the page
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
 var svg = d3.select("#cool").append("svg")
-  .attr("width", width + margin.right + margin.left)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-root = treeData[0];
+    .attr("width", width + margin.right + margin.left)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate("
+          + margin.left + "," + margin.top + ")");
+
+var i = 0,
+    duration = 750,
+    root;
+
+// declares a tree layout and assigns the size
+var treemap = d3.tree().size([height, width]);
+
+// Assigns parent, children, height, depth
+root = d3.hierarchy(treeData, function(d) { return d.children; });
 root.x0 = height / 2;
 root.y0 = 0;
-  
+
+// Collapse after the second level
+root.children.forEach(collapse);
+
 update(root);
 
-d3.select(self.frameElement).style("height", "500px");
+// Collapse the node and all it's children
+function collapse(d) {
+  if(d.children) {
+    d._children = d.children
+    d._children.forEach(collapse)
+    d.children = null
+  }
+}
 
 function update(source) {
 
+  // Assigns the x and y position for the nodes
+  var treeData = treemap(root);
+
   // Compute the new tree layout.
-  var nodes = tree.nodes(root).reverse(),
-    links = tree.links(nodes);
+  var nodes = treeData.descendants(),
+      links = treeData.descendants().slice(1);
 
   // Normalize for fixed-depth.
-  nodes.forEach(function(d) { d.y = d.depth * 180; });
+  nodes.forEach(function(d){ d.y = d.depth * 180});
 
-  // Update the nodes…
-  var node = svg.selectAll("g.node")
-    .data(nodes, function(d) { return d.id || (d.id = ++i); });
+  // ****************** Nodes section ***************************
 
-  // Enter any new nodes at the parent's previous position.
-  var nodeEnter = node.enter().append("g")
-    .attr("class", "node")
-    .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-    .on("click", click);
+  // Update the nodes...
+  var node = svg.selectAll('g.node')
+      .data(nodes, function(d) {return d.id || (d.id = ++i); });
 
-  nodeEnter.append("circle")
-    .attr("r", 1e-6)
-    .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+  // Enter any new modes at the parent's previous position.
+  var nodeEnter = node.enter().append('g')
+      .attr('class', 'node')
+      .attr("transform", function(d) {
+        return "translate(" + source.y0 + "," + source.x0 + ")";
+    })
+    .on('click', click);
 
-  nodeEnter.append("text")
-    .attr("x", function(d) { return d.children || d._children ? -13 : 13; })
-    .attr("dy", ".35em")
-    .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
-    .text(function(d) { return d.name; })
-    .style("fill-opacity", 1e-6);
+  // Add Circle for the nodes
+  nodeEnter.append('circle')
+      .attr('class', 'node')
+      .attr('r', 1e-6)
+      .style("fill", function(d) {
+          return d._children ? "lightsteelblue" : "#fff";
+      });
 
-  // Transition nodes to their new position.
-  var nodeUpdate = node.transition()
+  // Add labels for the nodes
+  nodeEnter.append('text')
+      .attr("dy", ".35em")
+      .attr("x", function(d) {
+          return d.children || d._children ? -13 : 13;
+      })
+      .attr("text-anchor", function(d) {
+          return d.children || d._children ? "end" : "start";
+      })
+      .text(function(d) { return d.data.name; });
+
+  // UPDATE
+  var nodeUpdate = nodeEnter.merge(node);
+
+  // Transition to the proper position for the node
+  nodeUpdate.transition()
     .duration(duration)
-    .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+    .attr("transform", function(d) { 
+        return "translate(" + d.y + "," + d.x + ")";
+     });
 
-  nodeUpdate.select("circle")
-    .attr("r", 10)
-    .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+  // Update the node attributes and style
+  nodeUpdate.select('circle.node')
+    .attr('r', 10)
+    .style("fill", function(d) {
+        return d._children ? "lightsteelblue" : "#fff";
+    })
+    .attr('cursor', 'pointer');
 
-  nodeUpdate.select("text")
-    .style("fill-opacity", 1);
 
-  // Transition exiting nodes to the parent's new position.
+  // Remove any exiting nodes
   var nodeExit = node.exit().transition()
-    .duration(duration)
-    .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
-    .remove();
+      .duration(duration)
+      .attr("transform", function(d) {
+          return "translate(" + source.y + "," + source.x + ")";
+      })
+      .remove();
 
-  nodeExit.select("circle")
-    .attr("r", 1e-6);
+  // On exit reduce the node circles size to 0
+  nodeExit.select('circle')
+    .attr('r', 1e-6);
 
-  nodeExit.select("text")
-    .style("fill-opacity", 1e-6);
+  // On exit reduce the opacity of text labels
+  nodeExit.select('text')
+    .style('fill-opacity', 1e-6);
 
-  // Update the links…
-  var link = svg.selectAll("path.link")
-    .data(links, function(d) { return d.target.id; });
+  // ****************** links section ***************************
+
+  // Update the links...
+  var link = svg.selectAll('path.link')
+      .data(links, function(d) { return d.id; });
 
   // Enter any new links at the parent's previous position.
-  link.enter().insert("path", "g")
-    .attr("class", "link")
-    .attr("d", function(d) {
-    var o = {x: source.x0, y: source.y0};
-    return diagonal({source: o, target: o});
-    });
+  var linkEnter = link.enter().insert('path', "g")
+      .attr("class", "link")
+      .attr('d', function(d){
+        var o = {x: source.x0, y: source.y0}
+        return diagonal(o, o)
+      });
 
-  // Transition links to their new position.
-  link.transition()
-    .duration(duration)
-    .attr("d", diagonal);
+  // UPDATE
+  var linkUpdate = linkEnter.merge(link);
 
-  // Transition exiting nodes to the parent's new position.
-  link.exit().transition()
-    .duration(duration)
-    .attr("d", function(d) {
-    var o = {x: source.x, y: source.y};
-    return diagonal({source: o, target: o});
-    })
-    .remove();
+  // Transition back to the parent element position
+  linkUpdate.transition()
+      .duration(duration)
+      .attr('d', function(d){ return diagonal(d, d.parent) });
 
-  // Stash the old positions for transition.
-  nodes.forEach(function(d) {
-  d.x0 = d.x;
-  d.y0 = d.y;
+  // Remove any exiting links
+  var linkExit = link.exit().transition()
+      .duration(duration)
+      .attr('d', function(d) {
+        var o = {x: source.x, y: source.y}
+        return diagonal(o, o)
+      })
+      .remove();
+
+  // Store the old positions for transition.
+  nodes.forEach(function(d){
+    d.x0 = d.x;
+    d.y0 = d.y;
   });
+
+  // Creates a curved (diagonal) path from parent to the child nodes
+  function diagonal(s, d) {
+
+    path = `M ${s.y} ${s.x}
+            C ${(s.y + d.y) / 2} ${s.x},
+              ${(s.y + d.y) / 2} ${d.x},
+              ${d.y} ${d.x}`
+
+    return path
+  }
+
+  // Toggle children on click.
+  function click(d) {
+    if (d.children) {
+        d._children = d.children;
+        d.children = null;
+      } else {
+        d.children = d._children;
+        d._children = null;
+      }
+    update(d);
+  }
 }
 
-// Toggle children on click.
-function click(d) {
-  if (d.children) {
-  d._children = d.children;
-  d.children = null;
-  } else {
-  d.children = d._children;
-  d._children = null;
-  }
-  update(d);
-}/* flow-chart end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ************** Generate the tree diagram  *****************
+
 
 
 /*Bot pie Chart*/

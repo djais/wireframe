@@ -84,22 +84,33 @@
 
 /*css for flow chart*/
 
-.node {
-    cursor: pointer;
-  }
 
-  .node circle {
-    fill: #fff;
-    stroke: steelblue;
-    stroke-width: 3px;
-  }
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 3px;
+}
 
-  .node text {
-    font: 12px sans-serif;
-  }
+.node text {
+  font: 12px sans-serif;
+}
 
-  .link {
-    fill: none;
-    stroke: #ccc;
-    stroke-width: 2px;
-  }
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom:0%; /* aspect ratio */
+    vertical-align: middle;
+    overflow: hidden;
+}
+.svg-content {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
