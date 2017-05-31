@@ -14,6 +14,7 @@ app.config(function($routeProvider) {
   $routeProvider.when("/services",          {templateUrl: 'assets/views/services.html', reloadOnSearch: false});
   $routeProvider.when("/offers",            {templateUrl: 'assets/views/offers.html', reloadOnSearch: false});
   $routeProvider.when("/multimedia",        {templateUrl: 'assets/views/multimedia.html', reloadOnSearch: false});
+  $routeProvider.when("/agents",            {templateUrl: 'assets/views/agents.html', reloadOnSearch: false});
   $routeProvider.when("/addproduct",        {templateUrl: 'assets/views/addProduct.html', reloadOnSearch: false});
   $routeProvider.when("/addfaq",            {templateUrl: 'assets/views/addFaq.html', reloadOnSearch: false});
   $routeProvider.when("/addlocation",       {templateUrl: 'assets/views/addLocation.html', reloadOnSearch: false});
