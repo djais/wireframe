@@ -1,1 +1,53 @@
-This is to add Multimedia files
+
+<div class="x_panel tile" style="width:80%;margin-left:40px;margin-right:20px;">
+	<label style="font-weight:300; font-size:18px; padding:10px;">Add Multimedia</label>
+	<hr style="margin-bottom: 0px;">
+	<div class="x_content" style="padding:15px;">
+		<form role="form" name="myForm">
+			<table class="table table-hover">
+				<tbody>
+					<tr>
+						<td width="15%"><label class='text-muted'>Title</label></td>
+						<td width="85%">
+							<input  ng-model="multimedia.title" class="form-control" placeholder="" >
+						</td>
+					</tr>
+					<tr>
+						<td><label class='text-muted'>Upload File</label></td>
+						<td>
+							<img style="width:200px; height:200px;" ng-show="imageSrc" ng-src="{{imageSrc}}" />
+							<input type="file" ng-file-select="onFileSelect($files)" style="margin-left:5%" ng-model="imageSrc">
+						</td>
+					</tr>
+					<tr>
+						<td><label class='text-muted'>Description</label></td>
+						<td><input type="text"  ng-model="multimedia.description" class="form-control" placeholder="" ></td>
+					</tr>
+					<tr>
+						<td><label class="text-muted"> Tags </label></td>
+						<td>
+							<div ng-controller="TagsCtrl" class=".tag-input-ctn">
+								<div ng-repeat="(key, tag) in inputTags" class="input-tag" >
+									{{tag.name}}
+									<div class="delete-tag" ng-click="deleteTag(key)">&times;</div>
+								</div>
+								<!-- <input type='text' tag-input ng-model="tagText"  ng-model="trigger.loc" ng-style="{width: inputWidth}" new-tag="addTag()" delete-tag="deleteTag()" class="form-control" placeholder="Add a Tag"> -->
+								<tags-input ng-model="tags" style="border: 1px solid #ccc !important; box-shadow:none !important;"></tags-input>
+							</div>
+						</td>
+					</tr>
+					<tr>
+            <td>
+              <input type="checkbox" ng-model="!multimedia.active" checked data-toggle="toggle" data-onstyle="info"><label class="text-muted">Active</label>
+            </td>
+            <td></td>
+          </tr>
+				</tbody>
+			</table>
+		</form>
+		<div align="right">
+			<button class="btn btn-default" ng-click="canceladdoredit(trigger,'edit')">Cancel</button>
+			<button class="btn btn-info" ng-click="save(trigger,'edittrigger')">Submit</button>
+		</div>
+	</div>
+</div>

@@ -4,13 +4,13 @@
               <table class="table table-hover">
                 <tbody>
                   <tr>
-                    <td width="15%">Greeting-message</td>
+                    <td width="15%"><label class="text-muted">Greeting-message</label></td> 
                     <td width="85%">
                       <input  ng-model="trigger.loc" class="form-control" placeholder="Example: Hai! Welcome to chatbot..." >
                     </td>
                   </tr>
                   <tr>
-                    <td>Bot Action Preference</td>
+                    <td><label class="text-muted">Bot Action Preference</label></td>
                     <td>
                     	<button class="btn btn-default" ng-class="{'btn-info': botaction=='sales'}" ng-click="botaction='sales'">Sales</button>
                     	<button class="btn btn-default" ng-class="{'btn-info': botaction=='support'}" ng-click="botaction='support'">Support</button>
@@ -19,7 +19,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td>My Webbot Script</td>
+                    <td><label class="text-muted">My Webbot Script</label></td>
                     <td>
                     <textarea class="form-control" placeholder="" ng-model="botscript"></textarea>
                     <span>Copy the above script and paste on your website.</span>
