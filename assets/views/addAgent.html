@@ -12,20 +12,21 @@
             <div class="panel-body">
               <div class="row">
 			    <div class=" col-md-12 col-xs-12 col-lg-12 col-sm-12 " align="center" style="margin-bottom:10%"> 
-                  	<input type="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc">
-					<img ng-src="{{imageSrc}}" />
+                  	
+					         <img style="width:200px; height:200px;" ng-src="{{imageSrc}}" />
+                   <input type="file" ng-file-select="onFileSelect($files)" style="margin-left:10%" ng-model="imageSrc">
                 </div>
                  <form class="form-horizontal" role="form" name="myForm" style="margin-right:10%;margin-top:40%">
                 <h2></h2>
                 <div class="form-group">
-                    <label for="firstName" class="col-sm-3 control-label">Full Name<span>(*)</span></label>
+                    <label for="firstName" class="col-sm-3 control-label" align="center">Full Name<span>(*)</span></label>
                     <div class="col-sm-9">
                         <input type="text" id="firstName" ng-model="user.Name" placeholder="Full Name" class="form-control" required>
                        
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="email" class="col-sm-3 control-label">Email<span>(*)</span></label>
+                    <label for="email" class="col-sm-3 control-label" align="center">Email<span>(*)</span></label>
                     <div class="col-sm-9">
                         <input type="email" id="email" name="email" placeholder="Email" ng-model="user.email" ng-pattern="/^.+@.+\..+$/" class="form-control">
                         <span class="error" ng-show=" myForm.email.$error.pattern">
