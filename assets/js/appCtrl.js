@@ -6,14 +6,21 @@ app.config(function($routeProvider) {
   $routeProvider.when('/custdtls',          {templateUrl: 'assets/views/customerdtls.html', reloadOnSearch: false});
   $routeProvider.when('/dashboard',         {templateUrl: 'assets/views/dashboard.html', reloadOnSearch: false});
   $routeProvider.when('/chartflow',         {templateUrl: 'assets/views/chartflow.html', reloadOnSearch: false});
-  $routeProvider.when("/products",  {templateUrl: 'assets/views/products.html', reloadOnSearch: false});
-  $routeProvider.when("/faqs",  {templateUrl: 'assets/views/faqs.html', reloadOnSearch: false});
-  $routeProvider.when("/locations",  {templateUrl: 'assets/views/locations.html', reloadOnSearch: false});
-  $routeProvider.when("/chats",  {templateUrl: 'assets/views/chats.html', reloadOnSearch: false});
-  $routeProvider.when("/services",  {templateUrl: 'assets/views/services.html', reloadOnSearch: false});
-  $routeProvider.when("/offers",  {templateUrl: 'assets/views/offers.html', reloadOnSearch: false});
-  $routeProvider.when("/multimedia",  {templateUrl: 'assets/views/multimedia.html', reloadOnSearch: false});
-  $routeProvider.when("/agents",  {templateUrl: 'assets/views/agents.html', reloadOnSearch: false});
+  $routeProvider.when('/webbots',           {templateUrl: 'assets/views/webbots.html', reloadOnSearch: false});
+  $routeProvider.when("/products",          {templateUrl: 'assets/views/products.html', reloadOnSearch: false});
+  $routeProvider.when("/faqs",              {templateUrl: 'assets/views/faqs.html', reloadOnSearch: false});
+  $routeProvider.when("/locations",         {templateUrl: 'assets/views/locations.html', reloadOnSearch: false});
+  $routeProvider.when("/chats",             {templateUrl: 'assets/views/chats.html', reloadOnSearch: false});
+  $routeProvider.when("/services",          {templateUrl: 'assets/views/services.html', reloadOnSearch: false});
+  $routeProvider.when("/offers",            {templateUrl: 'assets/views/offers.html', reloadOnSearch: false});
+  $routeProvider.when("/multimedia",        {templateUrl: 'assets/views/multimedia.html', reloadOnSearch: false});
+  $routeProvider.when("/addproduct",        {templateUrl: 'assets/views/addProduct.html', reloadOnSearch: false});
+  $routeProvider.when("/addfaq",            {templateUrl: 'assets/views/addFaq.html', reloadOnSearch: false});
+  $routeProvider.when("/addlocation",       {templateUrl: 'assets/views/addLocation.html', reloadOnSearch: false});
+  $routeProvider.when("/addservice",        {templateUrl: 'assets/views/addService.html', reloadOnSearch: false});
+  $routeProvider.when("/addoffer",          {templateUrl: 'assets/views/addOffer.html', reloadOnSearch: false});
+  $routeProvider.when("/addmultimedia",     {templateUrl: 'assets/views/addMultimedia.html', reloadOnSearch: false});
+  $routeProvider.when("/addagent",          {templateUrl: 'assets/views/addAgent.html', reloadOnSearch: false});
 }); /* app.config */
 
 
@@ -243,7 +250,7 @@ app.controller('sideBarCtrl',function($scope, $rootScope){
                 },
                 {"title":"BOTS",
                  "contents":[
-                              {"title":"Website Bot","url":"devices","icon":"fa fa-cloud"},
+                              {"title":"Website Bot","url":"webbots","icon":"fa fa-cloud"},
                               {"title":"Facebook","url":"bots","icon":"fa fa-facebook"}
                             ]
                 },
@@ -1021,3 +1028,24 @@ app.controller('addAgentCtrl',function($rootScope,$scope,$location,fileReader){
     });
    }
   });
+
+/* -- webbotsCtrl : --*/
+
+app.controller("webbotsCtrl", function($scope,$rootScope, $http){
+  $scope.init = function(){
+    $scope.tabs=[
+      {
+        title: 'My Webbot',
+        url: 'assets/views/mywebbot.html'
+      },
+      {
+        title: 'Bot Knowledge',
+        url: 'assets/views/botknowledge.html'
+      }
+    ];
+      $rootScope.currentTab = 'assets/views/mywebbot.html';
+    $scope.botscript = "<script src='https://bots.rytangle.com/temp?75942114533548'></script>"
+  };/* init() */
+
+});
+
