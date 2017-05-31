@@ -1,178 +1,177 @@
-          
-       <div class="x_panel tile" style="width:80%;margin-left:40px;margin-right:20px;">
-          <label style="font-weight:300; font-size:18px; padding:10px;">Add New Product</label>
-          <hr style="margin-bottom: 0px;">
-          <div class="x_content" style="padding:15px;">
-          <form role="form" name="myForm">
-          <div class="col-md-12">
+<div class="x_panel tile" style="width:80%;margin-left:40px;margin-right:20px;">
+  <label style="font-weight:300; font-size:18px; padding:10px;">Add New Product</label>
+  <hr style="margin-bottom: 0px;">
+  <div class="x_content" style="padding:15px;">
+    <form role="form" name="myForm">
+      <div class="col-md-12">
         <div class="form-group">
-            <label class='col-xs-2 text-muted' style="margin-left: 25px;">Product Name</label> 
-            <input type="text" ng-model="user.name" class="form-control ryt-input" style="width: 40%"/>
-          </div>
+          <label class='col-xs-2 text-muted' style="margin-left: 25px;">Product Name</label> 
+          <input type="text" ng-model="user.name" class="form-control ryt-input" style="width: 40%"/>
         </div>
-        <div class="col-md-12">
+      </div>
+      <div class="col-md-12">
         <div class="form-group">
-            <label class='col-xs-2 text-muted'style="margin-left: 25px;">Short Description</label> 
-            <input type="text" ng-model="user.name" class="form-control ryt-input" style="width: 40%"/>
-          </div>
+          <label class='col-xs-2 text-muted'style="margin-left: 25px;">Short Description</label> 
+          <input type="text" ng-model="user.name" class="form-control ryt-input" style="width: 40%"/>
         </div>
-            <div class="col-md-12">
+      </div>
+      <div class="col-md-12">
         <div class="row form-group">
-            <label class='col-xs-2 text-muted'style="margin-left: 25px;">Long Description</label> 
-            <textarea class="form-control" rows="5" id="ldescription"style="height:100px;width:50%;"></textarea>
-          </div>
+          <label class='col-xs-2 text-muted'style="margin-left: 25px;">Long Description</label> 
+          <textarea class="form-control" rows="5" id="ldescription"style="height:100px;width:50%;"></textarea>
         </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
         <label class="col-xs-3 text-muted"style="margin-left: 35px;">Product Image</label>
         <div class="input-group col-xs-6">
           <i class="fa fa-picture-o productIcon"  aria-hidden="true" style= "font-size:50px;
-  margin-left: 50px;">
-          </i><input type="file" id="attach">
+          margin-left: 50px;">
+        </i><input type="file" id="attach">
 
 
             <!-- <span class="input-group-btn " >
                 <span class="btn btn-default btn-file">
                     Browse… <input type="file" id="imgInp">
                 </span>
-            </span> -->
-            <!-- <input type="text" class="form-control" readonly> -->
-                </div>
+              </span> -->
+              <!-- <input type="text" class="form-control" readonly> -->
+            </div>
 <!-- 
                 <img id='img-upload'/>
- -->
+              -->
             </div>
 
-        </div>
-         <div class="col-md-12">
-        <div class="form-group ">
-            <label class='col-xs-2 text-muted'style="margin-left:35px;">Price</label> 
-            <input type="text"  ng-model="user.name" class="form-control" style="width: 40%"/>
           </div>
-        </div>
-        <div class="form-group" >
-        <label class="col-xs-2 text-muted" style="margin-left:35px;">Specification:</label>
-        <div class="form-group">
-        <div class="col-xs-4">
+          <div class="col-md-12">
+            <div class="form-group ">
+              <label class='col-xs-2 text-muted'style="margin-left:35px;">Price</label> 
+              <input type="text"  ng-model="user.name" class="form-control" style="width: 40%"/>
+            </div>
+          </div>
+          <div class="form-group" >
+            <label class="col-xs-2 text-muted" style="margin-left:35px;">Specification:</label>
+            <div class="form-group">
+              <div class="col-xs-4">
 
-            <input type="text" class="form-control"  placeholder="Label"/>
+                <input type="text" class="form-control"  placeholder="Label"/>
 
-        </div>
-        <div class="col-xs-4">
-            <input type="text" class="form-control" ng-model="newitem" placeholder="Description"/>
-        </div>
-         
-        <div class="col-xs-1">
-            <button type="button" class="btn btn-default addButton" ng-click='add()'><i class="fa fa-plus"></i></button>
-             </div>
-          
-        </div>
-       </div>
+              </div>
+              <div class="col-xs-4">
+                <input type="text" class="form-control" ng-model="newitem" placeholder="Description"/>
+              </div>
 
-       <!-- The template for adding new field -->
-    <div class="form-group hide" id="specTemplate" >
-        <div ng-repeat= 'item in items'>
+              <div class="col-xs-1">
+                <button type="button" class="btn btn-default addButton" ng-click='add()'><i class="fa fa-plus"></i></button>
+              </div>
 
-        <div class="col-xs-4 col-xs-offset-1" >
-            <input type="text" class="form-control" id='item-{{index}}' ng-model="item" name="label" placeholder="Label" />
-        </div>
-        <div class="col-xs-4">
-            <input type="text" id='item-{{index}}' ng-model="item" class="form-control" name="desc" placeholder="Description" />
-        </div>
-        <div class="col-xs-1">
-            <button type="button" ng-click="remove($index)" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
-        </div>
-    </div>
-  </div> 
+            </div>
+          </div>
+
+          <!-- The template for adding new field -->
+          <div class="form-group hide" id="specTemplate" >
+            <div ng-repeat= 'item in items'>
+
+              <div class="col-xs-4 col-xs-offset-1" >
+                <input type="text" class="form-control" id='item-{{index}}' ng-model="item" name="label" placeholder="Label" />
+              </div>
+              <div class="col-xs-4">
+                <input type="text" id='item-{{index}}' ng-model="item" class="form-control" name="desc" placeholder="Description" />
+              </div>
+              <div class="col-xs-1">
+                <button type="button" ng-click="remove($index)" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
+              </div>
+            </div>
+          </div> 
 
 
-<div class="col-md-12">
-        <div class="form-group">
-            <label class='col-xs-2 text-muted'style="margin-left:25px;">Attachment
-            </label> 
-         <i class="fa fa-paperclip" aria-hidden="true" style="font-size:20px;margin-left: 20px;"></i>                 
-            <input type="file" id="attach"> 
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class='col-xs-2 text-muted'style="margin-left:25px;">Attachment
+              </label> 
+              <i class="fa fa-paperclip" aria-hidden="true" style="font-size:20px;margin-left: 20px;"></i>                 
+              <input type="file" id="attach"> 
 
-             </div>
-        </div>
-<div class="col-md-12" >
-        <div class="row form-group" >
-            <label class='col-xs-2 text-muted'style="margin-left:35px;">Tags</label> 
+            </div>
+          </div>
+          <div class="col-md-12" >
+            <div class="row form-group" >
+              <label class='col-xs-2 text-muted'style="margin-left:35px;">Tags</label> 
          <!--  <textarea id="tag" type="text" runat="server" ng-init="tagval=''" ng-model="tagval" placeholder="Add a tag" rows="4" cols="100"></textarea>
-          -->   
-              <div ng-controller="TagsCtrl"class="tag-input-ctn">
-  <div ng-repeat="(key, tag) in inputTags" class="input-tag" >
-    {{tag.name}}
-    <div class="delete-tag" ng-click="deleteTag(key)">&times;</div>
-  </div>
-  <input id="tags" autofocus type="text" tag-input ng-model="tagText" ng-style="{width: inputWidth}" new-tag="addTag()" delete-tag="deleteTag()" placeholder="Add a tag" rows="4" cols="100">
-</div>
+       -->   
+       <div ng-controller="TagsCtrl"class="tag-input-ctn">
+        <div ng-repeat="(key, tag) in inputTags" class="input-tag" >
+          {{tag.name}}
+          <div class="delete-tag" ng-click="deleteTag(key)">&times;</div>
+        </div>
+        <input id="tags" autofocus type="text" tag-input ng-model="tagText" ng-style="{width: inputWidth}" new-tag="addTag()" delete-tag="deleteTag()" placeholder="Add a tag" rows="4" cols="100">
+      </div>
 
 
          <!-- <span ng-repeat="r in tag" class="badge">{{r.toString()}} <i class="fa fa-times" ng-show="remove>1" ng-click="removetag(r)"></i> </span>
- -->
-             </div>
-        </div>
-        <div class="col-md-12" >
-        <button type="button" class="btn btn-primary" style="float:right;width:100px;">Save</button>
-      </div>
- </form>
+       -->
+     </div>
+   </div>
+   <div class="col-md-12" >
+    <button type="button" class="btn btn-primary" style="float:right;width:100px;">Save</button>
+  </div>
+</form>
 
-      </div>
-    </div>
+</div>
+</div>
 <script type="text/javascript">
-document.getElementbyId("input").style.display = "hide";
+  document.getElementbyId("input").style.display = "hide";
 </script>
 <style>
 
-.tag-input-ctn {
-  border: 1px solid #ccc;
-  padding: 2px 3px;
-  display: inline-block;
-  width: 50%;
-  border-radius: 3px;
-  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
-}
- 
-.tag-input-ctn input {
-  display: inline-block;
-  float: left;
-  height: 28px;
-  padding: 0px;
-  font-size: 13px;
-  line-height: 18px;
-  color: black;
-  border: 0px;
-  margin: 2px;
-}
- 
-.tag-input-ctn input:focus {
-  outline: 0;
-  box-shadow: 0 !important;
-  border-bottom: 0 !important;
-}
- 
-.tag-input-ctn .input-tag {
-  padding: 2px 4px;
-  line-height: 12px;
-  font-size: 11px;
-  background-color: #e3eaf6;
-  display: inline-block;
-  float: left;
-  border-radius: 2px;
-  margin: 2px 5px 2px 0px;
-  border: 1px solid #a9b6d2;
-}
- 
-.tag-input-ctn .input-tag .delete-tag {
-  display: inline-block;
-  font-size: 12px;
-  cursor: pointer;
-  padding: 0px 2px;
-}
- 
-.tag-input-ctn .input-tag .delete-tag:hover {
-  background-color: #96b4d2;
-}
+  .tag-input-ctn {
+    border: 1px solid #ccc;
+    padding: 2px 3px;
+    display: inline-block;
+    width: 50%;
+    border-radius: 3px;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
+  }
+
+  .tag-input-ctn input {
+    display: inline-block;
+    float: left;
+    height: 28px;
+    padding: 0px;
+    font-size: 13px;
+    line-height: 18px;
+    color: black;
+    border: 0px;
+    margin: 2px;
+  }
+
+  .tag-input-ctn input:focus {
+    outline: 0;
+    box-shadow: 0 !important;
+    border-bottom: 0 !important;
+  }
+
+  .tag-input-ctn .input-tag {
+    padding: 2px 4px;
+    line-height: 12px;
+    font-size: 11px;
+    background-color: #e3eaf6;
+    display: inline-block;
+    float: left;
+    border-radius: 2px;
+    margin: 2px 5px 2px 0px;
+    border: 1px solid #a9b6d2;
+  }
+
+  .tag-input-ctn .input-tag .delete-tag {
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0px 2px;
+  }
+
+  .tag-input-ctn .input-tag .delete-tag:hover {
+    background-color: #96b4d2;
+  }
 
 
 </style>
