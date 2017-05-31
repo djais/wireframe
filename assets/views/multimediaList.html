@@ -2,40 +2,31 @@
         <div class="x_content" >
           <table class="table table-hover" style="width:100%">
             <thead>
-              <th> Text </th>
-              <th> Image </th>
-              <th> Audio </th>
-              <th> Video </th>
-              <th> Animation/Gif </th>
-              <th> WebLink </th>
-              <th> Last Modified </th>
+              <th> Preview </th>
+              <th> Title </th>
+              <th> Details </th>
+              <th> Upload Date </th>
+              <th> Visible </th>
+              <th></th>
             </thead>
             <tbody>
               <tr ng-repeat="item in multimedias" style='cursor:pointer;'>
-               <td style="font-size:12px;text-align:left; vertical-align:middle"> {{item.text | limitTo:letterLimit}}</td>
-                <td style='text-align:left; vertical-align:middle'> <img src={{item.img}} style='width:40px; height:40px;' /></td>
-                <td style='text-align:left; vertical-align:middle'> 
-
-                <audio controls>
-  <source src={{item.audio}} type="audio/mp3">
-  Your browser does not support the audio tag.
-</audio>
+                <td style='text-align:center; vertical-align:middle'> <img ng-src={{item.img}} style='width:50px; height:50px;' /></td>
+                <td> <h4> {{item.name}}</h4><p>{{item.shortdesc}} </p></td>
+                <td>
+                  <h5> {{item.size}}</h5>
+                  <p>{{item.type}} </p>
                 </td>
-                <td style='text-align:left; vertical-align:middle'>
-               <video width="320" height="140" controls>
-       <source src={{item.video}} type="video/mp4">
-        Your browser does not support the video tag.
-        </video>
-
-                  </td>
-              <td style='text-align:left; vertical-align:middle'> <img src={{item.gif}} style='width:80px; height:80px;' /></td>
-                 <td style='text-align:left; vertical-align:middle'>
-                 <a href="https://rytangle.com/" src={{item.weblink}}>View link</a> </td>
-                <td style='text-align:left; vertical-align:middle'> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
-               </tr>
+                <td style='text-align:center; vertical-align:middle'> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
+                <td style='text-align:center;vertical-align:middle; font-size:20px'> <i class='fa fa-check' style='color:green' ng-show='item.avail'></i> <i class='fa fa-ban' style='color:red' ng-show='!item.avail'></i></td>
+                <td style='text-align:center;vertical-align:middle; font-size:20px'>
+                  <button class="btn btn-default btn-sm" ng-show='!item.avail'><i class='fa fa-check'></i></button>
+                  <button class="btn btn-default btn-sm" ng-show='item.avail'><i class='fa fa-ban'></i></button>
+                  <button class="btn btn-default btn-sm"><i class="fa fa-trash"></i></button>
+                </td>
+              </tr>
             </tbody>
           </table>
-          <h2 style='color:#bbbbbb; text-align:center' ng-show='!multimedias.length'> No Data Found</h2>
+          <h2 style='color:#bbbbbb; text-align:center' ng-show='!products.length'> No Data Found</h2>
         </div>
       </div>
-    </div>

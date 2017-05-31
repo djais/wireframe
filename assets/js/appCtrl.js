@@ -258,7 +258,7 @@ app.controller('sideBarCtrl',function($scope, $rootScope){
                 {"title":"KNOWLEDGE BANK",
                  "contents":[
                               {"title":"Products","url":"products","icon":"fa fa-product-hunt"},
-                              {"title":"Services","url":"services","icon":"fa fa-handshake-o"},
+                              // {"title":"Services","url":"services","icon":"fa fa-handshake-o"},
                               {"title":"Offers","url":"offers","icon":"fa fa-tags"},
                               {"title":"FAQs","url":"faqs","icon":"fa fa-question-circle-o"},
                               {"title":"Locations","url":"locations","icon":"fa fa-map-marker"},
