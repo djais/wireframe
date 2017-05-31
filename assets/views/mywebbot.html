@@ -1,0 +1,36 @@
+			<div class="x_panel tile" ng-controller="chatListCtrl" ng-cloak>
+        <div class="x_content" >
+          <form role="form" name="myForm">
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <td width="15%">Location</td> 
+                    <td width="85%">
+                      <input  ng-model="trigger.loc" class="form-control" placeholder="Example: Hai! Welcome to chatbot..." >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Bot Action Preference</td>
+                    <td>
+                    	<button class="btn btn-default" ng-class="{'btn-info': botaction=='sales'}" ng-click="botaction='sales'">Sales</button>
+                    	<button class="btn btn-default" ng-class="{'btn-info': botaction=='support'}" ng-click="botaction='support'">Support</button>
+                    	<button class="btn btn-default" ng-class="{'btn-info': botaction=='other'}" ng-click="botaction='other'">Other</button>
+                      <input style="margin-top:15px;" ng-show="botaction=='other'" ng-model="trigger.loc" class="form-control" placeholder="Please specify bot action" >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>My Webbot Script</td>
+                    <td>
+                    <textarea class="form-control" placeholder="" ng-model="botscript"></textarea>
+                    <span>Copy the above script and paste on your website.</span>
+                    </td>       
+                  </tr>
+                </tbody>
+              </table> 
+            </form>
+            <div align="right">
+              <button class="btn btn-default" ng-click="canceladdoredit(trigger,'edit')">Preview</button>
+              <button class="btn btn-info" ng-click="save(trigger,'edittrigger')">Submit</button>
+            </div>     
+        </div>
+      </div>
