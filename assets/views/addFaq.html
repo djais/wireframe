@@ -1,7 +1,6 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.1/css/fileinput.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.1/js/fileinput.js">
+
 <div class="row" ng-controller="addFaqCtrl">
-    <div class='col-md-8 col-md-offset-2 col-sm-12 col-xs-12'>
+    <div class='col-md-12 col-lg-12 col-sm-12 col-xs-12'>
         <div class="x_panel tile">
             <label style="font-weight:300; font-size:18px; padding:10px;">Add New Faq</label>
             <hr style="margin-bottom: 0px;">
@@ -29,9 +28,10 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-xs-6 col-md-6 "><label class='text-muted'>Tags</label> &nbsp;
-
-                            <textarea id="ref" type="text" runat="server" ng-init="refval=''" ng-model="refval" placeholder="Add a tag" rows="4" cols="100"></textarea>
-                            <span ng-repeat="r in ref" class="badge">{{r.toString()}} <i class="fa fa-times" ng-show="showrmv>1" ng-click="removetag(r)"></i> </span>
+    <tags-input ng-model="tags"></tags-input>
+    
+                            <!--<textarea id="ref" type="text" runat="server" ng-init="refval=''" ng-model="refval" placeholder="Add a tag" rows="4" cols="100"></textarea>
+                            <span ng-repeat="r in ref" class="badge">{{r.toString()}} <i class="fa fa-times" ng-show="showrmv>1" ng-click="removetag(r)"></i> </span>-->
 
                         </div>
                         <div class="col-xs-6 col-md-6 ">

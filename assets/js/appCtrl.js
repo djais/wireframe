@@ -1,4 +1,4 @@
-var app = angular.module('dashboard',['ngRoute']);
+var app = angular.module('dashboard',['ngRoute','ngTagsInput']);
 
 app.config(function($routeProvider) {
   $routeProvider.when('/',                  {templateUrl: 'assets/views/dashboard.html', reloadOnSearch: false});
