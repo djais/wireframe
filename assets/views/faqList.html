@@ -10,72 +10,30 @@
                 <th> Last Updated </th>
             </thead>
             <tbody>
-               
-             
+
+
                 <tr ng-repeat="item in faqlist" style='cursor:pointer;'>
-                    
-                    <td>  <span  style="font-size:20px"> {{item.faqs.que}}</span>  <br>
-                    <span > {{item.faqs.ans | limitTo:letterLimit}} ... </span>
-                   
+
+                    <td> <span style="font-size:20px"> {{item.faqs.que}}</span> <br>
+                        <span> {{item.faqs.ans | limitTo:letterLimit}} ... </span>
+
 
                     </td>
 
-                    <td  >{{item.faqs.author}}</td>
+                    <td style='text-align:center;vertical-align:left; padding:0px; '>{{item.faqs.author}}</td>
 
-                    <td style='text-align:center;vertical-align:middle'>
-                        <i class='fa fa-check' style='color:green' ng-show='item.faqs.status==true'></i> 
+                    <td style='text-align:center;vertical-align:left; padding:0px; '>
+                        <i class='fa fa-check' style='color:green' ng-show='item.faqs.status==true'></i>
                         <i class='fa fa-ban' style='color:red' ng-show='item.faqs.status==false'></i></td>
-                    <td  style='text-align:center;vertical-align:middle'>
-                        <i class="fa fa-file " ></i>
-                       </td>
-              <!--<td >     
-<video width="80" height="100"  controls>
-   <source src="{{item.faqs.src}}" type="video/ogg">
-   <img src="{{item.faqs.src}}" alt="HTML5 Icon" style="width:128px;height:128px;">
-   Your browser does not support the video tag.
-</video>
-              </td>-->
-           
+                    <td style='text-align:center;vertical-align:left; padding:0px; '>
+                        <i class="fa fa-file "></i>
+                    </td>
 
-                    <!--<td>{{item.faqs.LS}}</td>-->
-                    <td>  <span>{{item.faqs.LS*1000 | date:'HH:mm dd-MMM-yyyy'}}</span><br></td>
+                    <td style='text-align:center;vertical-align:left; padding:0px; '> <span>{{item.faqs.LS*1000 | date:'HH:mm dd-MMM-yyyy'}}</span><br></td>
                 </tr>
 
             </tbody>
         </table>
-        <h2 style='color:#bbbbbb; text-align:center' ng-show='!faqs'> No Data Found</h2> 
+        <h2 style='color:#bbbbbb; text-align:center' ng-show='!faqs'> No Data Found</h2>
     </div>
 </div>
-
-
-
-<!--      
-<div class="x_panel tile" ng-controller="faqListCtrl" ng-cloak>
-        <div class="x_content" >
-          <table class="table table-hover" style="width:100%">
-            <thead>
-              <th class="col-sm-3" > Question </th>
-              <th class="row-sm-3"> Answer </th>
-              <th> Author </th>
-              <th> status </th>
-              <th> attachment </th>
-              <th> Last Updated </th>
-            </thead>
-            <tbody>
-             <tr >
-                <td >what bot do?</td>
-                <td >bot does noting but it replies you witout human interaction</td>
-                <td >rytangle team</td>
-                     <td style='text-align:center;vertical-align:middle'> 
-                         <i class='fa fa-check' style='color:green'></i>
-                </td>
-+                
-                <td >{{item}}</td>
-                <td >04-Sept-17</td>
-                </tr>
-            
-            </tbody>
-          </table>
-          <h2 style='color:#bbbbbb; text-align:center' ng-show='!faqs'> No Data Found</h2>
-        </div>
-      </div>-->
