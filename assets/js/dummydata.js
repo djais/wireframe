@@ -2,6 +2,23 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
 
     // All Dummy Data after this line
 
+    // Diksha start
+
+    
+    // Diksha end
+    // Anjan start
+
+    
+    // Anjan end
+    // Dharmendra start
+
+    
+    // Dharmendra end
+    // Vishnu start
+
+    
+    // Vishnu end
+
     $rootScope.storehead = [
       {name:'Position', fld:'source'},
       {name:'Location', fld:'keyParam'},
