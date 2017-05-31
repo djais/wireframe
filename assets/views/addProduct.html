@@ -1,5 +1,5 @@
 
-       <div class="x_panel tile" style="width:80%;margin-left:40px;margin-right:20px;">
+       <div class="x_panel tile">
           <label style="font-weight:300; font-size:18px; padding:10px;color:black">Add Product</label>
           <hr style="margin-bottom: 0px;">
           <div class="x_content" style="padding:15px;">
@@ -7,14 +7,14 @@
                 <table class="table table-hover">
                   <tbody>
                     <tr>
-                      <td width="15%"><label class='text-muted'>Product Name</label></td>
+                      <td style='text-align:center;vertical-align:middle' width="15%"><label class='text-muted'>Product Name</label></td>
                       <td width="85%">
                         <input  ng-model="product.name" class="form-control" placeholder="" >
                       </td>
                     </tr>
                     <tr>
 
-                      <td><label class='text-muted'>Product Image</label></td>
+                      <td style='text-align:center;vertical-align:middle'><label class='text-muted'>Product Image</label></td>
                       <td>
                         <img style="width:200px; height:200px;" ng-show= "imageSrc" ng-src="{{imageSrc}}"  />
                         <input type="file" ng-file-select="onFileSelect($files)"  ng-model="imageSrc">
@@ -23,7 +23,7 @@
   </tr>
   <tr>
 
-  <td><label class='text-muted'>Short Description</label>
+  <td style='text-align:center;vertical-align:middle'><label class='text-muted'>Short Description</label>
     <div class="popup" ng-click="leadme()">
         <i class="glyphicon glyphicon-question-sign"></i>
         <span class="popuptext" id="myPopup">leading option</span>
@@ -36,7 +36,7 @@
   </tr>
   <tr>
 
-  <td><label class='text-muted'>Long Description</label>
+  <td style='text-align:center;vertical-align:middle'><label class='text-muted'>Long Description</label>
     <div class="popup" ng-click="leadme()">
         <i class="glyphicon glyphicon-question-sign"></i>
         <span class="popuptext" id="myPopup">leading option</span>
@@ -50,13 +50,13 @@
 
   <tr>
 
-  <td><label class='text-muted'>Price</label></td>
+  <td style='text-align:center;vertical-align:middle'><label class='text-muted'>Price</label></td>
   <td>
     <div class="col-xs-4" >
     <input type='text'  ng-model="product.price" class="form-control" placeholder="Example:Rs 100.00" style="margin-left: -16px;" >
   </div>
   <div class="col-xs-2">
-      <label class='text-muted'>Currency</label></div>
+      <label class='text-muted' style='vertical-align:middle'>Currency</label></div>
       <div class="col-xs-6">
         <select class="selectpicker" style="width:25%">
           <option>Rs</option>
@@ -77,7 +77,7 @@
   </tr>
   <tr>
 
-  <td><label class='text-muted'>Specification</label></td>
+  <td style='text-align:center;vertical-align:middle'><label class='text-muted'>Specification</label></td>
   <td>
     <div class="col-xs-4" >
         <input type="text" class="form-control" name="label" placeholder="Label" style="margin-left: -16px;" />
@@ -92,7 +92,7 @@
   </tr>
   <tr>
 
-  <td><label class='text-muted'>Attachment
+  <td style='text-align:center;vertical-align:middle'><label class='text-muted'>Attachment
   <i class="fa fa-paperclip" aria-hidden="true" style="font-size:20px;"></i>
   </label></td>
   <td>
@@ -103,7 +103,7 @@
   </td>
   </tr>
   <tr>
-  <td><label class="text-muted"> Tags </label></td>
+  <td style='text-align:center;vertical-align:middle'><label class="text-muted"> Tags </label></td>
   <td>
 <tags-input ng-model="tags"></tags-input>  </td>
   </tr>
