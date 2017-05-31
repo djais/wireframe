@@ -1,1 +1,115 @@
-This is to add location
+<div class="x_panel tile" ng-controller="addLocationCtrl" ng-cloak>
+    <div class="x_content">
+        <form role="form" name="myForm">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td style='text-align:center;vertical-align:middle; padding:0px; width:15%; '>
+                            <label class="text-muted">Location name</label></td>
+                        <td width="85%">
+                            <input ng-model="name" class="form-control" placeholder="Ex:E-city">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style='text-align:center;vertical-align:middle; padding:0px; width:15%; '>
+                            <label class="text-muted">Address</label></td>
+                        <td width="35%">
+                            <textarea type="text" ng-model="address" class="form-control " placeholder="Type your address"></textarea>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+
+                        <td style='text-align:center;vertical-align:middle; padding:0px; width:15%; '>
+                            <label class="text-muted"> City </label></td>
+
+                        <td>
+                            <div class="col-xs-3">
+                                <input ng-model="city" class="form-control" placeholder="Ex: Bangalore" style="margin-left:-16px">
+                            </div>
+                            <div class="col-xs-1" style='text-align:center;vertical-align:middle; padding:0px; '>
+                                <label class="text-muted">  Country  </label>
+                            </div>
+                            <div class="col-xs-3">
+                                <input ng-model="country" class="form-control" placeholder="Ex:India">
+                            </div>
+                            <div class="col-xs-1" style='text-align:center;vertical-align:middle; padding:0px; '>
+                                <label class="text-muted">  Zip  </label>
+                            </div>
+                            <div class="col-xs-3">
+                                <input ng-model="zip" name="zip" class="form-control" placeholder="Ex:560089" style="margin-left:-30px">
+                            </div>
+
+
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td style='text-align:center;vertical-align:middle; padding:0px; width:15%; '> <label class="text-muted">  Latitude </label></td>
+                        <td>
+                            <div class="col-xs-5">
+                                <input ng-model="latitude" class="form-control" placeholder="Ex: 12.971599" style="margin-left:-16px">
+                            </div>
+                            <div class="col-xs-1">
+                                <label class="text-muted" style='text-align:center;vertical-align:middle; padding:0px; '>   Longitude  </label>
+                            </div>
+                            <div class="col-xs-4">
+                                <input ng-model="longitude" class="form-control" placeholder="Ex: 12.971599">
+                            </div>
+
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="15%" style='text-align:center;vertical-align:middle; padding:0px; '><label class="text-muted">Contact</label></td>
+                        <td width="35%">
+                            <input type="number" ng-model="contact" class="form-control" placeholder="Ex: 9480628368">
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td width="15%" style='text-align:center;vertical-align:middle; padding:0px; '><label class="text-muted">Other</label></td>
+                        <td>
+                            <div class="col-md-4">
+
+                                <input type="text" class="form-control" ng-model="label" placeholder="Label" style="margin-left:-16px">
+
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" ng-model="desc" placeholder="Description" />
+                            </div>
+
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-default addButton" ng-click='addOther()'><i class="fa fa-plus"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <td style='text-align:center;vertical-align:middle; padding:0px; '> <label class="text-muted"> Upload Image </label></td>
+
+                    <td>
+                        <div class="col-xs-3">
+                            <input type="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc">
+                        </div>
+                        <div class="col-xs-1">
+                            <img style="width:100px; height:110px;" ng-src="{{imageSrc}}" ng-show="imageSrc" />
+                        </div>
+                    </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="pull-left">
+                <input class="btn btn-primary" type="reset" value="Reset">
+            </div>
+        </form>
+        <div align="right">
+            <button class="btn btn-default" ng-click="#">Preview</button> &nbsp;&nbsp;
+            <button class="btn btn-info" ng-click="saveloc()">Submit</button>
+        </div>
+    </div>
+</div>

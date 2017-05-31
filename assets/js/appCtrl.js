@@ -780,7 +780,12 @@ app.controller("locationListCtrl", function($scope, $rootScope){
       // initilization variables
     };
 })
-
+/*-- addLocationCtrl: --*/
+app.controller("addLocationCtrl", function($scope, $rootScope){
+   $scope.saveloc=function(){
+     console.log($scope)
+   }
+})
 /* -- offersCtrl : --*/
 
 app.controller("offersCtrl", function($scope,$rootScope, $http){
