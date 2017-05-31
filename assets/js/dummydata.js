@@ -32,24 +32,45 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
 
     $rootScope.modelfb = { id: '101', customer: { name: 'Rahul', phone: '9611876767', email: 'rahul@rytangle.com', gender: 'Male', age_group: 'Above 25' }, feedback: { npsScore: '3', rating: '5', service: '', facilities: '', staff: '', comment: 'Improve service' }, derived: { source: 'web', keyParam: 'detractor', sentiment: "positive", concerns: ['staff behavior', 'service'], location: 'Bangalore', time: '18:44', date: '13-Jan-17' } };
 
-    $rootScope.faqlist=[{faqs:{ que: 'How do I create a bot?',
-        ans: 'Creating Telegram bots is super-easy, but you will need at least some skills at computer programming. In order for a bot to work, set up a bot account with @BotFather, then connect it to your backend server via our API',
-        author: 'core.telegram.org',
-         status: true,
-         attachment:"file is attached",
-         src:"assets/img/usericon.png", LS: '1496060971'}},
-         {faqs:{ que: 'How ?',
-         attachment:"video is attached",
-        ans: 'Creating Telegram bots is super-easy, but you will need at least some skills at computer programming. In order for a bot to work, set up a bot account with @BotFather, then connect it to your backend server via our API',
-        author: 'core.telegram.org',
-         status: true,
-         src:"assets/img/movie.ogg", LS: '1496058793'}},
-        { faqs: { que: 'what bot do?',
-        attachment:"sound is attached",
-        ans: 'bot does noting but it replies you witout human interaction',
-        Author: 'rytangle team',
-         Status: false,src:"assets/img/sound.ogg", LS: '1496058746'
-        }}];
+ $rootScope.faqlist = [{
+    faqs: {
+      que: 'How do I create a bot?',
+      ans: 'Creating Telegram bots is super-easy, but you will need at least some skills at computer programming. In order for a bot to work, set up a bot account with @BotFather, then connect it to your backend server via our API',
+      author: 'core.telegram.org',
+      status: true,
+      attachment: "file",
+      src: "assets/img/usericon.png", LS: '1496060971'
+    }
+  },
+  {
+    faqs: {
+      que: 'How do I get updates?',
+      attachment: "video",
+      ans: 'There are currently two ways of getting updates. You can either use long polling or Webhooks. Please note that it\'s not possible to get updates via long polling while an outgoing Webhook is set',
+      author: 'core.telegram.org',
+      status: true,
+      src: "assets/img/movie.ogg", LS: '1496058793'
+    }
+  },
+  {
+    faqs: {
+      que: 'I\'m having trouble with my self-signed certificate!',
+      attachment: "audio",
+      ans: 'Please take a look at this self-signed certificate guide we made just for you. If you\'ve read it and still have a question, ping us on botsupport.',
+      author: 'rytangle team',
+      status: false, src: "assets/img/sound.ogg", LS: '1496058746'
+    }
+  },
+  {
+    faqs: {
+      que: 'How can I make requests in response to updates?',
+      attachment: "link",
+      ans: 'This is possible if you‘re using webhooks. The upside is that you need less requests, the downside — that in this case it’s not possible to know that such a request was successful or get its result.',
+      author: 'rytangle team',
+      status: false, src: "https://rytangle.com", LS: '1406058746'
+    }
+  }];
+
 
 
     $rootScope.products = [

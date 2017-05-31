@@ -1,4 +1,4 @@
-var app = angular.module('dashboard',['ngRoute']);
+var app = angular.module('dashboard',['ngRoute','ngTagsInput']);
 
 app.config(function($routeProvider) {
   $routeProvider.when('/',                  {templateUrl: 'assets/views/dashboard.html', reloadOnSearch: false});
@@ -830,48 +830,14 @@ app.controller("addFaqCtrl", function($scope,$rootScope,$window, $http){
 $scope.submit=function(){
   console.log("data",$scope)
 }
-Array.prototype.remove = function() {
-    var what, a = arguments, L = a.length, ax;
-    while (L && this.length) {
-        what = a[--L];
-        while ((ax = this.indexOf(what)) !== -1) {
-            this.splice(ax, 1);
-        }
-    }
-    return this;
-};
 
-
-
-$scope.removetag=function(item){
-  console.log("removetag",item);
-  console.log("ref", $scope.ref);
-   $scope.ref = $scope.ref.remove(item);
-   console.log(" $scope.ref", $scope.ref);
-
-   var ary = ['three', 'seven', 'eleven'];
-$scope.showrmv=$scope.showrmv- $scope.ref.length;
-ary.remove('seven');
-console.log("ary",ary,"$scope.showrmv",$scope.showrmv);
-
-}
 $scope.leadme=function() {
   console.log("lead me icon clicked")
     var popup = document.getElementById("myPopup");
     popup.classList.toggle("show");
 }
-// $scope.$watch('inputVal', function(val) {
-//       //  console.log(val)
-//         $scope.res = val.split(",");
-// console.log($scope.res)
-//     });
-$scope.$watch('refval', function(value) {
-      //  console.log(val)
-      $scope.showrmv++;
-        $scope.ref = value.split(",");
-console.log($scope.ref)
-    });
-// $('#comma').hide();
+$scope.tags = [
+  ];
 
 });
 /* -- locationCtrl : --*/

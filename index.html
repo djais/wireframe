@@ -6,14 +6,12 @@
     <title>Dashboard</title>
     <link rel="shortcut icon" type="image/x-icon" href="Favicon.ico" />
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    
-  
     <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/lib/dist/css/AdminLTE.css">
     <link rel="stylesheet" href="assets/lib/dist/css/skins/_all-skins.css">
     <link rel="stylesheet" href="assets/css/custom.css">
-    <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/3.2.0/ng-tags-input.bootstrap.css">
+    <link rel="stylesheet" href="assets/css/nginput.css"><!--nginput css-->
   </head>
   <body class="hold-transition skin-black-light sidebar-mini" ng-controller="appCtrl" style="color:#73879C" ng-init='init()'>
     <div class="wrapper" ng-controller='dummydataCtrl'>
@@ -75,13 +73,13 @@
       </div><!-- ./wrapper -->
     </body>
     <script src="assets/lib/angular.js"></script>
-    
-  
     <script src="assets/lib/angular-route.min.js"></script>
     <script src="assets/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <script src="assets/lib/tags-input.js"></script><!--nginput js-->
     <script src="assets/lib/dist/js/app.min.js"></script>
-   <!--  <script src="assets/lib/chart.js/dist/Chart.min.js"></script> -->
+     <script src="assets/lib/chart.js/dist/Chart.min.js"></script> 
    <!--  <script src="assets/lib/angular-chart.js/dist/angular-chart.min.js"></script> -->
    <!-- <script src="assets/lib/highcharts/js/highcharts.js"></script> -->
      <script src="https://code.highcharts.com/highcharts.js"></script>
