@@ -1,180 +1,119 @@
-          
+
        <div class="x_panel tile" style="width:80%;margin-left:40px;margin-right:20px;">
-          <label style="font-weight:300; font-size:18px; padding:10px;">Add New Product</label>
+          <label style="font-weight:300; font-size:18px; padding:10px;color:black">Add Product</label>
           <hr style="margin-bottom: 0px;">
           <div class="x_content" style="padding:15px;">
-          <form role="form" name="myForm">
-          <div class="col-md-12">
-        <div class="form-group">
-            <label class='col-xs-2 text-muted' style="margin-left: 25px;">Product Name</label> 
-            <input type="text" ng-model="user.name" class="form-control ryt-input" style="width: 40%"/>
-          </div>
-        </div>
-        <div class="col-md-12">
-        <div class="form-group">
-            <label class='col-xs-2 text-muted'style="margin-left: 25px;">Short Description</label> 
-            <input type="text" ng-model="user.name" class="form-control ryt-input" style="width: 40%"/>
-          </div>
-        </div>
-            <div class="col-md-12">
-        <div class="row form-group">
-            <label class='col-xs-2 text-muted'style="margin-left: 25px;">Long Description</label> 
-            <textarea class="form-control" rows="5" id="ldescription"style="height:100px;width:50%;"></textarea>
-          </div>
-        </div>
-    <div class="form-group">
-        <label class="col-xs-3 text-muted"style="margin-left: 35px;">Product Image</label>
-        <div class="input-group col-xs-6">
-          <i class="fa fa-picture-o productIcon"  aria-hidden="true" style= "font-size:50px;
-  margin-left: 50px;">
-          </i><input type="file" id="attach">
+            <form role="form" name="myForm">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td width="15%"><label class='text-muted'>Product Name</label></td>
+                      <td width="85%">
+                        <input  ng-model="product.name" class="form-control" placeholder="" >
+                      </td>
+                    </tr>
+                    <tr>
 
+                      <td><label class='text-muted'>Product Image</label></td>
+                      <td>
+                        <img style="width:200px; height:200px;" ng-show= "imageSrc" ng-src="{{imageSrc}}"  />
+                        <input type="file" ng-file-select="onFileSelect($files)"  ng-model="imageSrc">
+                      </td>
 
-            <!-- <span class="input-group-btn " >
-                <span class="btn btn-default btn-file">
-                    Browse… <input type="file" id="imgInp">
-                </span>
-            </span> -->
-            <!-- <input type="text" class="form-control" readonly> -->
-                </div>
-<!-- 
-                <img id='img-upload'/>
- -->
-            </div>
+  </tr>
+  <tr>
 
-        </div>
-         <div class="col-md-12">
-        <div class="form-group ">
-            <label class='col-xs-2 text-muted'style="margin-left:35px;">Price</label> 
-            <input type="text"  ng-model="user.name" class="form-control" style="width: 40%"/>
-          </div>
-        </div>
-        <div class="form-group" >
-        <label class="col-xs-2 text-muted" style="margin-left:35px;">Specification:</label>
-        <div class="form-group">
-        <div class="col-xs-4">
-
-            <input type="text" class="form-control"  placeholder="Label"/>
-
-        </div>
-        <div class="col-xs-4">
-            <input type="text" class="form-control" ng-model="newitem" placeholder="Description"/>
-        </div>
-         
-        <div class="col-xs-1">
-            <button type="button" class="btn btn-default addButton" ng-click='add()'><i class="fa fa-plus"></i></button>
-             </div>
-          
-        </div>
-       </div>
-
-       <!-- The template for adding new field -->
-    <div class="form-group hide" id="specTemplate" >
-        <div ng-repeat= 'item in items'>
-
-        <div class="col-xs-4 col-xs-offset-1" >
-            <input type="text" class="form-control" id='item-{{index}}' ng-model="item" name="label" placeholder="Label" />
-        </div>
-        <div class="col-xs-4">
-            <input type="text" id='item-{{index}}' ng-model="item" class="form-control" name="desc" placeholder="Description" />
-        </div>
-        <div class="col-xs-1">
-            <button type="button" ng-click="remove($index)" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
-        </div>
+  <td><label class='text-muted'>Short Description</label>
+    <div class="popup" ng-click="leadme()">
+        <i class="glyphicon glyphicon-question-sign"></i>
+        <span class="popuptext" id="myPopup">leading option</span>
     </div>
-  </div> 
+  </td>
+  <td>
+    <input type="text"  ng-model="product.sdesc" class="form-control" placeholder=""/>
 
+  </td>
+  </tr>
+  <tr>
 
-<div class="col-md-12">
-        <div class="form-group">
-            <label class='col-xs-2 text-muted'style="margin-left:25px;">Attachment
-            </label> 
-         <i class="fa fa-paperclip" aria-hidden="true" style="font-size:20px;margin-left: 20px;"></i>                 
-            <input type="file" id="attach"> 
+  <td><label class='text-muted'>Long Description</label>
+    <div class="popup" ng-click="leadme()">
+        <i class="glyphicon glyphicon-question-sign"></i>
+        <span class="popuptext" id="myPopup">leading option</span>
+    </div>
+  </td>
+  <td>
+    <textarea  ng-model="product.ldesc" class="form-control" placeholder="" style="height:100px;" ></textarea>
 
-             </div>
-        </div>
-<div class="col-md-12" >
-        <div class="row form-group" >
-            <label class='col-xs-2 text-muted'style="margin-left:35px;">Tags</label> 
-         <!--  <textarea id="tag" type="text" runat="server" ng-init="tagval=''" ng-model="tagval" placeholder="Add a tag" rows="4" cols="100"></textarea>
-          -->   
-              <div ng-controller="TagsCtrl"class="tag-input-ctn">
-  <div ng-repeat="(key, tag) in inputTags" class="input-tag" >
-    {{tag.name}}
-    <div class="delete-tag" ng-click="deleteTag(key)">&times;</div>
+  </td>
+  </tr>
+
+  <tr>
+
+  <td><label class='text-muted'>Price</label></td>
+  <td>
+    <div class="col-xs-4" >
+    <input type='text'  ng-model="product.price" class="form-control" placeholder="Example:Rs 100.00" style="margin-left: -16px;" >
   </div>
-  <input id="tags" autofocus type="text" tag-input ng-model="tagText" ng-style="{width: inputWidth}" new-tag="addTag()" delete-tag="deleteTag()" placeholder="Add a tag" rows="4" cols="100">
+  <div class="col-xs-2">
+      <label class='text-muted'>Currency</label></div>
+      <div class="col-xs-6">
+        <select class="selectpicker" style="width:25%">
+          <option>Rs</option>
+          <option>$</option>
+          <option>AUD</option>
+          </select>
+
 </div>
+    <!-- <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Select
+   <span class="caret"></span></button>
+   <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Rs</a></li>
+     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">$</a></li>
+   </ul> -->
+ <!-- </div> -->
 
+  </td>
+  </tr>
+  <tr>
 
-         <!-- <span ng-repeat="r in tag" class="badge">{{r.toString()}} <i class="fa fa-times" ng-show="remove>1" ng-click="removetag(r)"></i> </span>
- -->
-             </div>
-        </div>
-        <div class="col-md-12" >
-        <button type="button" class="btn btn-primary" style="float:right;width:100px;">Save</button>
-      </div>
- </form>
-
-      </div>
+  <td><label class='text-muted'>Specification</label></td>
+  <td>
+    <div class="col-xs-4" >
+        <input type="text" class="form-control" name="label" placeholder="Label" style="margin-left: -16px;" />
     </div>
-<script type="text/javascript">
-document.getElementbyId("input").style.display = "hide";
-</script>
-<style>
+    <div class="col-xs-4">
+        <input type="text" class="form-control" name="desc" placeholder="Description" />
+    </div>
+    <div class="col-xs-1">
+        <button type="button" class="btn btn-default addButton" ng-click='add()'><i class="fa fa-plus"></i></button>
+         </div>
+  </td>
+  </tr>
+  <tr>
 
-.tag-input-ctn {
-  border: 1px solid #ccc;
-  padding: 2px 3px;
-  display: inline-block;
-  width: 50%;
-  border-radius: 3px;
-  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
-}
- 
-.tag-input-ctn input {
-  display: inline-block;
-  float: left;
-  height: 28px;
-  padding: 0px;
-  font-size: 13px;
-  line-height: 18px;
-  color: black;
-  border: 0px;
-  margin: 2px;
-}
- 
-.tag-input-ctn input:focus {
-  outline: 0;
-  box-shadow: 0 !important;
-  border-bottom: 0 !important;
-}
- 
-.tag-input-ctn .input-tag {
-  padding: 2px 4px;
-  line-height: 12px;
-  font-size: 11px;
-  background-color: #e3eaf6;
-  display: inline-block;
-  float: left;
-  border-radius: 2px;
-  margin: 2px 5px 2px 0px;
-  border: 1px solid #a9b6d2;
-}
- 
-.tag-input-ctn .input-tag .delete-tag {
-  display: inline-block;
-  font-size: 12px;
-  cursor: pointer;
-  padding: 0px 2px;
-}
- 
-.tag-input-ctn .input-tag .delete-tag:hover {
-  background-color: #96b4d2;
-}
+  <td><label class='text-muted'>Attachment
+  <i class="fa fa-paperclip" aria-hidden="true" style="font-size:20px;"></i>
+  </label></td>
+  <td>
+
+    <input type="file" ng-file-select="onFileSelect($files)"  ng-model="product.attach">
 
 
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.js"></script>
+  </td>
+  </tr>
+  <tr>
+  <td><label class="text-muted"> Tags </label></td>
+  <td>
+<tags-input ng-model="tags"></tags-input>  </td>
+  </tr>
+  </tbody>
+  </table>
+  <div class="pull-left">
+    <button class="btn btn-danger" type="reset">Reset</button>
+  </div>
+  </form>
+  <div align="right">
+  <button class="btn btn-default" ng-click="canceladdoredit(trigger,'edit')">Preview</button>
+  <button class="btn btn-info" ng-click="save(trigger,'edittrigger')">Submit</button>
+  </div>
