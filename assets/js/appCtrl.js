@@ -29,11 +29,25 @@ app.run(function($rootScope, $http){
 
 
       $rootScope.onClickTab = function (tab) {
+        if(tab.id && $rootScope.currentid != tab.id){
+          $rootScope.currentid = tab.id;
+          $rootScope.mainobj = tab;
+        }
         $rootScope.currentTab = tab.url;
+        // $rootScope.$digest();
+        // $rootScope.$apply();
+        console.log($rootScope.currentid);
+        console.log($rootScope.currentTab);
       }
 
-      $rootScope.isActiveTab = function(tabUrl) {
-          return tabUrl == $rootScope.currentTab;
+      $rootScope.isActiveTab = function(tab) {
+        console.log(tab);
+        if(tab.id){
+          if(tab.url == $rootScope.currentTab && tab.id == $rootScope.currentid)
+            return true
+          return false
+        }
+        return tab.url == $rootScope.currentTab;
       }
 
 });
@@ -942,13 +956,36 @@ app.controller("chatCtrl", function($scope,$rootScope, $http){
       $rootScope.currentTab = 'assets/views/chatList.html';
   };/* init() */
 
+  $rootScope.addtab=function(chat){
+      console.log("hello new tab")
+      console.log(chat);
+      var newtab = {
+        id: chat.id,
+        title:chat.name,
+        mainobj:chat.msg,
+        url:'assets/views/chatDetails.html',
+        closeable:true
+      };
+      if($scope.tabs.length<4)
+      {
+      $scope.tabs.push(newtab);
+      console.log($scope.tabs)
+      $rootScope.onClickTab(newtab);
+
+
+    }
+  }
+  $rootScope.removeTab=function(i){
+    $scope.tabs.splice(i,1);
+    $rootScope.onClickTab($scope.tabs[i-1]);
+  }
 });
 
 /* -- chatListCtrl : --*/
 
 app.controller("chatListCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
-
+    
   };/* init() */
 
 });
