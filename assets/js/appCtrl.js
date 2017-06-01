@@ -29,52 +29,49 @@ app.config(function($routeProvider) {
 app.run(function($rootScope, $http){
 
 
-      $rootScope.onClickTab = function (tab) {
-        if(tab.id && $rootScope.currentid != tab.id){
-          $rootScope.currentid = tab.id;
-          $rootScope.mainobj = tab;
-        }
-        $rootScope.currentTab = tab.url;
-        console.log($rootScope.currentid);
-        console.log($rootScope.currentTab);
-      }
 
-      $rootScope.isActiveTab = function(tab) {
-        console.log(tab);
-        if(tab.id){
-          if(tab.url == $rootScope.currentTab && tab.id == $rootScope.currentid)
-            return true
-          return false
-        }
-        return tab.url == $rootScope.currentTab;
-      }
 
 });
 
- app.directive("ngFileSelect", function(fileReader, $timeout) {
-    return {
-      scope: {
-        ngModel: '='
-      },
-      link: function($scope, el) {
-        function getFile(file) {
-          fileReader.readAsDataUrl(file, $scope)
-            .then(function(result) {
-              $timeout(function() {
-                $scope.ngModel = result;
-              });
-            });
-        }
-
-        el.bind("change", function(e) {
-          var file = (e.srcElement || e.target).files[0];
-          getFile(file);
+app.directive("ngFileSelect", function(fileReader, $timeout) {
+  return {
+    scope: {
+      ngModel: '='
+    },
+    link: function($scope, el) {
+      function getFile(file) {
+        fileReader.readAsDataUrl(file, $scope)
+        .then(function(result) {
+          $timeout(function() {
+            $scope.ngModel = result;
+          });
         });
       }
-    };
-  });
 
-app.factory("fileReader", function($q, $log) {
+      el.bind("change", function(e) {
+        var file = (e.srcElement || e.target).files[0];
+        getFile(file);
+      });
+    }
+  };
+});
+
+ // app.service("addtab", function(tabs,newtab){
+ //  this.add=function(tabs,newtab){
+ //    var result = {};
+ //    if(tabs.length<$rootScope.maxchats){
+ //      tabs.push(newtab);
+ //      $rootScope.onClickTab(newtab);
+ //      result.tabs = tabs;
+ //    }
+ //    else
+ //      result.error = "You have opened maximum number of chats. Close any to open new.";
+ //    console.log("addtab result",result);
+ //    return result;   
+ //  }
+ // })
+
+ app.factory("fileReader", function($q, $log) {
   var onLoad = function(reader, deferred, scope) {
     return function() {
       scope.$apply(function() {
@@ -122,117 +119,167 @@ app.factory("fileReader", function($q, $log) {
   };
 });
 
+  // app.service("addorrem",function(){
+  //   this.add = function(scope,newtab){
+  //     if($rootScope.tabidarr.length){
+  //       var index = $rootScope.tabidarr.indexOf(newdata.id);
+  //       if(index>-1){
+  //         $rootScope.onClickTab(newdata);
+  //         return false;        
+  //       }
+  //     }
+  //     if(scope.tabs.length<$rootScope.maxtabs){
+  //       $rootScope.tabidarr.push(newdata.id);
+  //       scope.tabs.push(newdata);
+  //       $rootScope.currentTab = newdata.url;
+  //       $rootScope.onClickTab(newdata);
+  //     }
+  //     else
+  //       $rootScope.taberror = "You have opened maximum number of chats. Close any to open new.";
+  //   }
+  // })
+
+ // app.factory('xyz', function($scope){
+ //  var xyz = function(){
+ //    $scope.x = "jgugiubuih";
+ //    // $rootScope.y = "kjhiugugugiuhohoyyyyyyyyyy";
+ //    console.log("hai$$$$$$$$$$$$$$$");
+ //    console.log($scope.x)
+ //    // console.log($rootScope.y)
+ //    // return true;
+ //  }
+ // })
+
  app.directive('hcPieChart', function () {
-                return {
-                    restrict: 'E',
-                    template: '<div></div>',
-                    scope: {
-                        title: '@',
-                        data: '='
-                    },
-                    link: function (scope, element) {
-                        Highcharts.chart(element[0], {
+  return {
+    restrict: 'E',
+    template: '<div></div>',
+    scope: {
+      title: '@',
+      data: '='
+    },
+    link: function (scope, element) {
+      Highcharts.chart(element[0], {
 
-                           responsive: {
-                                          rules: [{
-                                            condition: {
-                                              maxWidth: 300
-                                            },
-                                            chartOptions: {
-                                              legend: {
-                                                enabled: true
-                                              }
-                                            }
-                                          }]
-                                        },
+       responsive: {
+        rules: [{
+          condition: {
+            maxWidth: 300
+          },
+          chartOptions: {
+            legend: {
+              enabled: true
+            }
+          }
+        }]
+      },
 
-                            chart: {
-                            height: 300,
-                            width:300,
-                            spacingBottom: 15,
-                            spacingTop: 0,
-                            spacingLeft: 10,
-                            spacingRight: 100,
-                            plotBackgroundColor: null,
-                            plotBorderWidth: null,
-                            plotShadow: false,
-                            type: 'pie'
-                            },
+      chart: {
+        height: 300,
+        width:300,
+        spacingBottom: 15,
+        spacingTop: 0,
+        spacingLeft: 10,
+        spacingRight: 100,
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
 
-                            title: {
-                                text: scope.title
-                            },
-                            tooltip: {
-                              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                             },
-                            plotOptions: {
-                                          pie: {
+      title: {
+        text: scope.title
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
 
-                                                  allowPointSelect: true,
-                                                  cursor: 'pointer',
-                                                   dataLabels: {
-                                                    enabled: false
-                                                 },
-                                                showInLegend: true,
-                                                animation: false
-                                              }
-                                        },
-                            series: [{
-                                data: scope.data
-                            }],
-                            exporting: {
-                                            enabled: false
-                                        },
-                                         credits: {
-                                                    enabled: false
-                                                  }
-                        });
-                    }
-                };
-            })
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true,
+          animation: false
+        }
+      },
+      series: [{
+        data: scope.data
+      }],
+      exporting: {
+        enabled: false
+      },
+      credits: {
+        enabled: false
+      }
+    });
+    }
+  };
+})
 
  app.directive('hcChart', function () {
-                return {
-        restrict: 'E',
-        replace: true,
-        template: '<div></div>',
-        scope: {
-            config: '='
-        },
-        link: function (scope, element, attrs) {
+  return {
+    restrict: 'E',
+    replace: true,
+    template: '<div></div>',
+    scope: {
+      config: '='
+    },
+    link: function (scope, element, attrs) {
 
 
 
-            var chart;
-            var process = function () {
-                var defaultOptions = {
-                    chart: { renderTo: element[0] },
-                };
-                var config = angular.extend(defaultOptions, scope.config);
-                chart = new Highcharts.Chart(config);
-            };
-            process();
-            scope.$watch("config.series", function (loading) {
-                process();
-            });
-            scope.$watch("config.loading", function (loading) {
-                if (!chart) {
-                    return;
-                }
-                if (loading) {
-                    chart.showLoading();
-                } else {
-                    chart.hideLoading();
-                }
-            });
+      var chart;
+      var process = function () {
+        var defaultOptions = {
+          chart: { renderTo: element[0] },
+        };
+        var config = angular.extend(defaultOptions, scope.config);
+        chart = new Highcharts.Chart(config);
+      };
+      process();
+      scope.$watch("config.series", function (loading) {
+        process();
+      });
+      scope.$watch("config.loading", function (loading) {
+        if (!chart) {
+          return;
         }
-    };
-            })
-/*---- appCtrl : <reason> ---*/
-app.controller('appCtrl',function($rootScope,$scope,$location){
+        if (loading) {
+          chart.showLoading();
+        } else {
+          chart.hideLoading();
+        }
+      });
+    }
+  };
+})
+ /*---- appCtrl : <reason> ---*/
+ app.controller('appCtrl',function($rootScope,$scope,$location){
 
   $scope.init = function(){
+    $rootScope.maxtabs = 4;
+    $rootScope.tabidarr = [];
   };
+
+  $rootScope.onClickTab = function (tab) {
+    if(tab.id && $rootScope.currentid != tab.id){
+      $rootScope.currentid = tab.id;
+      $rootScope.mainobj = tab;
+    }
+    $rootScope.currentTab = tab.url;
+  }
+
+  $rootScope.isActiveTab = function(tab) {
+    if(tab.id){
+      if(tab.url == $rootScope.currentTab && tab.id == $rootScope.currentid)
+        return true
+      return false
+    }
+    return tab.url == $rootScope.currentTab;
+  }
 
   $rootScope.route = function(page){
     console.log(page);
@@ -246,149 +293,167 @@ app.controller('appCtrl',function($rootScope,$scope,$location){
     $location.path(page)
   }
 
+  $rootScope.addorremove = function(scope,newdata){
+    if($rootScope.tabidarr.length){
+      var index = $rootScope.tabidarr.indexOf(newdata.id);
+      if(index>-1){
+        $rootScope.onClickTab(newdata);
+        return false;        
+      }
+    }
+    if(scope.tabs.length<$rootScope.maxtabs){
+      $rootScope.tabidarr.push(newdata.id);
+      scope.tabs.push(newdata);
+      $rootScope.currentTab = newdata.url;
+      $rootScope.onClickTab(newdata);
+    }
+    else
+      $rootScope.taberror = "You have opened maximum number of chats. Close any to open new.";
+  }
+
 });
 
-/* ---sideBarCtrl : for sidebar --*/
+ /* ---sideBarCtrl : for sidebar --*/
 
-app.controller('sideBarCtrl',function($scope, $rootScope){
+ app.controller('sideBarCtrl',function($scope, $rootScope){
   $rootScope.sidebaractive = '';
   $scope.sidebarcontents = {
     "main" : [
-                {"title":"OVERVIEW",
-                 "contents":[
-                              {"title":"Dashboard","url":"dashboard","icon":"fa fa-dashboard"},
-                              {"title":"Chatflow","url":"chartflow","icon":"fa fa-arrow-right"},
-                              {"title":"Chats","url":"chats","icon":"fa fa-comments-o"},
-                              {"title":"Customers","url":"customers","icon":"fa fa-user"}
-                            ]
-                },
-                {"title":"BOTS",
-                 "contents":[
-                              {"title":"Website Bot","url":"webbots","icon":"fa fa-cloud"},
-                              {"title":"Facebook","url":"fbbots","icon":"fa fa-facebook"}
-                            ]
-                },
-                {"title":"KNOWLEDGE BANK",
-                 "contents":[
-                              {"title":"Products","url":"products","icon":"fa fa-product-hunt"},
+    {"title":"OVERVIEW",
+    "contents":[
+    {"title":"Dashboard","url":"dashboard","icon":"fa fa-dashboard"},
+    {"title":"Chatflow","url":"chartflow","icon":"fa fa-arrow-right"},
+    {"title":"Chats","url":"chats","icon":"fa fa-comments-o"},
+    {"title":"Customers","url":"customers","icon":"fa fa-user"}
+    ]
+  },
+  {"title":"BOTS",
+  "contents":[
+  {"title":"Website Bot","url":"webbots","icon":"fa fa-cloud"},
+  {"title":"Facebook","url":"fbbots","icon":"fa fa-facebook"}
+  ]
+},
+{"title":"KNOWLEDGE BANK",
+"contents":[
+{"title":"Products","url":"products","icon":"fa fa-product-hunt"},
                               // {"title":"Services","url":"services","icon":"fa fa-handshake-o"},
                               {"title":"Offers","url":"offers","icon":"fa fa-tags"},
                               {"title":"FAQs","url":"faqs","icon":"fa fa-question-circle-o"},
                               {"title":"Locations","url":"locations","icon":"fa fa-map-marker"},
                               {"title":"Multimedia","url":"multimedia","icon":"fa fa-file-image-o"}
+                              ]
+                            }
+                            ,
+                            {"title":"TEAM",
+                            "contents":[
+                            {"title":"Agents","url":"agents","icon":"fa fa-users"}
                             ]
-                }
-                 ,
-                 {"title":"TEAM",
-                  "contents":[
-                               {"title":"Agents","url":"agents","icon":"fa fa-users"}
-                             ]
-                 }
-              ]
-  }
-
-});
-
-/* -- dashboardCtrl -- */
-app.controller('dashboardCtrl',function($rootScope,$scope,$location){
-  
- $scope.botdata = [{
-                        name: "FB",
-                        y: 100
-                    }, {
-                        name: "Web",
-                        y:175,
-                        sliced: false,
-                        selected: true
-                    }
-                     ]
-
-    $scope.sessiondata = [{
-                        name: "< 10 min ",
-                        y: 56.33
-                    }, {
-                        name: "> 10 min",
-                        y: 24.03,
-                        sliced: false,
-                        selected: true
-                    }, {
-                        name: "< 25 min",
-                        y: 10.38
-                    }]
-    $scope.responsedata = [{
-                        name: "Bot Response",
-                        y: 15
-                    }, {
-                        name: "Initiated",
-                        y: 3000,
-                        sliced: false,
-                        selected: true
-                    }, {
-                        name: "Agent Respond",
-                        y: 1000
-                    }, {
-                        name: "Not Responded",
-                        y: 5000
-                }]
-     $scope.chartConfig = {
-            xAxis: {
-                categories: ['Buy', 'Book Table', 'Location', 'Contact', 'Product Enquiry','Unknown']
-            },
-                        title: {
-                text: 'Intent'
-            },
-            yAxis: { title: { text: '' } },
-            tooltip: { valueSuffix: ' ' },
-            legend: { align: 'center', verticalAlign: 'bottom', borderWidth: 0 },
-               plotOptions: {
-                area: {
-                  animation: false,
-
-                    fillColor: {
-                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
-                        stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                        ]
-                    },
-
-                    marker: {
-                        radius: 2
-                    },
-                    lineWidth: 1,
-                    states: {
-                        hover: {
-                            lineWidth: 1
+                          }
+                          ]
                         }
-                    },
-                    threshold: null
 
-                }
-            },
-            responsive: {
-                                          rules: [{
-                                            condition: {
-                                              maxWidth: 1000
-                                            },
-                                            chartOptions: {
-                                              legend: {
-                                                enabled: true
-                                              }
-                                            }
-                                          }]
-                                        },
-            credits: {
-                         enabled: false
-                    },
-            series: [{
-              type:'bar',
-              spacingBottom: 15,
-                            spacingTop: 0,
-                            spacingLeft: 10,
-                            spacingRight: 100,
-                data: [12,36,75,50, 45,30]
-            }]
-    };
+                      });
+
+ /* -- dashboardCtrl -- */
+ app.controller('dashboardCtrl',function($rootScope,$scope,$location){
+
+   $scope.botdata = [{
+    name: "FB",
+    y: 100
+  }, {
+    name: "Web",
+    y:175,
+    sliced: false,
+    selected: true
+  }
+  ]
+
+  $scope.sessiondata = [{
+    name: "< 10 min ",
+    y: 56.33
+  }, {
+    name: "> 10 min",
+    y: 24.03,
+    sliced: false,
+    selected: true
+  }, {
+    name: "< 25 min",
+    y: 10.38
+  }]
+  $scope.responsedata = [{
+    name: "Bot Response",
+    y: 15
+  }, {
+    name: "Initiated",
+    y: 3000,
+    sliced: false,
+    selected: true
+  }, {
+    name: "Agent Respond",
+    y: 1000
+  }, {
+    name: "Not Responded",
+    y: 5000
+  }]
+  $scope.chartConfig = {
+    xAxis: {
+      categories: ['Buy', 'Book Table', 'Location', 'Contact', 'Product Enquiry','Unknown']
+    },
+    title: {
+      text: 'Intent'
+    },
+    yAxis: { title: { text: '' } },
+    tooltip: { valueSuffix: ' ' },
+    legend: { align: 'center', verticalAlign: 'bottom', borderWidth: 0 },
+    plotOptions: {
+      area: {
+        animation: false,
+
+        fillColor: {
+          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+          stops: [
+          [0, Highcharts.getOptions().colors[0]],
+          [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+          ]
+        },
+
+        marker: {
+          radius: 2
+        },
+        lineWidth: 1,
+        states: {
+          hover: {
+            lineWidth: 1
+          }
+        },
+        threshold: null
+
+      }
+    },
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 1000
+        },
+        chartOptions: {
+          legend: {
+            enabled: true
+          }
+        }
+      }]
+    },
+    credits: {
+     enabled: false
+   },
+   series: [{
+    type:'bar',
+    spacingBottom: 15,
+    spacingTop: 0,
+    spacingLeft: 10,
+    spacingRight: 100,
+    data: [12,36,75,50, 45,30]
+  }]
+};
 
 
 
@@ -398,57 +463,57 @@ app.controller('dashboardCtrl',function($rootScope,$scope,$location){
 
 /*Flow-chart start*/
 var treeData =
+{
+  "name": "HI:900",
+  "children": [
   {
-    "name": "HI:900",
+    "name": "Intent1: 200",
     "children": [
-      {
-        "name": "Intent1: 200",
-        "children": [
-          { "name": "Intent3: 100" },
-          { "name": "intent6: 70",
-              "children": [
-                            { "name": "Intent4: 20" },
-                            { "name": "intent5: 40" },
-                            { "name": "Dropoff: 10" }
-                          ]
-
-           },
-
-           { "name": "Dropoff: 30" }
-        ]
-      },
-      { "name": "Intent 2: 400" ,
-                    "children": [
-                            { "name": "Intent4: 200" },
-                            { "name": "intent5: 150" },
-                            { "name": "Dropoff: 50" }
-                          ]
-      },
-      { "name": "Intent 7: 150" },
-       { "name": "Dropoff: 50" }
+    { "name": "Intent3: 100" },
+    { "name": "intent6: 70",
+    "children": [
+    { "name": "Intent4: 20" },
+    { "name": "intent5: 40" },
+    { "name": "Dropoff: 10" }
     ]
-  };
+
+  },
+
+  { "name": "Dropoff: 30" }
+  ]
+},
+{ "name": "Intent 2: 400" ,
+"children": [
+{ "name": "Intent4: 200" },
+{ "name": "intent5: 150" },
+{ "name": "Dropoff: 50" }
+]
+},
+{ "name": "Intent 7: 150" },
+{ "name": "Dropoff: 50" }
+]
+};
 
 
 // Set the dimensions and margins of the diagram
 var margin = {top: 20, right: 90, bottom: 30, left: 90},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+width = 960 - margin.left - margin.right,
+height = 500 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
 var svg = d3.select("#cool").append("svg")
 
-    .attr("width", width + margin.right + margin.left)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate("
-          + margin.left + "," + margin.top + ")");
+.attr("width", width + margin.right + margin.left)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform", "translate("
+  + margin.left + "," + margin.top + ")");
 
 var i = 0,
-    duration = 750,
-    root;
+duration = 750,
+root;
 
 // declares a tree layout and assigns the size
 var treemap = d3.tree().size([height, width]);
@@ -479,7 +544,7 @@ function update(source) {
 
   // Compute the new tree layout.
   var nodes = treeData.descendants(),
-      links = treeData.descendants().slice(1);
+  links = treeData.descendants().slice(1);
 
   // Normalize for fixed-depth.
   nodes.forEach(function(d){ d.y = d.depth * 180});
@@ -488,100 +553,100 @@ function update(source) {
 
   // Update the nodes...
   var node = svg.selectAll('g.node')
-      .data(nodes, function(d) {return d.id || (d.id = ++i); });
+  .data(nodes, function(d) {return d.id || (d.id = ++i); });
 
   // Enter any new modes at the parent's previous position.
   var nodeEnter = node.enter().append('g')
-      .attr('class', 'node')
-      .attr("transform", function(d) {
-        return "translate(" + source.y0 + "," + source.x0 + ")";
-    })
-    .on('click', click);
+  .attr('class', 'node')
+  .attr("transform", function(d) {
+    return "translate(" + source.y0 + "," + source.x0 + ")";
+  })
+  .on('click', click);
 
   // Add Circle for the nodes
   nodeEnter.append('circle')
-      .attr('class', 'node')
-      .attr('r', 1e-6)
-      .style("fill", function(d) {
-          return d._children ? "lightsteelblue" : "#fff";
-      });
+  .attr('class', 'node')
+  .attr('r', 1e-6)
+  .style("fill", function(d) {
+    return d._children ? "lightsteelblue" : "#fff";
+  });
 
   // Add labels for the nodes
   nodeEnter.append('text')
-      .attr("dy", ".35em")
-      .attr("x", function(d) {
-          return d.children || d._children ? -13 : 13;
-      })
-      .attr("text-anchor", function(d) {
-          return d.children || d._children ? "end" : "start";
-      })
-      .text(function(d) { return d.data.name; });
+  .attr("dy", ".35em")
+  .attr("x", function(d) {
+    return d.children || d._children ? -13 : 13;
+  })
+  .attr("text-anchor", function(d) {
+    return d.children || d._children ? "end" : "start";
+  })
+  .text(function(d) { return d.data.name; });
 
   // UPDATE
   var nodeUpdate = nodeEnter.merge(node);
 
   // Transition to the proper position for the node
   nodeUpdate.transition()
-    .duration(duration)
-    .attr("transform", function(d) {
-        return "translate(" + d.y + "," + d.x + ")";
-     });
+  .duration(duration)
+  .attr("transform", function(d) {
+    return "translate(" + d.y + "," + d.x + ")";
+  });
 
   // Update the node attributes and style
   nodeUpdate.select('circle.node')
-    .attr('r', 10)
-    .style("fill", function(d) {
-        return d._children ? "lightsteelblue" : "#fff";
-    })
-    .attr('cursor', 'pointer');
+  .attr('r', 10)
+  .style("fill", function(d) {
+    return d._children ? "lightsteelblue" : "#fff";
+  })
+  .attr('cursor', 'pointer');
 
 
   // Remove any exiting nodes
   var nodeExit = node.exit().transition()
-      .duration(duration)
-      .attr("transform", function(d) {
-          return "translate(" + source.y + "," + source.x + ")";
-      })
-      .remove();
+  .duration(duration)
+  .attr("transform", function(d) {
+    return "translate(" + source.y + "," + source.x + ")";
+  })
+  .remove();
 
   // On exit reduce the node circles size to 0
   nodeExit.select('circle')
-    .attr('r', 1e-6);
+  .attr('r', 1e-6);
 
   // On exit reduce the opacity of text labels
   nodeExit.select('text')
-    .style('fill-opacity', 1e-6);
+  .style('fill-opacity', 1e-6);
 
   // ****************** links section ***************************
 
   // Update the links...
   var link = svg.selectAll('path.link')
-      .data(links, function(d) { return d.id; });
+  .data(links, function(d) { return d.id; });
 
   // Enter any new links at the parent's previous position.
   var linkEnter = link.enter().insert('path', "g")
-      .attr("class", "link")
-      .attr('d', function(d){
-        var o = {x: source.x0, y: source.y0}
-        return diagonal(o, o)
-      });
+  .attr("class", "link")
+  .attr('d', function(d){
+    var o = {x: source.x0, y: source.y0}
+    return diagonal(o, o)
+  });
 
   // UPDATE
   var linkUpdate = linkEnter.merge(link);
 
   // Transition back to the parent element position
   linkUpdate.transition()
-      .duration(duration)
-      .attr('d', function(d){ return diagonal(d, d.parent) });
+  .duration(duration)
+  .attr('d', function(d){ return diagonal(d, d.parent) });
 
   // Remove any exiting links
   var linkExit = link.exit().transition()
-      .duration(duration)
-      .attr('d', function(d) {
-        var o = {x: source.x, y: source.y}
-        return diagonal(o, o)
-      })
-      .remove();
+  .duration(duration)
+  .attr('d', function(d) {
+    var o = {x: source.x, y: source.y}
+    return diagonal(o, o)
+  })
+  .remove();
 
   // Store the old positions for transition.
   nodes.forEach(function(d){
@@ -593,9 +658,9 @@ function update(source) {
   function diagonal(s, d) {
 
     path = `M ${s.y} ${s.x}
-            C ${(s.y + d.y) / 2} ${s.x},
-              ${(s.y + d.y) / 2} ${d.x},
-              ${d.y} ${d.x}`
+    C ${(s.y + d.y) / 2} ${s.x},
+    ${(s.y + d.y) / 2} ${d.x},
+    ${d.y} ${d.x}`
 
     return path
   }
@@ -603,12 +668,12 @@ function update(source) {
   // Toggle children on click.
   function click(d) {
     if (d.children) {
-        d._children = d.children;
-        d.children = null;
-      } else {
-        d.children = d._children;
-        d._children = null;
-      }
+      d._children = d.children;
+      d.children = null;
+    } else {
+      d.children = d._children;
+      d._children = null;
+    }
     update(d);
   }
 }
@@ -668,16 +733,16 @@ app.controller('custdtlsCtrl', function ($scope,$rootScope) {
 
   $scope.init = function(){
     $scope.tabs=[
-      {
-        title: 'Activity Log',
-        url: 'assets/views/activitylog.html'
-      }, {
-        title: 'Add note',
-        url: 'assets/views/addnote.html'
-      }
+    {
+      title: 'Activity Log',
+      url: 'assets/views/activitylog.html'
+    }, {
+      title: 'Add note',
+      url: 'assets/views/addnote.html'
+    }
     ];
     $rootScope.currentTab = 'assets/views/activitylog.html';
-    }
+  }
 
 });
 
@@ -686,15 +751,15 @@ app.controller('custdtlsCtrl', function ($scope,$rootScope) {
 app.controller("productsCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
     $scope.tabs=[
-      {
-        title: 'Products',
-        url: 'assets/views/productList.html'
-      }, {
-        title: 'Add New',
-        url: 'assets/views/addProduct.html'
-      }
+    {
+      title: 'Products',
+      url: 'assets/views/productList.html'
+    }, {
+      title: 'Add New',
+      url: 'assets/views/addProduct.html'
+    }
     ];
-      $rootScope.currentTab = 'assets/views/productList.html';
+    $rootScope.currentTab = 'assets/views/productList.html';
   };/* init() */
 
 });
@@ -702,30 +767,30 @@ app.controller("productsCtrl", function($scope,$rootScope, $http){
 /*-- productListCtrl ---*/
 
 app.controller("productListCtrl", function($scope, $rootScope){
-    $scope.init = function(){
+  $scope.init = function(){
       // initilization variables
     };
-})
+  })
 /*-- addProductCtrl--*/
 app.controller("addProductCtrl", function($scope, $rootScope){
-    $scope.init = function(){
-      console.log("this is init function");
-      $scope.items=[];
-      $scope.newitem = '';
-     $scope.add= function() {
+  $scope.init = function(){
+    console.log("this is init function");
+    $scope.items=[];
+    $scope.newitem = '';
+    $scope.add= function() {
       console.log("hello add function");
       if($scope.items.length<4) {
 
-     console.log("hello add function.......");
-      $scope.items.push($scope.newitem);
-    }
+       console.log("hello add function.......");
+       $scope.items.push($scope.newitem);
+     }
 
-      console.log("hello add function");
+     console.log("hello add function");
 
 
 
-  }
-};
+   }
+ };
 });
 
 /* -- faqCtrl : --*/
@@ -733,40 +798,40 @@ app.controller("addProductCtrl", function($scope, $rootScope){
 app.controller("faqCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
     $scope.tabs=[
-      {
-        title: 'FAQs',
-        url: 'assets/views/faqList.html'
-      }, {
-        title: 'Add New',
-        url: 'assets/views/addFaq.html'
-      }
+    {
+      title: 'FAQs',
+      url: 'assets/views/faqList.html'
+    }, {
+      title: 'Add New',
+      url: 'assets/views/addFaq.html'
+    }
     ];
-      $rootScope.currentTab = 'assets/views/faqList.html';
+    $rootScope.currentTab = 'assets/views/faqList.html';
   };/* init() */
 
 });
 /* -- faqListCtrl : --*/
 
 app.controller("faqListCtrl", function($scope,$rootScope, $http){
-   $scope.letterLimit = 100;
-$scope.faqs=true;
+ $scope.letterLimit = 100;
+ $scope.faqs=true;
 
 });
 /* -- Add faq Ctrl : --*/
 
 app.controller("addFaqCtrl", function($scope,$rootScope,$window, $http){
  $scope.showrmv=0;
-$scope.submit=function(){
+ $scope.submit=function(){
   console.log("data",$scope)
 }
 
 $scope.leadme=function() {
   console.log("lead me icon clicked")
-    var popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
 }
 $scope.tags = [
-  ];
+];
 
 });
 /* -- locationCtrl : --*/
@@ -774,68 +839,68 @@ $scope.tags = [
 app.controller("locationCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
     $scope.tabs=[
-      {
-        title: 'Locations',
-        url: 'assets/views/locationList.html'
-      }, {
-        title: 'Add New',
-        url: 'assets/views/addLocation.html'
-      }
+    {
+      title: 'Locations',
+      url: 'assets/views/locationList.html'
+    }, {
+      title: 'Add New',
+      url: 'assets/views/addLocation.html'
+    }
     ];
-      $rootScope.currentTab = 'assets/views/locationList.html';
+    $rootScope.currentTab = 'assets/views/locationList.html';
   };/* init() */
 
 });
 
 /*-- locationListCtrl: --*/
 app.controller("locationListCtrl", function($scope, $rootScope){
-    $scope.init = function(){
+  $scope.init = function(){
       // initilization variables
     };
-})
+  })
 /*-- addLocationCtrl: --*/
 app.controller("addLocationCtrl", function($scope, $rootScope){
-   $scope.saveloc=function(){
-     console.log($scope)
-   }
+ $scope.saveloc=function(){
+   console.log($scope)
+ }
 })
 /* -- offersCtrl : --*/
 
 app.controller("offersCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
     $scope.tabs=[
-      {
-        title: 'Offers',
-        url: 'assets/views/offerList.html'
-      }, {
-        title: 'Add New',
-        url: 'assets/views/addOffer.html'
-      }
+    {
+      title: 'Offers',
+      url: 'assets/views/offerList.html'
+    }, {
+      title: 'Add New',
+      url: 'assets/views/addOffer.html'
+    }
     ];
-      $rootScope.currentTab = 'assets/views/offerList.html';
+    $rootScope.currentTab = 'assets/views/offerList.html';
   };/* init() */
 
 });
 /*-- offersCtrl : --*/
 app.controller("offerListCtrl", function($scope, $rootScope){
-    $scope.init = function(){
+  $scope.init = function(){
       // initilization variables
     };
-})
+  })
 /* -- servicesCtrl : --*/
 
 app.controller("servicesCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
     $scope.tabs=[
-      {
-        title: 'Services',
-        url: 'assets/views/serviceList.html'
-      }, {
-        title: 'Add New',
-        url: 'assets/views/addService.html'
-      }
+    {
+      title: 'Services',
+      url: 'assets/views/serviceList.html'
+    }, {
+      title: 'Add New',
+      url: 'assets/views/addService.html'
+    }
     ];
-      $rootScope.currentTab = 'assets/views/serviceList.html';
+    $rootScope.currentTab = 'assets/views/serviceList.html';
   };/* init() */
 
 });
@@ -845,58 +910,63 @@ app.controller("servicesCtrl", function($scope,$rootScope, $http){
 app.controller("multimediaCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
     $scope.tabs=[
-      {
-        title: 'Multimedia Files',
-        url: 'assets/views/multimediaList.html'
-      }, {
-        title: 'Add New',
-        url: 'assets/views/addMultimedia.html'
-      }
+    {
+      title: 'Multimedia Files',
+      url: 'assets/views/multimediaList.html'
+    }, {
+      title: 'Add New',
+      url: 'assets/views/addMultimedia.html'
+    }
     ];
-      $rootScope.currentTab = 'assets/views/multimediaList.html';
+    $rootScope.currentTab = 'assets/views/multimediaList.html';
   };/* init() */
 
 });
 /* -- multimediaListCtrl : --*/
 app.controller("multimediaListCtrl", function($scope,$rootScope, $http){
-   $scope.letterLimit = 100;
-$scope.multimedia=true;
+ $scope.letterLimit = 100;
+ $scope.multimedia=true;
 });
 /* -- chatCtrl : --*/
 
 app.controller("chatCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
     $scope.tabs=[
-      {
-        title: 'Customer Messages',
-        url: 'assets/views/chatList.html'
-      }
+    {
+      title: 'Customer Messages',
+      url: 'assets/views/chatList.html'
+    }
     ];
-      $rootScope.currentTab = 'assets/views/chatList.html';
-      $scope.maxchats = 4;
-      $scope.error = "";
+    $rootScope.currentTab = 'assets/views/chatList.html';
+    $scope.error = "";
   };/* init() */
 
-  $rootScope.addtab=function(chat){
-    var newtab = {
-      id: chat.id,
-      title:chat.name,
-      mainobj:chat.msg,
-      url:'assets/views/chatDetails.html',
-      closeable:true
-    };
-    if($scope.tabs.length<$scope.maxchats){
-      $scope.tabs.push(newtab);
-      $rootScope.onClickTab(newtab);
+  $scope.addorremovetab=function(addorremove,itemorindex){
+    console.log(addorremove,itemorindex);
+    switch(addorremove){
+      case "add":
+      var newtab = {
+        id: itemorindex.id,
+        title:itemorindex.name,
+        mainobj:itemorindex.msg,
+        url:'assets/views/chatDetails.html',
+        closeable:true
+      };
+      $rootScope.addorremove($scope,newtab);
+      // addorrem($scope,newtab);
+      break;
+      case "remove":
+        console.log($scope.tabs);
+        console.log($rootScope.tabidarr);
+        $scope.tabs.splice(itemorindex,1);
+        $rootScope.tabidarr.splice(itemorindex-1,1);
+        console.log($scope.tabs);
+        console.log($rootScope.tabidarr);
+        $rootScope.onClickTab($scope.tabs[itemorindex-1]);
+        if($scope.tabs.length<$rootScope.maxtabs)
+          $scope.error = "";
+      break;
     }
-    else
-      $scope.error = "You have opened maximum number of chats. Close any to open new."
-  }
-  $rootScope.removeTab=function(i){
-    $scope.tabs.splice(i,1);
-    $rootScope.onClickTab($scope.tabs[i-1]);
-    if($scope.tabs.length<$scope.maxchats)
-      $scope.error = "";
   }
 });
 
@@ -904,8 +974,12 @@ app.controller("chatCtrl", function($scope,$rootScope, $http){
 
 app.controller("chatListCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
-    
+
   };/* init() */
+
+  $scope.pass = function(scope){
+    console.log("scope pass test",scope);
+  }
 
 });
 
@@ -914,16 +988,16 @@ app.controller("chatListCtrl", function($scope,$rootScope, $http){
 app.controller("agentCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
     $scope.tabs=[
-      {
-        title: 'Agents',
-        url: 'assets/views/agentList.html'
-      },
-      {
-        title: 'Add New',
-        url: 'assets/views/addAgent.html'
-      }
+    {
+      title: 'Agents',
+      url: 'assets/views/agentList.html'
+    },
+    {
+      title: 'Add New',
+      url: 'assets/views/addAgent.html'
+    }
     ];
-      $rootScope.currentTab = 'assets/views/agentList.html';
+    $rootScope.currentTab = 'assets/views/agentList.html';
   };/* init() */
 
 });
@@ -937,36 +1011,36 @@ app.controller("agentListCtrl", function($scope,$rootScope, $http){
 });
 
 app.controller('addAgentCtrl',function($rootScope,$scope,$location,fileReader){
-   $scope.init = function(){
-    console.log("this is add agent")
-      $scope.user={}
-    $scope.imageSrc = "";
-    $scope.save=function(agentData,src){
-      console.log(agentData);
-       console.log(src);
-    }
+ $scope.init = function(){
+  console.log("this is add agent")
+  $scope.user={}
+  $scope.imageSrc = "";
+  $scope.save=function(agentData,src){
+    console.log(agentData);
+    console.log(src);
+  }
 
-    $scope.$on("fileProgress", function(e, progress) {
-      $scope.progress = progress.loaded / progress.total;
-    });
-   }
+  $scope.$on("fileProgress", function(e, progress) {
+    $scope.progress = progress.loaded / progress.total;
   });
+}
+});
 
 /* -- webbotsCtrl : --*/
 
 app.controller("webbotsCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
     $scope.tabs=[
-      {
-        title: 'My Webbot',
-        url: 'assets/views/mywebbot.html'
-      },
-      {
-        title: 'Bot Knowledge',
-        url: 'assets/views/botknowledge.html'
-      }
+    {
+      title: 'My Webbot',
+      url: 'assets/views/mywebbot.html'
+    },
+    {
+      title: 'Bot Knowledge',
+      url: 'assets/views/botknowledge.html'
+    }
     ];
-      $rootScope.currentTab = 'assets/views/mywebbot.html';
+    $rootScope.currentTab = 'assets/views/mywebbot.html';
     $scope.botscript = "<script src='https://bots.rytangle.com/temp?75942114533548'></script>"
   };/* init() */
 
@@ -978,17 +1052,17 @@ app.controller("webbotsCtrl", function($scope,$rootScope, $http){
 app.controller("fbbotsCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
     $scope.tabs=[
-      {
-        title: 'Facebook Bot Pages',
-        url: 'assets/views/myfbbotpages.html'
-      },
-      {
-        title: 'Login to Facebook',
-        url: 'assets/views/loginfb.html'
-      }
+    {
+      title: 'Facebook Bot Pages',
+      url: 'assets/views/myfbbotpages.html'
+    },
+    {
+      title: 'Login to Facebook',
+      url: 'assets/views/loginfb.html'
+    }
 
     ];
-      $rootScope.currentTab = 'assets/views/myfbbotpages.html';
+    $rootScope.currentTab = 'assets/views/myfbbotpages.html';
   };/* init() */
 
 });

@@ -10,7 +10,7 @@
               <th style='text-align:center'> Last Message</th>
             </thead>
             <tbody>
-              <tr ng-repeat="item in chats" style='cursor:pointer;' ng-click="addtab(item)">
+              <tr ng-repeat="item in chats" style='cursor:pointer;' ng-click="addorremovetab('add',item)">
                 <td style='text-align:center;vertical-align:middle; padding:0px; width:5%; font-size:18px;'>
                   <i class='fa fa-check-circle' style='color:green' ng-show='item.status=="active"'></i>
                   <i class='fa fa-clock-o' style='color:orange' ng-show='item.status=="away"'></i>
