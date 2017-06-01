@@ -7,6 +7,7 @@ app.config(function($routeProvider) {
   $routeProvider.when('/dashboard',         {templateUrl: 'assets/views/dashboard.html', reloadOnSearch: false});
   $routeProvider.when('/chartflow',         {templateUrl: 'assets/views/chartflow.html', reloadOnSearch: false});
   $routeProvider.when('/webbots',           {templateUrl: 'assets/views/webbots.html', reloadOnSearch: false});
+  $routeProvider.when('/fbbots',            {templateUrl: 'assets/views/fbbots.html', reloadOnSearch: false});
   $routeProvider.when("/products",          {templateUrl: 'assets/views/products.html', reloadOnSearch: false});
   $routeProvider.when("/faqs",              {templateUrl: 'assets/views/faqs.html', reloadOnSearch: false});
   $routeProvider.when("/locations",         {templateUrl: 'assets/views/locations.html', reloadOnSearch: false});
@@ -34,8 +35,6 @@ app.run(function($rootScope, $http){
           $rootScope.mainobj = tab;
         }
         $rootScope.currentTab = tab.url;
-        // $rootScope.$digest();
-        // $rootScope.$apply();
         console.log($rootScope.currentid);
         console.log($rootScope.currentTab);
       }
@@ -266,7 +265,7 @@ app.controller('sideBarCtrl',function($scope, $rootScope){
                 {"title":"BOTS",
                  "contents":[
                               {"title":"Website Bot","url":"webbots","icon":"fa fa-cloud"},
-                              {"title":"Facebook","url":"bots","icon":"fa fa-facebook"}
+                              {"title":"Facebook","url":"fbbots","icon":"fa fa-facebook"}
                             ]
                 },
                 {"title":"KNOWLEDGE BANK",
@@ -292,7 +291,7 @@ app.controller('sideBarCtrl',function($scope, $rootScope){
 
 /* -- dashboardCtrl -- */
 app.controller('dashboardCtrl',function($rootScope,$scope,$location){
-
+  
  $scope.botdata = [{
                         name: "FB",
                         y: 100
@@ -874,30 +873,30 @@ app.controller("chatCtrl", function($scope,$rootScope, $http){
       }
     ];
       $rootScope.currentTab = 'assets/views/chatList.html';
+      $scope.maxchats = 4;
+      $scope.error = "";
   };/* init() */
 
   $rootScope.addtab=function(chat){
-      console.log("hello new tab")
-      console.log(chat);
-      var newtab = {
-        id: chat.id,
-        title:chat.name,
-        mainobj:chat.msg,
-        url:'assets/views/chatDetails.html',
-        closeable:true
-      };
-      if($scope.tabs.length<4)
-      {
+    var newtab = {
+      id: chat.id,
+      title:chat.name,
+      mainobj:chat.msg,
+      url:'assets/views/chatDetails.html',
+      closeable:true
+    };
+    if($scope.tabs.length<$scope.maxchats){
       $scope.tabs.push(newtab);
-      console.log($scope.tabs)
       $rootScope.onClickTab(newtab);
-
-
     }
+    else
+      $scope.error = "You have opened maximum number of chats. Close any to open new."
   }
   $rootScope.removeTab=function(i){
     $scope.tabs.splice(i,1);
     $rootScope.onClickTab($scope.tabs[i-1]);
+    if($scope.tabs.length<$scope.maxchats)
+      $scope.error = "";
   }
 });
 
@@ -969,6 +968,27 @@ app.controller("webbotsCtrl", function($scope,$rootScope, $http){
     ];
       $rootScope.currentTab = 'assets/views/mywebbot.html';
     $scope.botscript = "<script src='https://bots.rytangle.com/temp?75942114533548'></script>"
+  };/* init() */
+
+});
+
+
+/* -- webbotsCtrl : --*/
+
+app.controller("fbbotsCtrl", function($scope,$rootScope, $http){
+  $scope.init = function(){
+    $scope.tabs=[
+      {
+        title: 'Facebook Bot Pages',
+        url: 'assets/views/myfbbotpages.html'
+      },
+      {
+        title: 'Login to Facebook',
+        url: 'assets/views/loginfb.html'
+      }
+
+    ];
+      $rootScope.currentTab = 'assets/views/myfbbotpages.html';
   };/* init() */
 
 });

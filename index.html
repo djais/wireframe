@@ -14,6 +14,14 @@
     <link rel="stylesheet" href="assets/css/nginput.css"><!--nginput css-->
   </head>
   <body class="hold-transition skin-black-light sidebar-mini" ng-controller="appCtrl" style="color:#73879C" ng-init='init()'>
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1897315143849507";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     <div class="wrapper" ng-controller='dummydataCtrl'>
 
       <header class="main-header">
@@ -89,4 +97,5 @@
    
     <script src="assets/js/appCtrl.js"></script>
     <script src="assets/js/dummydata.js"></script>
+
 </html>
