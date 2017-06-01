@@ -5,26 +5,26 @@
             <table class="table table-hover">
                 <tbody>
                     <tr>
-                        <td width="15%" style='text-align:center;vertical-align:middle; padding:0px; '><label class="text-muted">Question</label></td>
+                        <td width="15%" ><label class="text-muted">Question</label></td>
                         <td width="85%">
                             <input type="text" ng-model="que" class="form-control " placeholder="Type a Question" />
                         </td>
                     </tr>
                     <tr>
-                        <td width="15%" style='text-align:center;vertical-align:middle; padding:0px; '><label class="text-muted">Answer</label></td>
+                        <td width="15%" ><label class="text-muted">Answer</label></td>
                         <td width="85%">
                             <textarea type="text" ng-model="ans" class="form-control " placeholder="Type an answer" /></textarea>
                         </td>
                     </tr>
 
                     <tr>
-                        <td width="15%" style='text-align:center;vertical-align:middle; padding:0px; '><label class="text-muted">Tags</label></td>
+                        <td width="15%" ><label class="text-muted">Tags</label></td>
                         <td width="85%">
                             <tags-input ng-model="tags" /></tags-input>
                         </td>
                     </tr>
                     <tr>
-                        <td width="15%" style='text-align:center;vertical-align:middle; padding:0px; '><label class="text-muted">Attachments</label>
+                        <td width="15%" ><label class="text-muted">Attachments</label>
                             <div class="popup" ng-click="leadme()">
                                 <i class="fa fa-question-circle-o"></i>
                                 <span class="popuptext" id="myPopup">attach audio video or any file</span>
@@ -32,7 +32,7 @@
                         </td>
                         <td>
                             <div class="col-xs-3">
-                                <input type="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc">
+                                <input type="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc" multiple>
                             </div>
                             <div class="col-xs-1">
                                 <img style="width:100px; height:110px;" ng-src="{{imageSrc}}" ng-show="imageSrc" />
@@ -40,7 +40,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td width="15%" style='text-align:center;vertical-align:middle; padding:0px; '><label class="text-muted">Reference links</label></td>
+                        <td width="15%" ><label class="text-muted">Reference links</label></td>
                         <td width="85%">
                             <textarea type="url" id="myURL" value="" ng-model="url" class="form-control " placeholder="Ex:https://www.rytangle.com" /></textarea>
                             <span>{{url}} </span>

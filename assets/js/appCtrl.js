@@ -23,6 +23,8 @@ app.config(function($routeProvider) {
   $routeProvider.when("/addoffer",          {templateUrl: 'assets/views/addOffer.html', reloadOnSearch: false});
   $routeProvider.when("/addmultimedia",     {templateUrl: 'assets/views/addMultimedia.html', reloadOnSearch: false});
   $routeProvider.when("/addagent",          {templateUrl: 'assets/views/addAgent.html', reloadOnSearch: false});
+  $routeProvider.when("/editfaq",          {templateUrl: 'assets/views/editFaq.html', reloadOnSearch: false});
+  $routeProvider.when("/editlocation",          {templateUrl: 'assets/views/editLocation.html', reloadOnSearch: false});
 }); /* app.config */
 
 
@@ -40,7 +42,7 @@ app.run(function($rootScope, $http){
       }
 
       $rootScope.isActiveTab = function(tab) {
-        console.log(tab);
+        // console.log(tab);
         if(tab.id){
           if(tab.url == $rootScope.currentTab && tab.id == $rootScope.currentid)
             return true
@@ -705,6 +707,13 @@ app.controller("productListCtrl", function($scope, $rootScope){
     $scope.init = function(){
       // initilization variables
     };
+});
+/*-- editlocCtrl ---*/
+
+app.controller("editlocCtrl", function($scope, $rootScope){
+    $scope.init = function(){
+      // initilization variables
+    };
 })
 /*-- addProductCtrl--*/
 app.controller("addProductCtrl", function($scope, $rootScope){
@@ -747,9 +756,44 @@ app.controller("faqCtrl", function($scope,$rootScope, $http){
 });
 /* -- faqListCtrl : --*/
 
-app.controller("faqListCtrl", function($scope,$rootScope, $http){
+app.controller("faqListCtrl", function($scope,$rootScope,$location, $http){
    $scope.letterLimit = 100;
 $scope.faqs=true;
+$scope.editfaq=function(id){
+  console.log("id",id);
+  $scope.faqID=id;
+  $scope.getfaqlistbyID();
+  $location.path('editfaq');
+}
+$scope.getfaqlistbyID=function(){
+  for(var index=0;index<$rootScope.faqlist.length;index++){
+    console.log("faq list",$rootScope.faqlist[index]);
+    if($rootScope.faqlist[index].id==$scope.faqID){
+      $rootScope.faq=$rootScope.faqlist[index];
+
+    }
+  }
+  console.log($rootScope.faq.tag.tags);
+  $rootScope.faq.tag=[$rootScope.faq.tag.tags];
+}
+
+$scope.saveFaq=function(){
+  console.log("edit faq data",$rootScope.faq)
+}
+
+
+});
+/* -- editFaqCtrl : --*/
+
+app.controller("editFaqCtrl", function($scope,$rootScope,$location, $http){
+
+$scope.save=function(){
+  console.log("edit faq data",$scope)
+}
+
+  console.log($rootScope.faq);
+// $scope.tags=[];
+
 
 });
 /* -- Add faq Ctrl : --*/
@@ -771,7 +815,7 @@ $scope.tags = [
 });
 /* -- locationCtrl : --*/
 
-app.controller("locationCtrl", function($scope,$rootScope, $http){
+app.controller("locationCtrl", function($scope,$rootScope,  $location, $http){
   $scope.init = function(){
     $scope.tabs=[
       {
@@ -784,7 +828,27 @@ app.controller("locationCtrl", function($scope,$rootScope, $http){
     ];
       $rootScope.currentTab = 'assets/views/locationList.html';
   };/* init() */
+$scope.editloc=function(id){
+  console.log(id)
+  $scope.editlocID=id;
+  $rootScope.getLocById();
+ 
+  $location.path('editlocation');
+}
+ $rootScope.getLocById=function(){
+ for(var index=0;index<$rootScope.locations.length;index++){
+    console.log("locations list",$rootScope.locations[index]);
+    if($rootScope.locations[index].id==$scope.editlocID){
+      $rootScope.loc=$rootScope.locations[index];
+    }
+  }
+  console.log($rootScope.loc);
 
+}
+ $scope.saveEditloc=function(){
+      console.log("edit loc ctrl")
+      console.log("data",$rootScope.loc)
+    }
 });
 
 /*-- locationListCtrl: --*/
@@ -792,6 +856,16 @@ app.controller("locationListCtrl", function($scope, $rootScope){
     $scope.init = function(){
       // initilization variables
     };
+})
+/*-- editLocationCtrl: --*/
+app.controller("editLocationCtrl", function($scope, $rootScope){
+    $scope.init = function(){
+      // initilization variables
+      $scope.imageSrc = "";
+    };
+    
+    
+   
 })
 /*-- addLocationCtrl: --*/
 app.controller("addLocationCtrl", function($scope, $rootScope){
@@ -877,7 +951,7 @@ app.controller("chatCtrl", function($scope,$rootScope, $http){
       $scope.error = "";
   };/* init() */
 
-  $rootScope.addtab=function(chat){
+  $scope.addtab=function(chat){
     var newtab = {
       id: chat.id,
       title:chat.name,
@@ -892,7 +966,7 @@ app.controller("chatCtrl", function($scope,$rootScope, $http){
     else
       $scope.error = "You have opened maximum number of chats. Close any to open new."
   }
-  $rootScope.removeTab=function(i){
+  $scope.removeTab=function(i){
     $scope.tabs.splice(i,1);
     $rootScope.onClickTab($scope.tabs[i-1]);
     if($scope.tabs.length<$scope.maxchats)
