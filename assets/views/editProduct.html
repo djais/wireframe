@@ -1,6 +1,6 @@
 
-       <div class="x_panel tile" ng-controller="addProductCtrl" >
-          <label style="font-weight:300; font-size:18px; padding:10px;color:black">Add Product</label>
+       <div class="x_panel tile" ng-controller="productListCtrl">
+          <label style="font-weight:300; font-size:18px; padding:10px;color:black">Edit Product</label>
           <hr style="margin-bottom: 0px;">
           <div class="x_content" style="padding:15px;">
             <form role="form" name="myForm">
@@ -9,7 +9,8 @@
                     <tr>
                       <td style='vertical-align:middle' width="15%"><label class='text-muted'>Product Name</label></td>
                       <td width="85%">
-                        <input  ng-model="name" class="form-control" placeholder="" >
+
+                        <input  ng-model="ProductId.name" class="form-control" placeholder="" >
                       </td>
                     </tr>
                     <tr>
@@ -17,8 +18,11 @@
                       <td style='vertical-align:middle'><label class='text-muted'>Product Image</label></td>
                       <td>
                         <img style="width:200px; height:200px;" ng-show= "imageSrc" ng-src="{{imageSrc}}"  />
-                        <input type="file" ng-file-select="onFileSelect($files)"  ng-model="imageSrc">
+                        <img style="width:200px; height:200px;" ng-show= "!imageSrc" ng-src="{{ProductId.img}}" ng-model="ProductId.img" />
+                        <input type="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc">
+
                       </td>
+
 
   </tr>
   <tr>
@@ -30,7 +34,7 @@
     </div>
   </td>
   <td>
-    <input type="text"  ng-model="sdesc" class="form-control" placeholder=""/>
+    <input type="text" ng-model=ProductId.shortdesc  class="form-control" placeholder=""/>
 
   </td>
   </tr>
@@ -43,7 +47,7 @@
     </div>
   </td>
   <td>
-    <textarea  ng-model="ldesc" class="form-control" placeholder="" style="height:100px;" ></textarea>
+    <textarea  ng-model="ProductId.longdesc" class="form-control" placeholder="" style="height:100px;" ></textarea>
 
   </td>
   </tr>
@@ -53,12 +57,12 @@
   <td style='vertical-align:middle'><label class='text-muted'>Price</label></td>
   <td>
     <div class="col-xs-4" >
-    <input type='text'  ng-model="price" class="form-control" placeholder="Example:Rs 100.00" style="margin-left: -16px;" >
+    <input type='text'  ng-model="ProductId.price" class="form-control" placeholder="Example:Rs 100.00" style="margin-left: -16px;" >
   </div>
   <div class="col-xs-2">
       <label class='text-muted' style='vertical-align:middle'>Currency</label></div>
       <div class="col-xs-6">
-        <select class="selectpicker" id="selCurrency" ng-model="products.currency" style="width:25%">
+        <select class="selectpicker" style="width:25%" >
           <option>Rs</option>
           <option>$</option>
           <option>AUD</option>
@@ -97,7 +101,7 @@
   </label></td>
   <td>
 
-    <input type="file" ng-file-select="onFileSelect($files)"  ng-model="attach">
+    <input type="file" ng-file-select="onFileSelect($files)"  ng-model="ProductId.attach">
 
 
   </td>
@@ -105,15 +109,12 @@
   <tr>
   <td style='vertical-align:middle'><label class="text-muted"> Tags </label></td>
   <td>
-<tags-input ng-model="tags"></tags-input>  </td>
+    <tags-input ng-model="ProductId.tags"></tags-input>  </td>
   </tr>
   </tbody>
   </table>
-  <div class="pull-left">
-    <button class="btn btn-danger" type="reset">Reset</button>
-  </div>
   </form>
-  <div align="right">
-  <button class="btn btn-default" ng-click="canceladdoredit(trigger,'edit')">Preview</button>
-  <button class="btn btn-info" ng-click="save()">Submit</button>
+  <div align="left">
+  <button class="btn btn-danger" ng-click="cancelProduct()">Cancel</button>
+  <button class="btn btn-info" ng-click="save()">Save</button>
   </div>

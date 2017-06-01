@@ -4,19 +4,19 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
 
     // Diksha start
 
-    
+
     // Diksha end
     // Anjan start
 
-    
+
     // Anjan end
     // Dharmendra start
 
-    
+
     // Dharmendra end
     // Vishnu start
 
-    
+
     // Vishnu end
 
     $rootScope.storehead = [
@@ -107,10 +107,10 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
 
 
      $rootScope.offers = [
-      {avail:true, img:"/rytbot-wireframe/assets/images/1.jpg", name:"Pager", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:7500, offprice:6500, tags:["product", "pager", "retro"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
-      {avail:false, img:"/rytbot-wireframe/assets/images/2.jpg", name:"Kitchenware : Some utensils", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:2600, offprice:2000, tags:['product',"kitchen items"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
-      {avail:true, img:"/rytbot-wireframe/assets/images/4.png", name:"DSLR Cannon Awesomeness", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:32999, offprice:30000, tags:["product","camera", "dslr", "great pictures", "most liked"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
-      {avail:false, img:"/rytbot-wireframe/assets/images/3.png", name:"Retro Camera", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:17250, offprice:16500, tags:["product", "camera","retro"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
+      {id:'0001',avail:true, img:"/rytbot-wireframe/assets/images/1.jpg", name:"Pager", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:7500, offprice:6500, tags:["product", "pager", "retro"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
+      {id:'0002',avail:false, img:"/rytbot-wireframe/assets/images/2.jpg", name:"Kitchenware : Some utensils", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:2600, offprice:2000, tags:['product',"kitchen items"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
+      {id:'0003',avail:true, img:"/rytbot-wireframe/assets/images/4.png", name:"DSLR Cannon Awesomeness", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:32999, offprice:30000, tags:["product","camera", "dslr", "great pictures", "most liked"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
+      {id:'0004',avail:false, img:"/rytbot-wireframe/assets/images/3.png", name:"Retro Camera", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:17250, offprice:16500, tags:["product", "camera","retro"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
     ]
 
     $rootScope.locations = [
@@ -124,7 +124,7 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
      {id:'0001', pic:'/rytbot-wireframe/assets/images/flash.png',status:"active", name:"Flash Gordon", chats:224, lastTs:1496127568, likes:120, dislikes:40} ,
      {id:'0002', pic:'/rytbot-wireframe/assets/images/superman.jpg', status:"idle", name:"Superman", chats:176, lastTs:1496127468, likes:80, dislikes:23} ,
      {id:'0003', pic:'/rytbot-wireframe/assets/images/nagraj.jpg', status:"offline", name:"Naag Raj", chats:283, lastTs:1496127368, likes:180, dislikes:60} ,
-     {id:'0004', pic:'/rytbot-wireframe/assets/images/mickey.png', status:"idle", name:"Mickey Mishra", chats:89, lastTs:1496127518, likes:25, dislikes:10} 
+     {id:'0004', pic:'/rytbot-wireframe/assets/images/mickey.png', status:"idle", name:"Mickey Mishra", chats:89, lastTs:1496127518, likes:25, dislikes:10}
       ]
 
     $rootScope.multimedias = [
@@ -134,7 +134,7 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
       {id:'0004',avail:false, img:"/rytbot-wireframe/assets/images/3.png", name:"Retro Camera", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:17250, tags:["product", "camera","retro"], type:"Image", size:"1.7MB", updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
     ];
 
- 
+
     // ALL Dummy Data before this line.
 
 });
