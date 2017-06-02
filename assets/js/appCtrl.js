@@ -80,10 +80,26 @@ app.directive("ngFileSelect", function (fileReader, $timeout) {
   };
 });/* ngFileSelect */
 
-app.factory("fileReader", function ($q, $log) {
-  var onLoad = function (reader, deferred, scope) {
-    return function () {
-      scope.$apply(function () {
+
+ // app.service("addtab", function(tabs,newtab){
+ //  this.add=function(tabs,newtab){
+ //    var result = {};
+ //    if(tabs.length<$rootScope.maxchats){
+ //      tabs.push(newtab);
+ //      $rootScope.onClickTab(newtab);
+ //      result.tabs = tabs;
+ //    }
+ //    else
+ //      result.error = "You have opened maximum number of chats. Close any to open new.";
+ //    console.log("addtab result",result);
+ //    return result;   
+ //  }
+ // })
+
+ app.factory("fileReader", function($q, $log) {
+  var onLoad = function(reader, deferred, scope) {
+    return function() {
+      scope.$apply(function() {
         deferred.resolve(reader.result);
       });
     };
@@ -128,7 +144,38 @@ app.factory("fileReader", function ($q, $log) {
   };
 });
 
-app.directive('hcPieChart', function () {
+  // app.service("addorrem",function(){
+  //   this.add = function(scope,newtab){
+  //     if($rootScope.tabidarr.length){
+  //       var index = $rootScope.tabidarr.indexOf(newdata.id);
+  //       if(index>-1){
+  //         $rootScope.onClickTab(newdata);
+  //         return false;        
+  //       }
+  //     }
+  //     if(scope.tabs.length<$rootScope.maxtabs){
+  //       $rootScope.tabidarr.push(newdata.id);
+  //       scope.tabs.push(newdata);
+  //       $rootScope.currentTab = newdata.url;
+  //       $rootScope.onClickTab(newdata);
+  //     }
+  //     else
+  //       $rootScope.taberror = "You have opened maximum number of chats. Close any to open new.";
+  //   }
+  // })
+
+ // app.factory('xyz', function($scope){
+ //  var xyz = function(){
+ //    $scope.x = "jgugiubuih";
+ //    // $rootScope.y = "kjhiugugugiuhohoyyyyyyyyyy";
+ //    console.log("hai$$$$$$$$$$$$$$$");
+ //    console.log($scope.x)
+ //    // console.log($rootScope.y)
+ //    // return true;
+ //  }
+ // })
+
+ app.directive('hcPieChart', function () {
   return {
     restrict: 'E',
     template: '<div></div>',
@@ -197,7 +244,7 @@ app.directive('hcPieChart', function () {
   };
 })
 
-app.directive('hcChart', function () {
+ app.directive('hcChart', function () {
   return {
     restrict: 'E',
     replace: true,
@@ -234,13 +281,32 @@ app.directive('hcChart', function () {
     }
   };
 })
-/*---- appCtrl : <reason> ---*/
-app.controller('appCtrl', function ($rootScope, $scope, $location) {
+ /*---- appCtrl : <reason> ---*/
+ app.controller('appCtrl',function($rootScope,$scope,$location){
 
-  $scope.init = function () {
+  $scope.init = function(){
+    $rootScope.maxtabs = 4;
+    $rootScope.tabidarr = [];
   };
 
-  $rootScope.route = function (page) {
+  $rootScope.onClickTab = function (tab) {
+    if(tab.id && $rootScope.currentid != tab.id){
+      $rootScope.currentid = tab.id;
+      $rootScope.mainobj = tab;
+    }
+    $rootScope.currentTab = tab.url;
+  }
+
+  $rootScope.isActiveTab = function(tab) {
+    if(tab.id){
+      if(tab.url == $rootScope.currentTab && tab.id == $rootScope.currentid)
+        return true
+      return false
+    }
+    return tab.url == $rootScope.currentTab;
+  }
+
+  $rootScope.route = function(page){
     console.log(page);
     $rootScope.sidebaractive = page;
     $location.path(page);
@@ -254,120 +320,139 @@ app.controller('appCtrl', function ($rootScope, $scope, $location) {
 
 
 
-});
-
-/* ---sideBarCtrl : for sidebar --*/
-
-app.controller('sideBarCtrl', function ($scope, $rootScope) {
-  $rootScope.sidebaractive = '';
-  $scope.sidebarcontents = {
-    "main": [
-      {
-        "title": "OVERVIEW",
-        "contents": [
-          { "title": "Dashboard", "url": "dashboard", "icon": "fa fa-dashboard" },
-          { "title": "Chatflow", "url": "chartflow", "icon": "fa fa-arrow-right" },
-          { "title": "Chats", "url": "chats", "icon": "fa fa-comments-o" },
-          { "title": "Customers", "url": "customers", "icon": "fa fa-user" }
-        ]
-      },
-      {
-        "title": "BOTS",
-        "contents": [
-          { "title": "Website Bot", "url": "webbots", "icon": "fa fa-cloud" },
-          { "title": "Facebook", "url": "fbbots", "icon": "fa fa-facebook" }
-        ]
-      },
-      {
-        "title": "KNOWLEDGE BANK",
-        "contents": [
-          { "title": "Products", "url": "products", "icon": "fa fa-product-hunt" },
-          // {"title":"Services","url":"services","icon":"fa fa-handshake-o"},
-          { "title": "Offers", "url": "offers", "icon": "fa fa-tags" },
-          { "title": "FAQs", "url": "faqs", "icon": "fa fa-question-circle-o" },
-          { "title": "Locations", "url": "locations", "icon": "fa fa-map-marker" },
-          { "title": "Multimedia", "url": "multimedia", "icon": "fa fa-file-image-o" }
-        ]
+  $rootScope.addorremove = function(scope,newdata){
+    if($rootScope.tabidarr.length){
+      var index = $rootScope.tabidarr.indexOf(newdata.id);
+      if(index>-1){
+        $rootScope.onClickTab(newdata);
+        return false;        
       }
-      ,
-      {
-        "title": "TEAM",
-        "contents": [
-          { "title": "Agents", "url": "agents", "icon": "fa fa-users" }
-        ]
-      }
-    ]
+    }
+    if(scope.tabs.length<$rootScope.maxtabs){
+      $rootScope.tabidarr.push(newdata.id);
+      scope.tabs.push(newdata);
+      $rootScope.currentTab = newdata.url;
+      $rootScope.onClickTab(newdata);
+    }
+    else
+      $rootScope.taberror = "You have opened maximum number of chats. Close any to open new.";
   }
 
-});
+});// appCtrl
 
-/* -- dashboardCtrl -- */
-app.controller('dashboardCtrl',function($rootScope,$scope,$location){
+ app.controller('sideBarCtrl',function($scope, $rootScope){
+  $rootScope.sidebaractive = '';
+  $scope.sidebarcontents = {
+    "main" : [
+    {"title":"OVERVIEW",
+    "contents":[
+    {"title":"Dashboard","url":"dashboard","icon":"fa fa-dashboard"},
+    {"title":"Chatflow","url":"chartflow","icon":"fa fa-arrow-right"},
+    {"title":"Chats","url":"chats","icon":"fa fa-comments-o"},
+    {"title":"Customers","url":"customers","icon":"fa fa-user"}
+    ]
+  },
+  {"title":"BOTS",
+  "contents":[
+  {"title":"Website Bot","url":"webbots","icon":"fa fa-cloud"},
+  {"title":"Facebook","url":"fbbots","icon":"fa fa-facebook"}
+  ]
+},
+{"title":"KNOWLEDGE BANK",
+"contents":[
+{"title":"Products","url":"products","icon":"fa fa-product-hunt"},
+                              // {"title":"Services","url":"services","icon":"fa fa-handshake-o"},
+                              {"title":"Offers","url":"offers","icon":"fa fa-tags"},
+                              {"title":"FAQs","url":"faqs","icon":"fa fa-question-circle-o"},
+                              {"title":"Locations","url":"locations","icon":"fa fa-map-marker"},
+                              {"title":"Multimedia","url":"multimedia","icon":"fa fa-file-image-o"}
+                              ]
+                            }
+                            ,
+                            {"title":"TEAM",
+                            "contents":[
+                            {"title":"Agents","url":"agents","icon":"fa fa-users"}
+                            ]
+                          }
+                          ]
+                        }
 
- $scope.botdata = [{
-                        name: "FB",
-                        y: 100
-                    }, {
-                        name: "Web",
-                        y:175,
-                        sliced: false,
-                        selected: true
-                    }
-                     ]
+                      }); // sidebarCtrl
 
-    $scope.sessiondata = [{
-                        name: "< 10 min ",
-                        y: 56.33
-                    }, {
-                        name: "> 10 min",
-                        y: 24.03,
-                        sliced: false,
-                        selected: true
-                    }, {
-                        name: "< 25 min",
-                        y: 10.38
-                    }]
-    $scope.responsedata = [{
-                        name: "Bot Response",
-                        y: 15
-                    }, {
-                        name: "Initiated",
-                        y: 3000,
-                        sliced: false,
-                        selected: true
-                    }, {
-                        name: "Agent Respond",
-                        y: 1000
-                    }, {
-                        name: "Not Responded",
-                        y: 5000
-                }]
-     $scope.chartConfig = {
-            xAxis: {
-                categories: ['Buy', 'Book Table', 'Location', 'Contact', 'Product Enquiry','Unknown']
-            },
-                        title: {
-                text: 'Intent'
-            },
-            yAxis: { title: { text: '' } },
-            tooltip: { valueSuffix: ' ' },
-            legend: { align: 'center', verticalAlign: 'bottom', borderWidth: 0 },
-               plotOptions: {
-                area: {
-                  animation: false,
+ /* -- dashboardCtrl -- */
+ app.controller('dashboardCtrl',function($rootScope,$scope,$location){
 
-                    fillColor: {
-                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
-                        stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                        ]
-                    },
+   $scope.botdata = [{
+    name: "FB",
+    y: 100
+  }, {
+    name: "Web",
+    y:175,
+    sliced: false,
+    selected: true
+  }
+  ]
 
-                    marker: {
-                        radius: 2
-                    },
-                    lineWidth: 1,
+  $scope.sessiondata = [{
+    name: "< 10 min ",
+    y: 56.33
+  }, {
+    name: "> 10 min",
+    y: 24.03,
+    sliced: false,
+    selected: true
+  }, {
+    name: "< 25 min",
+    y: 10.38
+  }]
+  $scope.responsedata = [{
+    name: "Bot Response",
+    y: 15
+  }, {
+    name: "Initiated",
+    y: 3000,
+    sliced: false,
+    selected: true
+  }, {
+    name: "Agent Respond",
+    y: 1000
+  }, {
+    name: "Not Responded",
+    y: 5000
+  }]
+  $scope.chartConfig = {
+    xAxis: {
+      categories: ['Buy', 'Book Table', 'Location', 'Contact', 'Product Enquiry','Unknown']
+    },
+    title: {
+      text: 'Intent'
+    },
+    yAxis: { title: { text: '' } },
+    tooltip: { valueSuffix: ' ' },
+    legend: { align: 'center', verticalAlign: 'bottom', borderWidth: 0 },
+    plotOptions: {
+      area: {
+        animation: false,
+
+        fillColor: {
+          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+          stops: [
+          [0, Highcharts.getOptions().colors[0]],
+          [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+          ]
+        },
+
+        marker: {
+          radius: 2
+        },
+        lineWidth: 1,
+        states: {
+          hover: {
+            lineWidth: 1
+          }
+        },
+        threshold: null
+
                     states: {
                         hover: {
                             lineWidth: 1
@@ -401,10 +486,6 @@ app.controller('dashboardCtrl',function($rootScope,$scope,$location){
                 data: [12,36,75,50, 45,30]
             }]
     };
-
-
-
-
 
 
 
@@ -694,7 +775,6 @@ app.controller("productsCtrl", function ($scope, $rootScope, $http) {
 
 /*-- productListCtrl ---*/
 
-<<<<<<< HEAD
 app.controller("productListCtrl", function($scope, $rootScope,$location,$http){
 
     $scope.init = function(){
@@ -709,7 +789,6 @@ $scope.getProductListId = function () {
   for(var index=0;index < $rootScope.products.length; index++){
     if($rootScope.products[index].id == $rootScope.ProductId){
       $scope.display =  $rootScope.products[index];
-
     };
      console.log($rootScope.ProductId);
     $location.path("editProduct");
@@ -1085,10 +1164,10 @@ app.controller("chatCtrl", function($scope,$rootScope, $http,add){
 
   $scope.init = function(){
     $scope.tabs=[
-      {
-        title: 'Customer Messages',
-        url: 'assets/views/chatList.html'
-      }
+    {
+      title: 'Customer Messages',
+      url: 'assets/views/chatList.html'
+    }
     ];
     $rootScope.currentTab = 'assets/views/chatList.html';
     $scope.maxchats = 4;
@@ -1124,6 +1203,10 @@ app.controller("chatListCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
 
   };/* init() */
+
+  $scope.pass = function(scope){
+    console.log("scope pass test",scope);
+  }
 
 });
 
@@ -1262,7 +1345,6 @@ app.controller("fbbotsCtrl", function ($scope, $rootScope, $http) {
         title: 'Login to Facebook',
         url: 'assets/views/loginfb.html'
       }
-
     ];
     $rootScope.currentTab = 'assets/views/myfbbotpages.html';
   };/* init() */
