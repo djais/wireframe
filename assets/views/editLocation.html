@@ -1,15 +1,15 @@
-<div class="col-xs-12" ng-controller="locationCtrl" ng-cloak>
+<div class="col-xs-12" ng-controller="editLocationCtrl" ng-cloak ng-init="init()">
     <div class="x_content">
         <label style="font-weight:300; font-size:18px; padding:10px;">Edit Location</label>
         <form role="form" name="myForm">
             <table class="table table-hover" style="width:100%">
                 <tbody>
-                    <!--{{loc}}-->
+                    
                     <tr>
                         <td width: '15%; '>
                             <label class="text-muted">Location name</label></td>
                         <td width="85%">
-                            <input type="text" ng-model="loc.location" class="form-control" placeholder="Ex:E-city">
+                            <input type="text" ng-model="selected.location" class="form-control" placeholder="Ex:E-city">
                             <!--<input type="text" ng-model="que" class="form-control " placeholder="Type a Question"  />-->
                         </td>
                     </tr>
@@ -17,7 +17,7 @@
                         <td width: '15%; '>
                             <label class="text-muted">Address</label></td>
                         <td width="35%">
-                            <textarea type="text" ng-model="loc.address" class="form-control " placeholder="Type your address"></textarea>
+                            <textarea type="text" ng-model="selected.address" class="form-control " placeholder="Type your address"></textarea>
                         </td>
                     </tr>
 
@@ -29,19 +29,19 @@
 
                         <td>
                             <div class="col-xs-3">
-                                <input ng-model="loc.city" class="form-control" placeholder="Ex: Bangalore" style="margin-left:-16px">
+                                <input ng-model="selected.city" class="form-control" placeholder="Ex: Bangalore" style="margin-left:-16px">
                             </div>
                             <div class="col-xs-1" style='text-align:center;vertical-align:middle; padding:0px; '>
                                 <label class="text-muted">  Country  </label>
                             </div>
                             <div class="col-xs-3">
-                                <input ng-model="loc.country" class="form-control" placeholder="Ex:India">
+                                <input ng-model="selected.country" class="form-control" placeholder="Ex:India">
                             </div>
                             <div class="col-xs-1" style='text-align:center;vertical-align:middle; padding:0px; '>
                                 <label class="text-muted">  Zip  </label>
                             </div>
                             <div class="col-xs-3">
-                                <input ng-model="loc.zip" name="zip" class="form-control" placeholder="Ex:560089" style="margin-left:-30px">
+                                <input ng-model="selected.zip" name="zip" class="form-control" placeholder="Ex:560089" style="margin-left:-30px">
                             </div>
 
 
@@ -53,13 +53,13 @@
                         <td width: '15%; '> <label class="text-muted">  Latitude </label></td>
                         <td>
                             <div class="col-xs-5">
-                                <input ng-model="loc.latitude" class="form-control" placeholder="Ex: 12.971599" style="margin-left:-16px">
+                                <input ng-model="selected.latitude" class="form-control" placeholder="Ex: 12.971599" style="margin-left:-16px">
                             </div>
                             <div class="col-xs-1">
                                 <label class="text-muted" style='text-align:center;vertical-align:middle; padding:0px; '>   Longitude  </label>
                             </div>
                             <div class="col-xs-4">
-                                <input ng-model="loc.longitude" class="form-control" placeholder="Ex: 12.971599">
+                                <input ng-model="selected.longitude" class="form-control" placeholder="Ex: 12.971599">
                             </div>
 
 
@@ -69,24 +69,24 @@
                     <tr>
                         <td width="15%"><label class="text-muted">Contact</label></td>
                         <td width="35%">
-                            <input type="number" ng-model="loc.contact" class="form-control" placeholder="Ex: 9480628368">
+                            <input type="number" ng-model="selected.contact" class="form-control" placeholder="Ex: 9480628368">
                         </td>
 
                     </tr>
 
-                    <tr>
+                   <tr ng-repeat="refer in selected.other"> 
                         <td width="15%"><label class="text-muted">Other</label></td>
                         <td>
                             <div class="col-md-4">
 
-                                <input type="text" class="form-control" ng-model="loc.label" placeholder="Label" style="margin-left:-16px">
+                                <input type="text" class="form-control" ng-model="refer.label" placeholder="Label" style="margin-left:-16px">
 
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" ng-model="loc.desc" placeholder="Description" />
+                                <input type="text" class="form-control" ng-model="refer.desc" placeholder="Description" />
                             </div>
 
-                            <div class="col-md-1">
+                            <div class="col-md-1"> 
                                 <button type="button" class="btn btn-default addButton" ng-click='addOther()'><i class="fa fa-plus"></i></button>
                             </div>
                         </td>
@@ -100,7 +100,7 @@
                         </div>
                         <div class="col-xs-1">
                             <img style="width:100px; height:110px;" ng-src="{{imageSrc}}" ng-show="imageSrc" />
-                            <img style="width:100px; height:110px;" ng-src="{{loc.img}}" ng-show="!imageSrc" />
+                            <img style="width:100px; height:110px;" ng-src="{{selected.img}}" ng-show="!imageSrc" />
                         </div>
                     </td>
                     </tr>

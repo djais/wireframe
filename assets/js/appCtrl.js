@@ -283,20 +283,24 @@ app.directive("ngFileSelect", function (fileReader, $timeout) {
     }
   };
 })
- /*---- appCtrl : <reason> ---*/
- app.controller('appCtrl',function($rootScope,$scope,$location){
+ 
+/*---- appCtrl : <reason> ---*/
+app.controller('appCtrl',function($rootScope,$scope,$location){
 
   $scope.init = function(){
     $rootScope.maxtabs = 4;
     $rootScope.tabidarr = [];
+    $rootScope.selected = null;
+    $rootScope.taberror = "";
   };
 
   $rootScope.onClickTab = function (tab) {
     if(tab.id && $rootScope.currentid != tab.id){
       $rootScope.currentid = tab.id;
-      $rootScope.mainobj = tab;
     }
     $rootScope.currentTab = tab.url;
+    if(tab.mainobj)
+      $rootScope.selected  = tab.mainobj;
   }
 
   $rootScope.isActiveTab = function(tab) {
@@ -323,11 +327,15 @@ app.directive("ngFileSelect", function (fileReader, $timeout) {
 
 
   $rootScope.addorremove = function(scope,newdata){
+    console.log($rootScope.taberror);
+    $rootScope.taberror = "";
+    if(newdata.mainobj)
+      $rootScope.selected  = newdata.mainobj;
     if($rootScope.tabidarr.length){
       var index = $rootScope.tabidarr.indexOf(newdata.id);
       if(index>-1){
         $rootScope.onClickTab(newdata);
-        return false;        
+        return false;       
       }
     }
     if(scope.tabs.length<$rootScope.maxtabs){
@@ -846,198 +854,6 @@ app.controller("addProductCtrl", function($scope, $rootScope,$location,$http,$wi
 
 })
 
-/* -- faqCtrl : --*/
-
-app.controller("faqCtrl", function ($scope, $rootScope, $http) {
-  $scope.init = function () {
-    $scope.tabs = [
-      {
-        title: 'FAQs',
-        url: 'assets/views/faqList.html'
-      }, {
-        title: 'Add New',
-        url: 'assets/views/addFaq.html'
-      }
-    ];
-    $rootScope.currentTab = 'assets/views/faqList.html';
-  };/* init() */
-
-});
-/* -- faqListCtrl : --*/
-
-app.controller("faqListCtrl", function ($scope, $rootScope, $location, $http) {
-  $scope.letterLimit = 100;
-
-  $scope.editfaq = function (id) {
-    console.log("id", id);
-    $scope.faqID = id;
-    $scope.getfaqlistbyID();
-    $location.path('editfaq');
-  }
-  $scope.getfaqlistbyID = function () {
-    for (var index = 0; index < $rootScope.faqlist.length; index++) {
-      console.log("faq list", $rootScope.faqlist[index]);
-      if ($rootScope.faqlist[index].id == $scope.faqID) {
-        $rootScope.faq = $rootScope.faqlist[index];
-
-      }
-    }
-    // console.log($rootScope.faq.tag.tags);
-    // $rootScope.faq.tag = [$rootScope.faq.tag.tags];
-  }
-
-  $scope.saveFaq = function () {
-    console.log("edit faq data", $rootScope.faq);
-    $rootScope.addfaqID = $rootScope.faq.id;
-    console.log("faq add id", $scope.addfaqID);
-    console.log("dummy", $rootScope.faqlist);
-    for (var index = 0; index < $rootScope.faqlist.length; index++) {
-      console.log("faq list", $rootScope.faqlist[index]);
-      if ($rootScope.faqlist[index].id == $rootScope.addfaqID) {
-        console.log($rootScope.faqlist[index], "+++++", $rootScope.faq)
-        $rootScope.faqlist[index] = $rootScope.faqlist[index];
-
-      }
-    }
-    $location.path('faqs');
-  };
-  $scope.remove = function (id) {
-    $rootScope.faqlist.splice(id, 1);
-  }
-
-
-
-
-});
-/* -- editFaqCtrl : --*/
-
-app.controller("editFaqCtrl", function ($scope, $rootScope, $location, $http) {
-
-  $scope.save = function () {
-    console.log("edit faq data", $scope)
-  }
-
-  console.log($rootScope.faq);
-  // $scope.tags=[];
-
-
-});
-/* -- Add faq Ctrl : --*/
-
-app.controller("addFaqCtrl", function ($scope, $rootScope, $window, $location, $http) {
-  $scope.showrmv = 0;
-  $scope.submit = function () {
-    console.log("data", $scope);
-    $rootScope.addFaqData = {
-      que: $scope.que,
-      ans: $scope.ans,
-      tags: $scope.tags,
-      attachment: $scope.imageSrc,
-      ref: $scope.url
-    }
-    console.log("data", $rootScope.addFaqData);
-    $rootScope.faqlist.push($rootScope.addFaqData);
-    console.log("data aft add", $rootScope.faqlist);
-    $location.path('faqs')
-
-  }
-
-  $scope.leadme = function () {
-    console.log("lead me icon clicked")
-    var popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
-  }
-  $scope.tags = [
-  ];
-
-});
-/* -- locationCtrl : --*/
-
-app.controller("locationCtrl", function ($scope, $rootScope, $location, $http) {
-  $scope.init = function () {
-    $scope.tabs = [
-      {
-        title: 'Locations',
-        url: 'assets/views/locationList.html'
-      }, {
-        title: 'Add New',
-        url: 'assets/views/addLocation.html'
-      }
-    ];
-    $rootScope.currentTab = 'assets/views/locationList.html';
-  };/* init() */
-  $scope.editloc = function (id) {
-    console.log(id)
-    $scope.editlocID = id;
-    $rootScope.getLocById();
-
-    $location.path('editlocation');
-  }
-  $rootScope.getLocById = function () {
-    for (var index = 0; index < $rootScope.locations.length; index++) {
-      console.log("locations list", $rootScope.locations[index]);
-      if ($rootScope.locations[index].id == $scope.editlocID) {
-        $rootScope.loc = $rootScope.locations[index];
-      }
-    }
-    console.log($rootScope.loc);
-
-  }
-  $scope.saveEditloc = function () {
-    console.log("edit loc ctrl")
-    console.log("data", $rootScope.loc);
-    $location.path('locations');
-  }
-});
-
-/*-- locationListCtrl: --*/
-app.controller("locationListCtrl", function ($scope, $rootScope) {
-  $scope.init = function () {
-    // initilization variables
-  };
-  $scope.removeLoc = function (id) {
-
-    $rootScope.locations.splice(id, 1);
-
-  }
-
-})
-/*-- editLocationCtrl: --*/
-app.controller("editLocationCtrl", function ($scope, $rootScope) {
-  $scope.init = function () {
-    // initilization variables
-    $scope.imageSrc = "";
-  };
-
-
-
-})
-/*-- addLocationCtrl: --*/
-app.controller("addLocationCtrl", function ($scope, $rootScope,  $location) {
-  $scope.saveloc = function () {
-    console.log($scope);
-      
-    
-    $rootScope.addLocData = {
-      address: $scope.address,
-      city: $scope.city,
-      contact: $scope.contact,
-      desc: $scope.desc,
-      img: $scope.imageSrc,
-      label:$scope.label,
-      latitude:$scope.latitude,
-      longitude:$scope.longtitude,
-      location:$scope.name,
-      zip:$scope.zip
-    }
-    console.log("data", $rootScope.addLocData);
-    $rootScope.locations.push($rootScope.addLocData);
-    console.log("data aft add", $rootScope.locations);
-    $location.path('locations');
-
-  
-  }
-})
 /* -- offersCtrl : --*/
 
 app.controller("offersCtrl", function ($scope, $rootScope, $http) {

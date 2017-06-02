@@ -17,17 +17,17 @@
       </thead>
       <tbody>
         <tr ng-repeat="item in locations" style='cursor:pointer;'>
-          <td style='text-align:left;vertical-align:middle' ng-click="editloc(item.id)"> <i class='fa fa-check' style='color:green' ng-show='item.avail'></i> <i class='fa fa-ban' style='color:red' ng-show='!item.avail'></i></td>
-          <td ng-click="editloc(item.id)"> {{item.location}}</td>
-          <td ng-click="editloc(item.id)"> <img src={{item.img}} style='width:40px; height:40px;' /></td>
-          <td ng-click="editloc(item.id)"> {{item.address}}</td>
-          <td ng-click="editloc(item.id)"> {{item.city}}</td>
-          <td ng-click="editloc(item.id)"> {{item.country}}</td>
-          <td ng-click="editloc(item.id)"> {{item.zip}}</td>
-          <td ng-click="editloc(item.id)"> {{item.contact}}</td>
-          <td ng-click="editloc(item.id)"> {{item.longitude}}</td>
-          <td ng-click="editloc(item.id)"> {{item.latitude}}</td>
-          <td ng-click="editloc(item.id)"> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
+          <td style='text-align:left;vertical-align:middle' ng-click="addorremovetab('add',item)"> <i class='fa fa-check' style='color:green' ng-show='item.avail'></i> <i class='fa fa-ban' style='color:red' ng-show='!item.avail'></i></td>
+          <td ng-click="addorremovetab('add',item)"> {{item.location}}</td>
+          <td ng-click="addorremovetab('add',item)"> <img src={{item.img}} style='width:40px; height:40px;' /></td>
+          <td ng-click="addorremovetab('add',item)"> {{item.address}}</td>
+          <td ng-click="addorremovetab('add',item)">  {{item.city}}</td>
+          <td ng-click="addorremovetab('add',item)">  {{item.country}}</td>
+          <td ng-click="addorremovetab('add',item)">  {{item.zip}}</td>
+          <td ng-click="addorremovetab('add',item)"> {{item.contact}}</td>
+          <td ng-click="addorremovetab('add',item)"> {{item.longitude}}</td>
+          <td ng-click="addorremovetab('add',item)"> {{item.latitude}}</td>
+          <td ng-click="addorremovetab('add',item)"> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
 
           <td><button class="btn btn-danger btn-sm" ng-click="removeLoc($index)"><i class="fa fa-trash"></i></button></td>
         </tr>

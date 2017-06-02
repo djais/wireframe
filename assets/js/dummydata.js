@@ -58,7 +58,7 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
     author: 'core.telegram.org',
     status: true,
     attachment: { type: "img", src: "assets/img/usericon.png" },
-    tag: { id: "01", tags: "how can i help you" },
+    tag: [{ id: "01", tags: "This is a exmple tag" },{ id: "02", tags: "How can i help u" }],/* added by anjan,added more tags*/
     ref: "https://rytangle.com",
     LS: '1496060971'
   },
@@ -71,7 +71,7 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
     author: 'core.telegram.org',
     status: true,
     ref: "",
-    tag: { id: "01", tags: "how can i help you" },
+tag: [{ id: "01", tags: "This is a exmple tag" },{ id: "02", tags: "How can i help u" }],/* added by anjan,added more tags*/
     LS: '1496058793'
 
   },
@@ -82,7 +82,7 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
     attachment: { type: "audio", src: "assets/img/sound.ogg" },
     ans: 'Please take a look at this self-signed certificate guide we made just for you. If you\'ve read it and still have a question, ping us on botsupport.',
     author: 'rytangle team',
-    tag: { id: "01", tags: "how can i help you" },
+    tag: [{ id: "01", tags: "This is a exmple tag" },{ id: "02", tags: "How can i help u" }],/* added by anjan,added more tags*/
     ref: "https://anjan.com",
     status: false, LS: '1496058746'
 
@@ -91,7 +91,7 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
     id: '0004',//id for faqlist
     que: 'How can I make requests in response to updates?',
     attachment: "link",
-    tag: { id: "01", tags: "how can i help you" },
+    tag: [{ id: "01", tags: "This is a exmple tag" },{ id: "02", tags: "How can i help u" }],/* added by anjan,added more tags*/
     ans: 'This is possible if you‘re using webhooks. The upside is that you need less requests, the downside — that in this case it’s not possible to know that such a request was successful or get its result.',
     author: 'rytangle team',
     ref: "https:/gmail.com",
@@ -140,10 +140,10 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
 
 
   $rootScope.locations = [
-    { id: "001", avail: true, img: "/rytbot-wireframe/assets/images/loc1.jpg", address: "1st Main Rd, Electronics City Phase 1", location: "Kormangala", city: "Bangalore", country: "India", zip: "560089", contact: 9845641201, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N", },
-    { id: "002", avail: true, img: "/rytbot-wireframe/assets/images/loc2.jpg", address: "2nd Main Rd, Electronics City Phase 1", location: "Indiranagar", city: "Bangalore", country: "India", zip: "560069", contact: 9845541221, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N", },
-    { id: "003", avail: false, img: "/rytbot-wireframe/assets/images/loc3.jpg", address: "1st Main Rd, Electronics City Phase 2", location: "BTM Layout", city: "Bangalore", country: "India", zip: "560064", contact: 9844641221, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N", },
-    { id: "004", avail: true, img: "/rytbot-wireframe/assets/images/loc4.jpg", address: "2ns Main Rd, Electronics City Phase 2", location: "WhiteField", city: "Bangalore", country: "India", zip: "560008", contact: 9845641221, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N", },
+    { id: "001", avail: true, img: "/rytbot-wireframe/assets/images/loc1.jpg", address: "1st Main Rd, Electronics City Phase 1", location: "Kormangala", city: "Bangalore", country: "India", zip: "560089", contact: 9845641201, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N",other:[{label:"label and labels ",desc:"desc"}] },
+    { id: "002", avail: true, img: "/rytbot-wireframe/assets/images/loc2.jpg", address: "2nd Main Rd, Electronics City Phase 1", location: "Indiranagar", city: "Bangalore", country: "India", zip: "560069", contact: 9845541221, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N", other:[{label:"",desc:""}] },
+    { id: "003", avail: false, img: "/rytbot-wireframe/assets/images/loc3.jpg", address: "1st Main Rd, Electronics City Phase 2", location: "BTM Layout", city: "Bangalore", country: "India", zip: "560064", contact: 9844641221, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N", other:[{label:"label",desc:"desc"}] },
+    { id: "004", avail: true, img: "/rytbot-wireframe/assets/images/loc4.jpg", address: "2ns Main Rd, Electronics City Phase 2", location: "WhiteField", city: "Bangalore", country: "India", zip: "560008", contact: 9845641221, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N", other:[{label:"",desc:""}] },
   ]
 
 
