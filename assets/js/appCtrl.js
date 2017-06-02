@@ -23,6 +23,10 @@ app.config(function($routeProvider) {
   $routeProvider.when("/addoffer",          {templateUrl: 'assets/views/addOffer.html', reloadOnSearch: false});
   $routeProvider.when("/addmultimedia",     {templateUrl: 'assets/views/addMultimedia.html', reloadOnSearch: false});
   $routeProvider.when("/addagent",          {templateUrl: 'assets/views/addAgent.html', reloadOnSearch: false});
+  $routeProvider.when("/editProduct",       {templateUrl: 'assets/views/editProduct.html', reloadOnSearch: false});
+  $routeProvider.when("/editOffer",         {templateUrl: 'assets/views/editOffer.html', reloadOnSearch: false});
+
+
 }); /* app.config */
 
 
@@ -291,7 +295,7 @@ app.controller('sideBarCtrl',function($scope, $rootScope){
 
 /* -- dashboardCtrl -- */
 app.controller('dashboardCtrl',function($rootScope,$scope,$location){
-  
+
  $scope.botdata = [{
                         name: "FB",
                         y: 100
@@ -701,32 +705,75 @@ app.controller("productsCtrl", function($scope,$rootScope, $http){
 
 /*-- productListCtrl ---*/
 
-app.controller("productListCtrl", function($scope, $rootScope){
+app.controller("productListCtrl", function($scope, $rootScope,$location,$http){
+
     $scope.init = function(){
-      // initilization variables
     };
+    $scope.editProduct= function (id) {
+      $rootScope.ProductId = id;
+      $rootScope.products.id = $scope.getProductListId();
+      console.log(id)                    // initilization variables
+    };
+
+$scope.getProductListId = function () {
+  for(var index=0;index < $rootScope.products.length; index++){
+    if($rootScope.products[index].id == $rootScope.ProductId){
+      $scope.display =  $rootScope.products[index];
+
+    };
+     console.log($rootScope.ProductId);
+    $location.path("editProduct");
+  };
+
+};
+
+  $scope.save = function () {
+//$location.path("products");
+$rootScope.addProduct = $rootScope.products.id;
+for(var index = 0; index < $rootScope.products.length; index++){
+  if($rootScope.products[index].id == $rootScope.addProduct){
+    $rootScope.products[index] = $rootScope.products[index];
+  }
+}
+$location.path('products');
+};
+$scope.cancelProduct = function () {
+  $location.path('products');
+};
+$scope.delete = function (id) {
+  $rootScope.products.splice(id,1);
+
+};
+
+
 })
 /*-- addProductCtrl--*/
-app.controller("addProductCtrl", function($scope, $rootScope){
-    $scope.init = function(){
-      console.log("this is init function");
-      $scope.items=[];
-      $scope.newitem = '';
-     $scope.add= function() {
-      console.log("hello add function");
-      if($scope.items.length<4) {
-
-     console.log("hello add function.......");
-      $scope.items.push($scope.newitem);
+app.controller("addProductCtrl", function($scope, $rootScope,$location,$http,$window){
+  $scope.init = function () {
+  };
+  $scope.submit = function () {
+    console.log("hello world")
+    console.log(i);
+    $rootScope.addproduct = {
+      name:$scope.name,
+      shortdesc:$scope.sdesc,
+      longdesc:$scope.ldesc,
+      tags:$scope.tags,
+      attachment:$scope.imageSrc,
+      price:$scope.price
     }
+  $rootScope.products.push($rootScope.addproduct);
+  $location.path('products');
+  };
+  $scope.leadme = function () {
+    console.log("lead me icon clicked")
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+  };
+  $scope.tags = [
+  ];
 
-      console.log("hello add function");
-
-
-
-  }
-};
-});
+})
 
 /* -- faqCtrl : --*/
 
@@ -817,10 +864,68 @@ app.controller("offersCtrl", function($scope,$rootScope, $http){
 
 });
 /*-- offersCtrl : --*/
-app.controller("offerListCtrl", function($scope, $rootScope){
+app.controller("offerListCtrl", function($scope, $rootScope,$location,$http){
     $scope.init = function(){
       // initilization variables
     };
+    $scope.editOffer= function (id) {
+      $rootScope.offer = id;
+      $rootScope.offers.id = $scope.getOfferListId();
+      console.log(id)                    // initilization variables
+    };
+
+  $scope.getOfferListId = function () {
+  for(var index=0;index < $rootScope.offers.length; index++){
+    if($rootScope.offers[index].id == $rootScope.offer){
+      $scope.display =  $rootScope.offers[index];
+
+    }
+     console.log($rootScope.offer);
+    $location.path("editOffer");
+  }
+
+  };
+
+  $scope.save = function () {
+  //$location.path("products");
+  $rootScope.addOffer = $rootScope.offers.id;
+  for(var index = 0; index < $rootScope.offers.length; index++){
+    if($rootScope.offers[index].id == $rootScope.addOffer){
+      $rootScope.offers[index] = $rootScope.offers[index];
+    }
+  }
+  $location.path('offers');
+  };
+
+  $scope.delete = function (id) {
+    $rootScope.offers.splice(id,1);
+
+  };
+
+})
+
+/*-addofferCtrl-*/
+app.controller("addofferCtrl", function($scope, $rootScope,$http,$location) {
+  $scope.init = function () {
+  console.log("hello offers")
+  console.log("hi");
+};
+  $scope.submit = function () {
+    console.log("hello world")
+    console.log(i);
+    $rootScope.addoffer = {
+      name:$scope.name,
+      shortdesc:$scope.sdesc,
+      longdesc:$scope.ldesc,
+      tags:$scope.tags,
+      attachment:$scope.imageSrc,
+      bprice:$scope.bprice,
+      offprice:$scope.offprice,
+      validity:$scope.validity
+    }
+  $rootScope.offers.push($rootScope.addoffer);
+  $location.path('products');
+};
 })
 /* -- servicesCtrl : --*/
 
@@ -904,7 +1009,7 @@ app.controller("chatCtrl", function($scope,$rootScope, $http){
 
 app.controller("chatListCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
-    
+
   };/* init() */
 
 });
