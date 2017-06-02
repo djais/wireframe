@@ -125,10 +125,10 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
 
 
    $rootScope.agents = [
-     {id:'0001', pic:'/rytbot-wireframe/assets/images/flash.png',status:"active", name:"Flash Gordon", chats:224, lastTs:1496127568, likes:120, dislikes:40} ,
-     {id:'0002', pic:'/rytbot-wireframe/assets/images/superman.jpg', status:"idle", name:"Superman", chats:176, lastTs:1496127468, likes:80, dislikes:23} ,
-     {id:'0003', pic:'/rytbot-wireframe/assets/images/nagraj.jpg', status:"offline", name:"Naag Raj", chats:283, lastTs:1496127368, likes:180, dislikes:60} ,
-     {id:'0004', pic:'/rytbot-wireframe/assets/images/mickey.png', status:"idle", name:"Mickey Mishra", chats:89, lastTs:1496127518, likes:25, dislikes:10}
+     {id:'0001',role:'manager', phone:9681107458,email:'dharmendra@rytangle.com',pic:'/rytbot-wireframe/assets/images/flash.png',status:"active", name:"Flash Gordon", chats:224, lastTs:1496127568, likes:120, dislikes:40} ,
+     {id:'0002',role:'agent', phone:782987841,email:'vishnu@rytangle.com',pic:'/rytbot-wireframe/assets/images/superman.jpg', status:"idle", name:"Superman", chats:176, lastTs:1496127468, likes:80, dislikes:23} ,
+     {id:'0003',role:'test1' ,phone:9611876767,email:'diksha@rytangle.com',pic:'/rytbot-wireframe/assets/images/nagraj.jpg', status:"offline", name:"Naag Raj", chats:283, lastTs:1496127368, likes:180, dislikes:60} ,
+     {id:'0004',role:'test2', phone:8157891812,email:'rahul@rytangle.com',pic:'/rytbot-wireframe/assets/images/mickey.png', status:"idle", name:"Mickey Mishra", chats:89, lastTs:1496127518, likes:25, dislikes:10} 
       ]
 
     $rootScope.multimedias = [

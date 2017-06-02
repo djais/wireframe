@@ -26,6 +26,8 @@ app.config(function ($routeProvider) {
   $routeProvider.when("/editfaq", { templateUrl: 'assets/views/editFaq.html', reloadOnSearch: false });
   $routeProvider.when("/editlocation", { templateUrl: 'assets/views/editLocation.html', reloadOnSearch: false });
   $routeProvider.when("/faqlist", { templateUrl: 'assets/views/faqList.html', reloadOnSearch: false });
+   $routeProvider.when("/agentedit",        {templateUrl: 'assets/views/agentedit.html', reloadOnSearch: false});
+    $routeProvider.when("/agentdetail",     {templateUrl: 'assets/views/agentDetail.html', reloadOnSearch: false});
   // $routeProvider.when("/locations",          {templateUrl: 'assets/views/locationList.html', reloadOnSearch: false});
 }); /* app.config */
 
@@ -76,7 +78,7 @@ app.directive("ngFileSelect", function (fileReader, $timeout) {
       });
     }
   };
-});
+});/* ngFileSelect */
 
 app.factory("fileReader", function ($q, $log) {
   var onLoad = function (reader, deferred, scope) {
@@ -248,7 +250,9 @@ app.controller('appCtrl', function ($rootScope, $scope, $location) {
     console.log(item)
     $rootScope.selected = item;
     $location.path(page)
-  }
+  };
+
+
 
 });
 
@@ -1076,9 +1080,11 @@ app.controller("multimediaListCtrl", function ($scope, $rootScope, $http) {
 });
 /* -- chatCtrl : --*/
 
-app.controller("chatCtrl", function ($scope, $rootScope, $http) {
-  $scope.init = function () {
-    $scope.tabs = [
+app.controller("chatCtrl", function($scope,$rootScope, $http,add){
+
+
+  $scope.init = function(){
+    $scope.tabs=[
       {
         title: 'Customer Messages',
         url: 'assets/views/chatList.html'
@@ -1114,7 +1120,6 @@ app.controller("chatCtrl", function ($scope, $rootScope, $http) {
 
 /* -- chatListCtrl : --*/
 
-<<<<<<< HEAD
 app.controller("chatListCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
 
@@ -1135,6 +1140,14 @@ app.controller("agentCtrl", function ($scope, $rootScope, $http) {
         title: 'Add New',
         url: 'assets/views/addAgent.html'
       }
+      // {
+      //   title: 'Agent Edit',
+      //   url: 'assets/views/agentedit.html'
+      // },
+      // {
+      //   title: 'Agent Detail',
+      //   url: 'assets/views/agentDetail.html'
+      // }
     ];
     $rootScope.currentTab = 'assets/views/agentList.html';
   };/* init() */
@@ -1142,8 +1155,56 @@ app.controller("agentCtrl", function ($scope, $rootScope, $http) {
 });
 
 /*--- agentListCtrl --*/
-app.controller("agentListCtrl", function ($scope, $rootScope, $http) {
-  $scope.init = function () {
+app.controller("agentListCtrl", function($scope,$rootScope, $http,$location){
+ 
+ $scope.init = function(){
+    
+  };
+  console.log($rootScope.agents);
+  $scope.go=function(val){
+    console.log(val);
+    $rootScope.a=val;
+    // console.log($scope.agentdetail)
+    // console.log("thi is agentd edit ctrl")agentdetail
+    $location.path('agentedit');
+
+    //init function
+  }
+
+  $scope.save=function(a){
+    for (var i = 0; i < a.length; i++) {
+      if(a.id==$rootScope.agents.id)
+      {
+        $rootScope.agents=a;
+      }
+    }
+    $location.path('agents');
+  
+  }
+
+  $rootScope.delet=function(i){
+    $rootScope.agents.splice(i,1);
+
+ /* init() */
+}
+});
+app.controller("agentDetailCtrl", function($scope,$rootScope, $http){
+ 
+     $scope.init = function(){
+    
+  };/* init() */
+    
+
+});
+
+app.controller("agenteditCtrl", function($scope,$rootScope, $http){
+  $scope.init = function(){
+   console.log("this id agent details")
+
+   $scope.agentDetail=function(detailval){
+    console.log(detailval);
+    
+   }
     //init function
   };/* init() */
 
@@ -1156,7 +1217,9 @@ app.controller('addAgentCtrl', function ($rootScope, $scope, $location, fileRead
     $scope.imageSrc = "";
     $scope.save = function (agentData, src) {
       console.log(agentData);
-      console.log(src);
+       console.log(src);
+       $rootScope.agents.push(agentData)
+        $location.path('agents');
     }
 
     $scope.$on("fileProgress", function (e, progress) {
