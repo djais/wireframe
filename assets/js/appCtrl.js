@@ -94,7 +94,7 @@ app.directive("ngFileSelect", function (fileReader, $timeout) {
  //    else
  //      result.error = "You have opened maximum number of chats. Close any to open new.";
  //    console.log("addtab result",result);
- //    return result;   
+ //    return result;
  //  }
  // })
 
@@ -152,7 +152,7 @@ app.directive("ngFileSelect", function (fileReader, $timeout) {
   //       var index = $rootScope.tabidarr.indexOf(newdata.id);
   //       if(index>-1){
   //         $rootScope.onClickTab(newdata);
-  //         return false;        
+  //         return false;
   //       }
   //     }
   //     if(scope.tabs.length<$rootScope.maxtabs){
@@ -283,64 +283,72 @@ app.directive("ngFileSelect", function (fileReader, $timeout) {
     }
   };
 })
- /*---- appCtrl : <reason> ---*/
- app.controller('appCtrl',function($rootScope,$scope,$location){
+/*---- appCtrl : <reason> ---*/
+app.controller('appCtrl',function($rootScope,$scope,$location){
 
-  $scope.init = function(){
-    $rootScope.maxtabs = 4;
-    $rootScope.tabidarr = [];
-  };
+ $scope.init = function(){
+   $rootScope.maxtabs = 4;
+   $rootScope.tabidarr = [];
+   $rootScope.selected = null;
+   $rootScope.taberror = "";
+ };
 
-  $rootScope.onClickTab = function (tab) {
-    if(tab.id && $rootScope.currentid != tab.id){
-      $rootScope.currentid = tab.id;
-      $rootScope.mainobj = tab;
-    }
-    $rootScope.currentTab = tab.url;
-  }
+ $rootScope.onClickTab = function (tab) {
+   if(tab.id && $rootScope.currentid != tab.id){
+     $rootScope.currentid = tab.id;
+   }
+   $rootScope.currentTab = tab.url;
+   if(tab.mainobj)
+     $rootScope.selected  = tab.mainobj;
+ }
 
-  $rootScope.isActiveTab = function(tab) {
-    if(tab.id){
-      if(tab.url == $rootScope.currentTab && tab.id == $rootScope.currentid)
-        return true
-      return false
-    }
-    return tab.url == $rootScope.currentTab;
-  }
+ $rootScope.isActiveTab = function(tab) {
+   if(tab.id){
+     if(tab.url == $rootScope.currentTab && tab.id == $rootScope.currentid)
+       return true
+     return false
+   }
+   return tab.url == $rootScope.currentTab;
+ }
 
-  $rootScope.route = function(page){
-    console.log(page);
-    $rootScope.sidebaractive = page;
-    $location.path(page);
-  };
+ $rootScope.route = function(page){
+   console.log(page);
+   $rootScope.sidebaractive = page;
+   $location.path(page);
+ };
 
-  $rootScope.gotoDetail = function (item, page) {
-    console.log(item)
-    $rootScope.selected = item;
-    $location.path(page)
-  };
+ $rootScope.gotoDetail = function (item, page) {
+   console.log(item)
+   $rootScope.selected = item;
+   $location.path(page)
+ };
 
 
 
-  $rootScope.addorremove = function(scope,newdata){
-    if($rootScope.tabidarr.length){
-      var index = $rootScope.tabidarr.indexOf(newdata.id);
-      if(index>-1){
-        $rootScope.onClickTab(newdata);
-        return false;        
-      }
-    }
-    if(scope.tabs.length<$rootScope.maxtabs){
-      $rootScope.tabidarr.push(newdata.id);
-      scope.tabs.push(newdata);
-      $rootScope.currentTab = newdata.url;
-      $rootScope.onClickTab(newdata);
-    }
-    else
-      $rootScope.taberror = "You have opened maximum number of chats. Close any to open new.";
-  }
+ $rootScope.addorremove = function(scope,newdata){
+   console.log($rootScope.taberror);
+   $rootScope.taberror = "";
+   if(newdata.mainobj)
+     $rootScope.selected  = newdata.mainobj;
+   if($rootScope.tabidarr.length){
+     var index = $rootScope.tabidarr.indexOf(newdata.id);
+     if(index>-1){
+       $rootScope.onClickTab(newdata);
+       return false;
+     }
+   }
+   if(scope.tabs.length<$rootScope.maxtabs){
+     $rootScope.tabidarr.push(newdata.id);
+     scope.tabs.push(newdata);
+     $rootScope.currentTab = newdata.url;
+     $rootScope.onClickTab(newdata);
+   }
+   else
+     $rootScope.taberror = "You have opened maximum number of chats. Close any to open new.";
+ }
 
 });// appCtrl
+
 
  app.controller('sideBarCtrl',function($scope, $rootScope){
   $rootScope.sidebaractive = '';
@@ -806,7 +814,9 @@ for(var index = 0; index < $rootScope.products.length; index++){
     $rootScope.products[index] = $rootScope.products[index];
   }
 }
-$location.path('products');
+//$location.path('products');
+$rootScope.onClickTab($scope.tabs[0]);
+
 };
 $scope.cancelProduct = function () {
   $location.path('products');
@@ -1016,8 +1026,8 @@ app.controller("editLocationCtrl", function ($scope, $rootScope) {
 app.controller("addLocationCtrl", function ($scope, $rootScope,  $location) {
   $scope.saveloc = function () {
     console.log($scope);
-      
-    
+
+
     $rootScope.addLocData = {
       address: $scope.address,
       city: $scope.city,
@@ -1035,7 +1045,7 @@ app.controller("addLocationCtrl", function ($scope, $rootScope,  $location) {
     console.log("data aft add", $rootScope.locations);
     $location.path('locations');
 
-  
+
   }
 })
 /* -- offersCtrl : --*/
@@ -1086,7 +1096,8 @@ app.controller("offerListCtrl", function($scope, $rootScope,$location,$http){
       $rootScope.offers[index] = $rootScope.offers[index];
     }
   }
-  $location.path('offers');
+  $rootScope.onClickTab($scope.tabs[0]);
+  //$location.path('offers');
   };
 
   $scope.delete = function (id) {
@@ -1196,7 +1207,7 @@ app.controller("chatCtrl", function($scope,$rootScope, $http){
         console.log($rootScope.tabidarr);
         $rootScope.onClickTab($scope.tabs[itemorindex-1]);
         if($scope.tabs.length<$rootScope.maxtabs)
-          $scope.error = "";
+          $rootScope.taberror = "";
       break;
     }
   }
@@ -1244,9 +1255,9 @@ app.controller("agentCtrl", function ($scope, $rootScope, $http) {
 
 /*--- agentListCtrl --*/
 app.controller("agentListCtrl", function($scope,$rootScope, $http,$location){
- 
+
  $scope.init = function(){
-    
+
   };
   console.log($rootScope.agents);
   $scope.go=function(val){
@@ -1267,7 +1278,7 @@ app.controller("agentListCtrl", function($scope,$rootScope, $http,$location){
       }
     }
     $location.path('agents');
-  
+
   }
 
   $rootScope.delet=function(i){
@@ -1277,11 +1288,11 @@ app.controller("agentListCtrl", function($scope,$rootScope, $http,$location){
 }
 });
 app.controller("agentDetailCtrl", function($scope,$rootScope, $http){
- 
+
      $scope.init = function(){
-    
+
   };/* init() */
-    
+
 
 });
 
@@ -1291,7 +1302,7 @@ app.controller("agenteditCtrl", function($scope,$rootScope, $http){
 
    $scope.agentDetail=function(detailval){
     console.log(detailval);
-    
+
    }
     //init function
   };/* init() */

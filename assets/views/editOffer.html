@@ -10,7 +10,7 @@
 
                       <td style='vertical-align:middle' width="15%"><label class='text-muted'>Offer Name</label></td>
                       <td width="85%">
-                        <input  class="form-control" ng-model=offer.name >
+                        <input  class="form-control" ng-model=selected.name >
                       </td>
                     </tr>
                     <tr>
@@ -18,7 +18,7 @@
                       <td style='vertical-align:middle'><label class='text-muted'>Image</label></td>
                       <td>
                         <img style="width:200px; height:200px;" ng-show= "imageSrc" ng-src="{{imageSrc}}"  />
-                        <img style="width:200px; height:200px;" ng-show= "!imageSrc" ng-src="{{offer.img}}" ng-model="offer.img" />
+                        <img style="width:200px; height:200px;" ng-show= "!imageSrc" ng-src="{{selected.img}}" ng-model="selected.img" />
                         <input type="file" ng-file-select="onFileSelect($files)"  ng-model="imageSrc">
                       </td>
 
@@ -32,7 +32,7 @@
     </div>
   </td>
   <td>
-    <input type="text"  ng-model="offer.shortdesc"  class="form-control" placeholder=""/>
+    <input type="text"  ng-model="selected.shortdesc"  class="form-control" placeholder=""/>
 
   </td>
   </tr>
@@ -40,13 +40,13 @@
   <td style='vertical-align:middle'><label class='text-muted'>Base Price</label></td>
   <td>
     <div class="col-xs-4" >
-        <input type="text" class="form-control" ng-model=offer.bprice name="label" placeholder="Example:Rs 100" style="margin-left: -16px;" />
+        <input type="text" class="form-control" ng-model=selected.bprice name="label" placeholder="Example:Rs 100" style="margin-left: -16px;" />
     </div>
     <div class="col-xs-2">
         <label class='text-muted' style='vertical-align:middle'>Currency</label></div>
         <div class="col-xs-6">
-          <select class="selectpicker" style="width:25%">
-            <option>Rs</option>
+          <select class="selectpicker" ng-model="selected.currency" style="width:25%">
+            <option>&#8377;</option>
             <option>$</option>
             <option>AUD</option>
             </select>
@@ -58,13 +58,13 @@
   <td style='vertical-align:middle'><label class='text-muted'>Offer Price</label></td>
   <td>
     <div class="col-xs-4" >
-        <input type="text" class="form-control" name="label" ng-model=offer.offprice placeholder="Example:Rs 100" style="margin-left: -16px;" />
+        <input type="text" class="form-control" name="label" ng-model=selected.offprice placeholder="Example:Rs 100" style="margin-left: -16px;" />
     </div>
     <div class="col-xs-2">
         <label class='text-muted' style='vertical-align:middle'>Currency</label></div>
         <div class="col-xs-6">
-          <select class="selectpicker" style="width:25%">
-            <option>Rs</option>
+          <select class="selectpicker"ng-model="selected.currency" style="width:25%">
+            <option>&#8377;</option>
             <option>$</option>
             <option>AUD</option>
             </select>
@@ -77,31 +77,33 @@
   <td style='vertical-align:middle'><label class='text-muted'>Validity</label></td>
   <td>
     <div class="col-xs-5" >
-        <textarea class="form-control" name="label" ng-model=offer.longdesc placeholder="Offer Validity" style="margin-left: -16px;" /></textarea>
+        <textarea class="form-control" name="label" ng-model=selected.longdesc placeholder="Offer Validity" style="margin-left: -16px;" /></textarea>
     </div>
     <div class="col-xs-2">
         <label class='text-muted'style='vertical-align:middle'>Conditions</label></div>
         <div class="col-xs-5">
-          <textarea class="form-control" name="label"  placeholder="Offer Conditions" style="margin-left:-30px;"/></textarea>
+          <textarea class="form-control" name="label" ng-model="selected.condition"  placeholder="Offer Conditions" style="margin-left:-30px;"/></textarea>
     </div>
   </td>
 
   </tr>
-  <tr>
-
-  <td style='vertical-align:middle'><label class='text-muted'>Specification</label></td>
+  <tr ng-repeat="refer in selected.otherspecs">
+  <td width="15%"><label class="text-muted">Specification</label></td>
   <td>
-    <div class="col-xs-4" >
-        <input type="text" class="form-control" name="label" placeholder="Label" style="margin-left: -16px;" />
-    </div>
-    <div class="col-xs-4">
-        <input type="text" class="form-control" name="desc" placeholder="Description" />
-    </div>
-    <div class="col-xs-1">
-        <button type="button" class="btn btn-default addButton" ng-click='add()'><i class="fa fa-plus"></i></button>
-         </div>
-  </td>
+  <div class="col-md-4">
 
+  <input type="text" class="form-control" ng-model="refer.label" placeholder="Label" style="margin-left:-16px">
+
+  </div>
+  <div class="col-md-4">
+  <input type="text" class="form-control" ng-model="refer.desc" placeholder="Description" />
+  </div>
+
+  <div class="col-md-1">
+  <button type="button" class="btn btn-default addButton" ng-show="$last" ng-click='addOther()'><i class="fa fa-plus"></i></button>
+  <button class="btn btn-default deletButton" style="margin-top:25px;"ng-show="selected.otherspecs.length>1 && !$last" ng-click="deleterefer(selected)"><i class="fa fa-trash-o"></i></button>
+  </div>
+  </td>
   </tr>
   <tr>
 
@@ -110,7 +112,7 @@
   </label></td>
   <td>
 
-    <input type="file" ng-file-select="onFileSelect($files)"  ng-model="offer.attach">
+    <input type="file" ng-file-select="onFileSelect($files)"  ng-model="selected.attach">
 
 
   </td>
@@ -118,7 +120,7 @@
   <tr>
   <td style='vertical-align:middle'><label class="text-muted"> Tags </label></td>
   <td>
-<tags-input ng-model="offer.tags"></tags-input>  </td>
+<tags-input ng-model="selected.tags"></tags-input>  </td>
   </tr>
   </tbody>
   </table>
@@ -127,3 +129,5 @@
   <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
   <button class="btn btn-info" ng-click="save()">Save</button>
   </div>
+</div>
+</div>
