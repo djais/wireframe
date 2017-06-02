@@ -13,27 +13,35 @@
 
 
                 <tr ng-repeat="item in faqlist" style='cursor:pointer;'>
+                    <!--<tr ng-repeat="item in chats" style='cursor:pointer;' ng-click="addtab(item)">-->
 
-                    <td> <span style="font-size:20px"> {{item.faqs.que}}</span> <br>
-                        <span> {{item.faqs.ans | limitTo:letterLimit}} ... </span>
+                    <td ng-click="editfaq(item.id)"> <span style="font-size:20px"> {{item.que}}</span> <br>
+                        <span> {{item.ans | limitTo:letterLimit}} ... </span>
 
 
                     </td>
 
-                    <td style='text-align:left;vertical-align:middle; padding:0px; '>{{item.faqs.author}}</td>
+                    <td style='text-align:left;vertical-align:middle; padding:0px; ' ng-click="editfaq(item.id)">{{item.author}}</td>
 
-                    <td style='text-align:center;vertical-align:middle; padding:0px; '>
-                        <i class='fa fa-check' style='color:green' ng-show='item.faqs.status==true'></i>
-                        <i class='fa fa-ban' style='color:red' ng-show='item.faqs.status==false'></i></td>
-                    <td style='text-align:center;vertical-align:middle; padding:0px; '>
+                    <td style='text-align:center;vertical-align:middle; padding:0px; ' ng-click="editfaq(item.id)">
+                        <i class='fa fa-check' style='color:green' ng-show='item.status==true'></i>
+                        <i class='fa fa-ban' style='color:red' ng-show='item.status==false'></i></td>
+                    <td style='text-align:center;vertical-align:middle; padding:0px; ' ng-click="editfaq(item.id)">
                         <i class="fa fa-file "></i>
                     </td>
 
-                    <td style='text-align:center;vertical-align:middle; padding:0px; '> <span>{{item.faqs.LS*1000 | date:'HH:mm dd-MMM-yyyy'}}</span><br></td>
+                    <td style='text-align:center;vertical-align:middle; padding:0px; ' ng-click="editfaq(item.id)"> <span>{{item.LS*1000 | date:'HH:mm dd-MMM-yyyy'}}</span><br></td>
+                    <td style='text-align:center;vertical-align:middle; font-size:20px'>
+                        <td><button class="btn btn-danger btn-sm" ng-click="remove($index)"><i class="fa fa-trash"></i></button></td>
+
+                    </td>
+
+
                 </tr>
 
             </tbody>
         </table>
-        <h2 style='color:#bbbbbb; text-align:center' ng-show='!faqs'> No Data Found</h2>
+        <!--<h2 style='color:#bbbbbb; text-align:center' ng-show='!locations.length'> No Data Found</h2>-->
+        <h2 style='color:#bbbbbb; text-align:center' ng-show='!faqlist.length'> No Data Found</h2>
     </div>
 </div>

@@ -49,45 +49,55 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
 
     $rootScope.modelfb = { id: '101', customer: { name: 'Rahul', phone: '9611876767', email: 'rahul@rytangle.com', gender: 'Male', age_group: 'Above 25' }, feedback: { npsScore: '3', rating: '5', service: '', facilities: '', staff: '', comment: 'Improve service' }, derived: { source: 'web', keyParam: 'detractor', sentiment: "positive", concerns: ['staff behavior', 'service'], location: 'Bangalore', time: '18:44', date: '13-Jan-17' } };
 
- $rootScope.faqlist = [{
-    faqs: {
-      que: 'How do I create a bot?',
-      ans: 'Creating Telegram bots is super-easy, but you will need at least some skills at computer programming. In order for a bot to work, set up a bot account with @BotFather, then connect it to your backend server via our API',
-      author: 'core.telegram.org',
-      status: true,
-      attachment: "file",
-      src: "assets/img/usericon.png", LS: '1496060971'
-    }
-  },
-  {
-    faqs: {
-      que: 'How do I get updates?',
-      attachment: "video",
-      ans: 'There are currently two ways of getting updates. You can either use long polling or Webhooks. Please note that it\'s not possible to get updates via long polling while an outgoing Webhook is set',
-      author: 'core.telegram.org',
-      status: true,
-      src: "assets/img/movie.ogg", LS: '1496058793'
-    }
-  },
-  {
-    faqs: {
-      que: 'I\'m having trouble with my self-signed certificate!',
-      attachment: "audio",
-      ans: 'Please take a look at this self-signed certificate guide we made just for you. If you\'ve read it and still have a question, ping us on botsupport.',
-      author: 'rytangle team',
-      status: false, src: "assets/img/sound.ogg", LS: '1496058746'
-    }
-  },
-  {
-    faqs: {
-      que: 'How can I make requests in response to updates?',
-      attachment: "link",
-      ans: 'This is possible if you‘re using webhooks. The upside is that you need less requests, the downside — that in this case it’s not possible to know that such a request was successful or get its result.',
-      author: 'rytangle team',
-      status: false, src: "https://rytangle.com", LS: '1406058746'
-    }
-  }];
 
+  $rootScope.faqlist = [{
+
+    id: '0001',//id for faqlist
+    que: 'How do I create a bot?',
+    ans: 'Creating Telegram bots is super-easy, but you will need at least some skills at computer programming. In order for a bot to work, set up a bot account with @BotFather, then connect it to your backend server via our API',
+    author: 'core.telegram.org',
+    status: true,
+    attachment: { type: "img", src: "assets/img/usericon.png" },
+    tag: { id: "01", tags: "how can i help you" },
+    ref: "https://rytangle.com",
+    LS: '1496060971'
+  },
+  {
+
+    id: '0002',//id for faqlist
+    que: 'How do I get updates?',
+    attachment: { type: "video", src: "assets/img/movie.ogg" },
+    ans: 'There are currently two ways of getting updates. You can either use long polling or Webhooks. Please note that it\'s not possible to get updates via long polling while an outgoing Webhook is set',
+    author: 'core.telegram.org',
+    status: true,
+    ref: "",
+    tag: { id: "01", tags: "how can i help you" },
+    LS: '1496058793'
+
+  },
+  {
+
+    id: '0003',//id for faqlist
+    que: 'I\'m having trouble with my self-signed certificate!',
+    attachment: { type: "audio", src: "assets/img/sound.ogg" },
+    ans: 'Please take a look at this self-signed certificate guide we made just for you. If you\'ve read it and still have a question, ping us on botsupport.',
+    author: 'rytangle team',
+    tag: { id: "01", tags: "how can i help you" },
+    ref: "https://anjan.com",
+    status: false, LS: '1496058746'
+
+  },
+  {
+    id: '0004',//id for faqlist
+    que: 'How can I make requests in response to updates?',
+    attachment: "link",
+    tag: { id: "01", tags: "how can i help you" },
+    ans: 'This is possible if you‘re using webhooks. The upside is that you need less requests, the downside — that in this case it’s not possible to know that such a request was successful or get its result.',
+    author: 'rytangle team',
+    ref: "https:/gmail.com",
+    status: false, src: "https://rytangle.com", LS: '1406058746'
+
+  }];
 
 
     $rootScope.products = [
@@ -113,12 +123,6 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
       {id:'0004',avail:false, img:"/rytbot-wireframe/assets/images/3.png", name:"Retro Camera", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:17250, offprice:16500, tags:["product", "camera","retro"], otherspecs:[], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
     ]
 
-    $rootScope.locations = [
-      {avail:true,  location:"Kormangala", city:"Bangalore", country:"India", updateTs:1496050225,longitude:"77.6271° E",latitude:"12.9279° N",},
-      {avail:true,  location:"Indiranagar", city:"Bangalore", country:"India", updateTs:1496050225,longitude:"77.6271° E",latitude:"12.9279° N",},
-      {avail:false, location:"BTM Layout", city:"Bangalore", country:"India", updateTs:1496050225,longitude:"77.6271° E",latitude:"12.9279° N",},
-      {avail:true,  location:"WhiteField", city:"Bangalore", country:"India", updateTs:1496050225,longitude:"77.6271° E",latitude:"12.9279° N",},
-       ]
 
    $rootScope.agents = [
      {id:'0001', pic:'/rytbot-wireframe/assets/images/flash.png',status:"active", name:"Flash Gordon", chats:224, lastTs:1496127568, likes:120, dislikes:40} ,
@@ -135,6 +139,15 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
     ];
 
 
-    // ALL Dummy Data before this line.
+  $rootScope.locations = [
+    { id: "001", avail: true, img: "/rytbot-wireframe/assets/images/loc1.jpg", address: "1st Main Rd, Electronics City Phase 1", location: "Kormangala", city: "Bangalore", country: "India", zip: "560089", contact: 9845641201, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N", },
+    { id: "002", avail: true, img: "/rytbot-wireframe/assets/images/loc2.jpg", address: "2nd Main Rd, Electronics City Phase 1", location: "Indiranagar", city: "Bangalore", country: "India", zip: "560069", contact: 9845541221, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N", },
+    { id: "003", avail: false, img: "/rytbot-wireframe/assets/images/loc3.jpg", address: "1st Main Rd, Electronics City Phase 2", location: "BTM Layout", city: "Bangalore", country: "India", zip: "560064", contact: 9844641221, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N", },
+    { id: "004", avail: true, img: "/rytbot-wireframe/assets/images/loc4.jpg", address: "2ns Main Rd, Electronics City Phase 2", location: "WhiteField", city: "Bangalore", country: "India", zip: "560008", contact: 9845641221, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N", },
+  ]
+
+
+
+  // ALL Dummy Data before this line.
 
 });
