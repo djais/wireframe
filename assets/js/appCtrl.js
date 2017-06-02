@@ -25,9 +25,11 @@ app.config(function ($routeProvider) {
   $routeProvider.when("/addagent", { templateUrl: 'assets/views/addAgent.html', reloadOnSearch: false });
   $routeProvider.when("/editfaq", { templateUrl: 'assets/views/editFaq.html', reloadOnSearch: false });
   $routeProvider.when("/editlocation", { templateUrl: 'assets/views/editLocation.html', reloadOnSearch: false });
+  $routeProvider.when("/editOffer", { templateUrl: 'assets/views/editOffer.html', reloadOnSearch: false });
+  $routeProvider.when("/editProduct", { templateUrl: 'assets/views/editProduct.html', reloadOnSearch: false });
   $routeProvider.when("/faqlist", { templateUrl: 'assets/views/faqList.html', reloadOnSearch: false });
-   $routeProvider.when("/agentedit",        {templateUrl: 'assets/views/agentedit.html', reloadOnSearch: false});
-    $routeProvider.when("/agentdetail",     {templateUrl: 'assets/views/agentDetail.html', reloadOnSearch: false});
+  $routeProvider.when("/agentedit",        {templateUrl: 'assets/views/agentedit.html', reloadOnSearch: false});
+  $routeProvider.when("/agentdetail",     {templateUrl: 'assets/views/agentDetail.html', reloadOnSearch: false});
   // $routeProvider.when("/locations",          {templateUrl: 'assets/views/locationList.html', reloadOnSearch: false});
 }); /* app.config */
 
@@ -451,7 +453,7 @@ app.directive("ngFileSelect", function (fileReader, $timeout) {
             lineWidth: 1
           }
         },
-        threshold: null
+        threshold: null,
 
                     states: {
                         hover: {
@@ -1159,9 +1161,7 @@ app.controller("multimediaListCtrl", function ($scope, $rootScope, $http) {
 });
 /* -- chatCtrl : --*/
 
-app.controller("chatCtrl", function($scope,$rootScope, $http,add){
-
-
+app.controller("chatCtrl", function($scope,$rootScope, $http){
   $scope.init = function(){
     $scope.tabs=[
     {
@@ -1170,30 +1170,35 @@ app.controller("chatCtrl", function($scope,$rootScope, $http,add){
     }
     ];
     $rootScope.currentTab = 'assets/views/chatList.html';
-    $scope.maxchats = 4;
     $scope.error = "";
   };/* init() */
 
-  $scope.addtab = function (chat) {
-    var newtab = {
-      id: chat.id,
-      title: chat.name,
-      mainobj: chat.msg,
-      url: 'assets/views/chatDetails.html',
-      closeable: true
-    };
-    if ($scope.tabs.length < $scope.maxchats) {
-      $scope.tabs.push(newtab);
-      $rootScope.onClickTab(newtab);
+  $scope.addorremovetab=function(addorremove,itemorindex){
+    console.log(addorremove,itemorindex);
+    switch(addorremove){
+      case "add":
+      var newtab = {
+        id: itemorindex.id,
+        title:itemorindex.name,
+        mainobj:itemorindex.msg,
+        url:'assets/views/chatDetails.html',
+        closeable:true
+      };
+      $rootScope.addorremove($scope,newtab);
+      // addorrem($scope,newtab);
+      break;
+      case "remove":
+        console.log($scope.tabs);
+        console.log($rootScope.tabidarr);
+        $scope.tabs.splice(itemorindex,1);
+        $rootScope.tabidarr.splice(itemorindex-1,1);
+        console.log($scope.tabs);
+        console.log($rootScope.tabidarr);
+        $rootScope.onClickTab($scope.tabs[itemorindex-1]);
+        if($scope.tabs.length<$rootScope.maxtabs)
+          $scope.error = "";
+      break;
     }
-    else
-      $scope.error = "You have opened maximum number of chats. Close any to open new."
-  }
-  $scope.removeTab = function (i) {
-    $scope.tabs.splice(i, 1);
-    $rootScope.onClickTab($scope.tabs[i - 1]);
-    if ($scope.tabs.length < $scope.maxchats)
-      $scope.error = "";
   }
 });
 
