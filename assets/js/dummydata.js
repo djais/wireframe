@@ -99,7 +99,7 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
 
   }];
 
-
+/* diksha - added other fields */
     $rootScope.products = [
       {id:'0001',avail:true, img:"/rytbot-wireframe/assets/images/1.jpg", name:"Pager", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:7500, tags:["product", "pager", "retro"], otherspecs:[{label:"", desc:""}], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
       {id:'0002',avail:false, img:"/rytbot-wireframe/assets/images/2.jpg", name:"Kitchenware : Some utensils", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:2600, tags:['product',"kitchen items"], otherspecs:[{label:"", desc:""}], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
@@ -115,7 +115,7 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
       {id:'0005',status:"offline",pic:'/rytbot-wireframe/assets/img/usericon.png',custId:"123459", name:"Some Other Guy" , msg:"I'll check and may be come back later", agent:'Byomkesh Bakshi', platform:'web' ,updateTs:1496050225, feedback:"like"}
     ];
 
-
+/* diksha - added other fields */
      $rootScope.offers = [
       {id:'0001',avail:true, img:"/rytbot-wireframe/assets/images/1.jpg", name:"Pager", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:7500, offprice:6500, tags:["product", "pager", "retro"], otherspecs:[{label:"", desc:""}], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
       {id:'0002',avail:false, img:"/rytbot-wireframe/assets/images/2.jpg", name:"Kitchenware : Some utensils", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", bprice:2600, offprice:2000, tags:['product',"kitchen items"], otherspecs:[{label:"", desc:""}], updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
