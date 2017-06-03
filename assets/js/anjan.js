@@ -23,7 +23,7 @@ app.controller("faqCtrl", function ($scope, $rootScope, $http) {
         id: itemorindex.id,
         title:itemorindex.author,
         mainobj:itemorindex,
-        url:'assets/views/editfaq.html',
+        url:'assets/views/editFaq.html',
         closeable:true
       };
       $rootScope.addorremove($scope,newtab);
