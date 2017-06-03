@@ -94,7 +94,7 @@ app.directive("ngFileSelect", function (fileReader, $timeout) {
  //    else
  //      result.error = "You have opened maximum number of chats. Close any to open new.";
  //    console.log("addtab result",result);
- //    return result;   
+ //    return result;
  //  }
  // })
 
@@ -152,7 +152,7 @@ app.directive("ngFileSelect", function (fileReader, $timeout) {
   //       var index = $rootScope.tabidarr.indexOf(newdata.id);
   //       if(index>-1){
   //         $rootScope.onClickTab(newdata);
-  //         return false;        
+  //         return false;
   //       }
   //     }
   //     if(scope.tabs.length<$rootScope.maxtabs){
@@ -349,6 +349,7 @@ app.controller('appCtrl',function($rootScope,$scope,$location){
   }
 
 });// appCtrl
+
 
  app.controller('sideBarCtrl',function($scope, $rootScope){
   $rootScope.sidebaractive = '';
@@ -814,7 +815,9 @@ for(var index = 0; index < $rootScope.products.length; index++){
     $rootScope.products[index] = $rootScope.products[index];
   }
 }
-$location.path('products');
+//$location.path('products');
+$rootScope.onClickTab($scope.tabs[0]);
+
 };
 $scope.cancelProduct = function () {
   $location.path('products');
@@ -902,7 +905,8 @@ app.controller("offerListCtrl", function($scope, $rootScope,$location,$http){
       $rootScope.offers[index] = $rootScope.offers[index];
     }
   }
-  $location.path('offers');
+  $rootScope.onClickTab($scope.tabs[0]);
+  //$location.path('offers');
   };
 
   $scope.delete = function (id) {
@@ -1012,7 +1016,7 @@ app.controller("chatCtrl", function($scope,$rootScope, $http){
         console.log($rootScope.tabidarr);
         $rootScope.onClickTab($scope.tabs[itemorindex-1]);
         if($scope.tabs.length<$rootScope.maxtabs)
-          $scope.error = "";
+          $rootScope.taberror = "";
       break;
     }
   }
@@ -1060,9 +1064,9 @@ app.controller("agentCtrl", function ($scope, $rootScope, $http) {
 
 /*--- agentListCtrl --*/
 app.controller("agentListCtrl", function($scope,$rootScope, $http,$location){
- 
+
  $scope.init = function(){
-    
+
   };
   console.log($rootScope.agents);
   $scope.go=function(val){
@@ -1083,7 +1087,7 @@ app.controller("agentListCtrl", function($scope,$rootScope, $http,$location){
       }
     }
     $location.path('agents');
-  
+
   }
 
   $rootScope.delet=function(i){
@@ -1093,11 +1097,11 @@ app.controller("agentListCtrl", function($scope,$rootScope, $http,$location){
 }
 });
 app.controller("agentDetailCtrl", function($scope,$rootScope, $http){
- 
+
      $scope.init = function(){
-    
+
   };/* init() */
-    
+
 
 });
 
@@ -1107,7 +1111,7 @@ app.controller("agenteditCtrl", function($scope,$rootScope, $http){
 
    $scope.agentDetail=function(detailval){
     console.log(detailval);
-    
+
    }
     //init function
   };/* init() */

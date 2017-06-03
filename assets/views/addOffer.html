@@ -1,5 +1,5 @@
 
-       <div class="x_panel tile" ng-controller="addofferCtrl">
+       <div class="x_panel tile" ng-controller="addofferCtrl" ng-init='init()'>
           <label style="font-weight:300; font-size:18px; padding:10px;color:black">Add Offer</label>
           <hr style="margin-bottom: 0px;">
           <div class="x_content" style="padding:15px;">
@@ -43,8 +43,8 @@
     <div class="col-xs-2">
         <label class='text-muted' style='vertical-align:middle'>Currency</label></div>
         <div class="col-xs-6">
-          <select class="selectpicker" style="width:25%">
-            <option>Rs</option>
+          <select class="selectpicker" style="width:25%" ng-model="currency">
+            <option>&#8377;</option>
             <option>$</option>
             <option>AUD</option>
             </select>
@@ -61,7 +61,7 @@
     <div class="col-xs-2">
         <label class='text-muted' style='vertical-align:middle'>Currency</label></div>
         <div class="col-xs-6">
-          <select class="selectpicker" style="width:25%">
+          <select class="selectpicker" style="width:25%" ng-model="currency">
             <option>Rs</option>
             <option>$</option>
             <option>AUD</option>
@@ -85,21 +85,23 @@
   </td>
 
   </tr>
-  <tr>
-
-  <td style='vertical-align:middle'><label class='text-muted'>Specification</label></td>
+  <tr ng-repeat="refer in label">
+  <td width="15%"><label class="text-muted">Specification</label></td>
   <td>
-    <div class="col-xs-4" >
-        <input type="text" class="form-control" name="label" placeholder="Label" style="margin-left: -16px;" />
-    </div>
-    <div class="col-xs-4">
-        <input type="text" class="form-control" name="desc" placeholder="Description" />
-    </div>
-    <div class="col-xs-1">
-        <button type="button" class="btn btn-default addButton" ng-click='add()'><i class="fa fa-plus"></i></button>
-         </div>
-  </td>
+  <div class="col-md-4">
 
+  <input type="text" class="form-control" ng-model="refer.label" placeholder="Label" style="margin-left:-16px">
+
+  </div>
+  <div class="col-md-4">
+  <input type="text" class="form-control" ng-model="refer.desc" placeholder="Description" />
+  </div>
+
+  <div class="col-md-1">
+  <button type="button" class="btn btn-default addButton" ng-show="$last" ng-click='addOther()'><i class="fa fa-plus"></i></button>
+  <button class="btn btn-default deletButton" style="margin-top:25px;"ng-show="label.length>1 && !$last" ng-click="deleterefer(refer)"><i class="fa fa-trash-o"></i></button>
+  </div>
+  </td>
   </tr>
   <tr>
 
