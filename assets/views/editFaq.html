@@ -48,15 +48,15 @@
                             </div>
                             <div class="col-xs-1" ng-show="selected.attachment.type=='video'">
                                 <audio controls>
-                                    <source src="attachment.src" type="audio/ogg">
-                                    <source src="attachment.src" type="audio/mpeg"> Your browser does not support the audio tag.
+                                    <source ng-src={{selected.attachment.src}} type="audio/ogg">
+                                    <source ng-src={{selected.attachment.src}} type="audio/mpeg"> Your browser does not support the audio tag.
                                 </audio>
 
                             </div>
                             <div class="col-xs-1" ng-show="selected.attachment.type=='audio'">
                                 <video width="100" height="110" controls>
-                                    <source src="attachment.src" type="video/mp4">
-                                    <source src="attachment.src" type="video/ogg"> Your browser does not support the video tag.
+                                    <source ng-src={{selected.attachment.src}} type="video/mp4">
+                                    <source ng-src={{selected.attachment.src}} type="video/ogg"> Your browser does not support the video tag.
                                 </video>
 
                             </div>
@@ -80,7 +80,7 @@
 
 
         <div align="right">
-            <button class="btn btn-default" ng-click="#">Cancel</button>&nbsp;&nbsp;
+            <button class="btn btn-default" >Cancel</button>&nbsp;&nbsp;
             <button class="btn btn-info" ng-click="saveFaq()">Save</button>
         </div>
     </div>

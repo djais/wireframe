@@ -69,7 +69,7 @@ $scope.saveFaq = function () {/*function for saving edited item */
     for (var index = 0; index < $rootScope.faqlist.length; index++) {
       console.log("faq list", $rootScope.faqlist[index]);
       if ($rootScope.faqlist[index].id == $rootScope.addfaqID) {
-        console.log($rootScope.faqlist[index], "+++++", $rootScope.selected)
+        //console.log($rootScope.faqlist[index], "+++++", $rootScope.selected)
         $rootScope.faqlist[index] = $rootScope.faqlist[index];
 
       }
@@ -86,7 +86,7 @@ $scope.saveFaq = function () {/*function for saving edited item */
 
 /* -- Add faq Ctrl :Anjan --*/
 
-app.controller("addFaqCtrl", function ($scope, $rootScope, $window, $location, $http) {
+app.controller("addFaqCtrl", function ($scope, $rootScope, $location, $http) {
   $scope.showrmv = 0;
   $scope.submit = function () {
     console.log("data", $scope);
