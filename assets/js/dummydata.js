@@ -131,12 +131,55 @@ app.controller('dummydataCtrl',function($scope, $rootScope){
      {id:'0004',role:'test2', phone:8157891812,email:'rahul@rytangle.com',pic:'/rytbot-wireframe/assets/images/mickey.png', status:"idle", name:"Mickey Mishra", chats:89, lastTs:1496127518, likes:25, dislikes:10} 
       ]
 
-    $rootScope.multimedias = [
-      {id:'0001',avail:true, img:"/rytbot-wireframe/assets/images/1.jpg", name:"Pager-2", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:7500, tags:["product", "pager", "retro"], type:"Image", size:"3.3MB", updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
-      {id:'0002',avail:false, img:"/rytbot-wireframe/assets/images/videotnimage.jpg", name:"Kitchenware Promo Video", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:2600, tags:['product',"kitchen items"],type:"Video", size:"17MB", updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
-      {id:'0003',avail:true, img:"/rytbot-wireframe/assets/images/texttnimage.png", name:"DSLR Specs document", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:32999, tags:["product","camera", "dslr", "great pictures", "most liked"], size:"4.6Kb", type:"Text", updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
-      {id:'0004',avail:false, img:"/rytbot-wireframe/assets/images/3.png", name:"Retro Camera", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:17250, tags:["product", "camera","retro"], type:"Image", size:"1.7MB", updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
-    ];
+    $rootScope.multimedias = [{
+    id: 'mm0001',
+    avail: true,
+    img: "/rytbot-wireframe/assets/images/1.jpg",
+    name: "Pager-2",
+    shortdesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.",
+    tags: ["product", "pager", "retro"],
+    type: "Image",
+    size: "3.3MB",
+    uploadTs: 1496050225,
+    longdesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."
+  },
+  {
+    id: 'mm0002',
+    avail: false,
+    img: "/rytbot-wireframe/assets/images/videotnimage.jpg",
+    name: "Kitchenware Promo Video",
+    shortdesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.",
+    tags: ['product', "kitchen items"],
+    type: "Video",
+    size: "17MB",
+    uploadTs: 1496050225,
+    longdesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."
+  },
+  {
+    id: 'mm0003',
+    avail: true,
+    img: "/rytbot-wireframe/assets/images/texttnimage.png",
+    name: "DSLR Specs document",
+    shortdesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.",
+    tags: ["product", "camera", "dslr", "great pictures", "most liked"],
+    size: "4.6Kb",
+    type: "Text",
+    uploadTs: 1496050225,
+    longdesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."
+  },
+  {
+    id: 'mm0004',
+    avail: false,
+    img: "/rytbot-wireframe/assets/images/3.png",
+    name: "Retro Camera",
+    shortdesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.",
+    tags: ["product", "camera", "retro"],
+    type: "Image",
+    size: "1.7MB",
+    uploadTs: 1496050225,
+    longdesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."
+  },
+]
 
 
   $rootScope.locations = [
