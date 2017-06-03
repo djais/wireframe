@@ -30,7 +30,6 @@ app.config(function ($routeProvider) {
   $routeProvider.when("/faqlist", { templateUrl: 'assets/views/faqList.html', reloadOnSearch: false });
   $routeProvider.when("/agentedit",        {templateUrl: 'assets/views/agentedit.html', reloadOnSearch: false});
   $routeProvider.when("/agentdetail",     {templateUrl: 'assets/views/agentDetail.html', reloadOnSearch: false});
-  // $routeProvider.when("/locations",          {templateUrl: 'assets/views/locationList.html', reloadOnSearch: false});
 }); /* app.config */
 
 
