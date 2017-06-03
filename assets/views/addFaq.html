@@ -1,6 +1,10 @@
 <div class="x_panel tile" ng-controller="addFaqCtrl" ng-cloak>
     <div class="x_content">
         <label style="font-weight:300; font-size:18px; padding:10px;">Add New Faq</label>
+        <label class="switch pull-right">
+  <input type="checkbox" checked ng-model="status">
+  <div class="slider round"></div>
+</label>
         <form role="form" name="myForm">
             <table class="table table-hover">
                 <tbody>
@@ -18,7 +22,12 @@
                     </tr>
 
                     <tr>
-                        <td width="15%"><label class="text-muted">Tags</label></td>
+                        <td width="15%"><label class="text-muted">Tags</label>
+                        <div class="popup" ng-click="leadtag()">
+                                <i class="fa fa-question-circle-o"></i>
+                                <span class="popuptext" id="taglead">Add tags </span>
+                            </div>
+                        </td>
                         <td width="85%">
                             <tags-input ng-model="tags" /></tags-input>
                         </td>
@@ -48,15 +57,16 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="pull-left">
-                <input type="reset" value="reset" class="btn btn-primary">
+            <div class="pull-right">
+            <button type="reset"  class="btn btn-default">Reset</button>
+             <button class="btn btn-primary" ng-click="submit()">Add</button>
             </div>
         </form>
 
 
         <div align="right">
-            <button class="btn btn-default" ng-click="#">Preview</button>&nbsp;&nbsp;
-            <button class="btn btn-info" ng-click="submit()">Submit</button>
+               
+           
         </div>
     </div>
 </div>

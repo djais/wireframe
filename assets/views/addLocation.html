@@ -1,5 +1,10 @@
 <div class="x_panel tile" ng-controller="addLocationCtrl" ng-cloak ng-init="init()">
     <div class="x_content">
+        <label style="font-weight:300; font-size:18px; padding:10px;">Add Location</label>
+        <label class="switch pull-right">
+  <input type="checkbox" checked ng-model="avail">
+  <div class="slider round"></div>
+</label>
         <form role="form" name="myForm">
             <table class="table table-hover">
                 <tbody>
@@ -83,12 +88,15 @@
                                 <input type="text" class="form-control" ng-model="refer.desc" placeholder="Description" />
                             </div>
 
-                            <div class="col-md-1">
-                                <button type="button" class="btn btn-default addButton" ng-click='addOther($index)'><i class="fa fa-plus"></i></button>
-                            </div>
+                                              <div class="col-md-1">
+  <button type="button" class="btn btn-default addButton" ng-show="$last" ng-click='addOther()'><i class="fa fa-plus"></i></button>
+  <button class="btn btn-default deletButton" style="margin-top:25px;"ng-show="refer.label.length>1 && !$last" ng-click="deleterefer($index)"><i class="fa fa-trash-o"></i></button>
+  </div>
+
                         </td>
                     </tr>
 
+  
                     <td> <label class="text-muted"> Upload Image </label></td>
 
                     <td>
@@ -103,14 +111,12 @@
 
                 </tbody>
             </table>
-            <div class="pull-left">
-                <input class="btn btn-primary" type="reset" value="Reset">
+              <div class="pull-right">
+            <button type="reset"  class="btn btn-default">Reset</button>
+             
+            <button class="btn btn-primary" ng-click="saveloc()">Submit</button>
             </div>
         </form>
      
-        <div align="right">
-            <button class="btn btn-default" ng-click="#">Preview</button> &nbsp;&nbsp;
-            <button class="btn btn-info" ng-click="saveloc()">Submit</button>
-        </div>
     </div>
 </div>

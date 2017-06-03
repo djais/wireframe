@@ -23,7 +23,7 @@ app.controller("faqCtrl", function ($scope, $rootScope, $http) {
         id: itemorindex.id,
         title:itemorindex.author,
         mainobj:itemorindex,
-        url:'assets/views/editfaq.html',
+        url:'assets/views/editFaq.html',
         closeable:true
       };
       $rootScope.addorremove($scope,newtab);
@@ -50,7 +50,9 @@ app.controller("faqCtrl", function ($scope, $rootScope, $http) {
 app.controller("faqListCtrl", function ($scope, $rootScope, $location, $http) {
   $scope.letterLimit = 100;
   $scope.remove = function (id) {/*Function for removing each item in the list */
+    console.log("item revoed")
     $rootScope.faqlist.splice(id, 1);
+
   }/* End of remove function */
 
 
@@ -60,7 +62,22 @@ app.controller("faqListCtrl", function ($scope, $rootScope, $location, $http) {
 /* -- editFaqCtrl :Anjan --*/
 
 app.controller("editFaqCtrl", function ($scope, $rootScope, $location, $http) {
+// $scope.avail=false;
+$scope.deleterefer = function(refer){
+  console.log(refer);
+  var index = $scope.selected.other.indexOf(refer);
+  $scope.selected.other.splice(index, 1);
+};
 
+$scope.addOther = function () {
+// console.log(parentindex);
+$scope.selected.other.push({ "Label": "", "Description": "" })
+// $scope.label=$rootScope.locations[parentindex].other;
+}
+ $scope.cancel=function(){
+    $rootScope.onClickTab($scope.tabs[0]);
+  }
+console.log("edit faq data", $rootScope.selected);
 $scope.saveFaq = function () {/*function for saving edited item */
     console.log("edit faq data", $rootScope.selected);
     $rootScope.addfaqID = $rootScope.selected.id;
@@ -76,6 +93,7 @@ $scope.saveFaq = function () {/*function for saving edited item */
     }
     // $location.path('faqs');
     $rootScope.onClickTab($scope.tabs[0]);
+    // $scope.addorremovetab('remove',0);
   };/*End of edit saveFaq */
 
   console.log($rootScope.selected);
@@ -88,6 +106,7 @@ $scope.saveFaq = function () {/*function for saving edited item */
 
 app.controller("addFaqCtrl", function ($scope, $rootScope, $window, $location, $http) {
   $scope.showrmv = 0;
+  $scope.status=false;
   $scope.submit = function () {
     console.log("data", $scope);
     $rootScope.addFaqData = {
@@ -95,7 +114,8 @@ app.controller("addFaqCtrl", function ($scope, $rootScope, $window, $location, $
       ans: $scope.ans,
       tags: $scope.tags,
       attachment: $scope.imageSrc,
-      ref: $scope.url
+      ref: $scope.url,
+      status:$scope.status
     }
     console.log("data", $rootScope.addFaqData);
     $rootScope.faqlist.push($rootScope.addFaqData);
@@ -109,6 +129,11 @@ $rootScope.onClickTab($scope.tabs[0]);
   $scope.leadme = function () {
     console.log("lead me icon clicked")
     var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+  }
+   $scope.leadtag = function () {
+    console.log("lead me icon clicked")
+    var popup = document.getElementById("taglead");
     popup.classList.toggle("show");
   }
   $scope.tags = [
@@ -198,6 +223,9 @@ app.controller("editLocationCtrl", function ($scope, $rootScope, $location) {
     $scope.label=$rootScope.selected.other;
     $scope.imageSrc = "";
   };
+  $scope.cancel=function(){
+    $rootScope.onClickTab($scope.tabs[0]);
+  }
 
  $scope.saveEditloc = function () {
     console.log("edit loc ctrl");
@@ -228,6 +256,7 @@ app.controller("addLocationCtrl", function ($scope, $rootScope,  $location) {
    $scope.init = function () {
     // initilization variables
     $scope.label=[{ "Label": "", "Description": ""}];
+    $scope.avail=false;
     $scope.imageSrc = "";
   };
   $rootScope.randomString = function (length, chars) {
@@ -253,11 +282,13 @@ app.controller("addLocationCtrl", function ($scope, $rootScope,  $location) {
       latitude:$scope.latitude,
       longitude:$scope.longtitude,
       location:$scope.name,
-      zip:$scope.zip
+      zip:$scope.zip,
+      avail:$scope.avail
     }
     console.log("data", $rootScope.addLocData);
     $rootScope.locations.push($rootScope.addLocData);
     console.log("data aft add", $rootScope.locations);
+    $rootScope.onClickTab($scope.tabs[0]);
     $location.path('locations');
 
   
@@ -268,5 +299,11 @@ app.controller("addLocationCtrl", function ($scope, $rootScope,  $location) {
     $scope.label.push({ "Label": "", "Description": "" })
     // $scope.label=$rootScope.locations[parentindex].other;
   }
+ $scope.deleterefer = function(refer){
+  var index = $scope.label.indexOf(refer);
+  $scope.label.splice(index, 1);
+};
+
+
 
 })
