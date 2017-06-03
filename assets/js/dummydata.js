@@ -138,7 +138,7 @@ tag: [{ id: "01", tags: "This is a exmple tag" },{ id: "02", tags: "How can i he
       {id:'0004',avail:false, img:"/rytbot-wireframe/assets/images/3.png", name:"Retro Camera", shortdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus.", price:17250, tags:["product", "camera","retro"], type:"Image", size:"1.7MB", updateTs:1496050225,longdesc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci orci, sollicitudin eu est metus."},
     ];
 
-
+/*Added other fields for location */
   $rootScope.locations = [
     { id: "001", avail: true, img: "/rytbot-wireframe/assets/images/loc1.jpg", address: "1st Main Rd, Electronics City Phase 1", location: "Kormangala", city: "Bangalore", country: "India", zip: "560089", contact: 9845641201, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N",other:[{label:"label and labels ",desc:"desc"}] },
     { id: "002", avail: true, img: "/rytbot-wireframe/assets/images/loc2.jpg", address: "2nd Main Rd, Electronics City Phase 1", location: "Indiranagar", city: "Bangalore", country: "India", zip: "560069", contact: 9845541221, updateTs: 1496050225, longitude: "77.6271° E", latitude: "12.9279° N", other:[{label:"",desc:""}] },
