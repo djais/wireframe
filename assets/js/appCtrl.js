@@ -34,30 +34,6 @@ app.config(function ($routeProvider) {
 }); /* app.config */
 
 
-app.run(function ($rootScope, $http) {
-
-
-  $rootScope.onClickTab = function (tab) {
-    if (tab.id && $rootScope.currentid != tab.id) {
-      $rootScope.currentid = tab.id;
-      $rootScope.mainobj = tab;
-    }
-    $rootScope.currentTab = tab.url;
-    console.log($rootScope.currentid);
-    console.log($rootScope.currentTab);
-  }
-
-  $rootScope.isActiveTab = function (tab) {
-    // console.log(tab);
-    if (tab.id) {
-      if (tab.url == $rootScope.currentTab && tab.id == $rootScope.currentid)
-        return true
-      return false
-    }
-    return tab.url == $rootScope.currentTab;
-  }
-
-});
 
 app.directive("ngFileSelect", function (fileReader, $timeout) {
   return {
@@ -324,13 +300,22 @@ app.controller('appCtrl',function($rootScope,$scope,$location){
     $location.path(page)
   };
 
+  $scope.checktaberror = function(){
+    if($rootScope.taberror=='')
+      return false;
+    return true;
+  }
 
+  $scope.closetaberror = function(){
+    $rootScope.taberror = '';
+  }
 
   $rootScope.addorremove = function(scope,newdata){
-    console.log($rootScope.taberror);
     $rootScope.taberror = "";
-    if(newdata.mainobj)
+    if(newdata.mainobj){
       $rootScope.selected  = newdata.mainobj;
+      console.log("selected ",$rootScope.selected);
+    }
     if($rootScope.tabidarr.length){
       var index = $rootScope.tabidarr.indexOf(newdata.id);
       if(index>-1){
@@ -344,8 +329,12 @@ app.controller('appCtrl',function($rootScope,$scope,$location){
       $rootScope.currentTab = newdata.url;
       $rootScope.onClickTab(newdata);
     }
-    else
+    else{
       $rootScope.taberror = "You have opened maximum number of chats. Close any to open new.";
+      // $rootScope.$digest();
+      // $rootScope.$apply();
+    }
+    console.log($rootScope.taberror);
   }
 
 });// appCtrl
@@ -389,9 +378,6 @@ app.controller('appCtrl',function($rootScope,$scope,$location){
                         }
 
                       }); // sidebarCtrl
-
- /* -- dashboardCtrl -- */
- 
 
 
 

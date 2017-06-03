@@ -8,25 +8,38 @@
               <th> Upload Date </th>
               <th> Visible </th>
               <th></th>
+              <th></th>
             </thead>
             <tbody>
-              <tr ng-repeat="item in multimedias" style='cursor:pointer;' ng-click="addtab(item)">
-                <td style='text-align:center; vertical-align:middle'> <img ng-src={{item.img}} style='width:50px; height:50px;' /></td>
-                <td> <h4> {{item.name}}</h4><p>{{item.shortdesc}} </p></td>
-                <td>
+              <tr ng-repeat="item in multimedias" style='cursor:pointer;'>
+                <td style='text-align:center; vertical-align:middle'>
+                  <img ng-src={{item.img}} style='width:50px; height:50px;' ng-click="addorremovetab('add',item)"/>
+                </td>
+                <td ng-click="addorremovetab('add',item)">
+                  <h4> {{item.name}}</h4>
+                  <p>{{item.shortdesc}}</p>
+                </td>
+                <td ng-click="addorremovetab('add',item)">
                   <h5> {{item.size}}</h5>
                   <p>{{item.type}} </p>
                 </td>
-                <td style='text-align:center; vertical-align:middle'> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
-                <td style='text-align:center;vertical-align:middle; font-size:20px'> <i class='fa fa-check' style='color:green' ng-show='item.avail'></i> <i class='fa fa-ban' style='color:red' ng-show='!item.avail'></i></td>
-                <td style='text-align:center;vertical-align:middle; font-size:20px'>
-                  <button class="btn btn-default btn-sm" ng-show='!item.avail'><i class='fa fa-check'></i></button>
-                  <button class="btn btn-default btn-sm" ng-show='item.avail'><i class='fa fa-ban'></i></button>
-                  <button class="btn btn-default btn-sm"><i class="fa fa-trash"></i></button>
+                <td ng-click="addorremovetab('add',item)" style='text-align:center; vertical-align:middle'>
+                  {{item.uploadTs*1000 | date:'HH:mm dd-MMM-yyyy'}}
+                </td>
+                <td ng-click="addorremovetab('add',item)" style='text-align:center;vertical-align:middle; font-size:20px'>
+                  <i class='fa fa-check' style='color:green' ng-show='item.avail'></i>
+                  <i class='fa fa-ban' style='color:red' ng-show='!item.avail'></i>
+                </td>
+                <td style='text-align:center;vertical-align:middle;'>
+                  <i class='fa fa-check' ng-show='!item.avail'></i>
+                  <i class='fa fa-ban' ng-show='item.avail'></i>
+                </td>
+                <td ng-click="removeitem($index)" style='text-align:center; vertical-align:middle;'>
+                  <i class="fa fa-trash"></i>
                 </td>
               </tr>
             </tbody>
           </table>
-          <h2 style='color:#bbbbbb; text-align:center' ng-show='!products.length'> No Data Found</h2>
+          <h2 style='color:#bbbbbb; text-align:center' ng-show='!multimedias.length'> No Data Found</h2>
         </div>
       </div>

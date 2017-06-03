@@ -1,6 +1,5 @@
-
 <div class="x_panel tile">
-	<label style="font-weight:300; font-size:18px; padding:10px;">Add Multimedia</label>
+	<label style="font-weight:300; font-size:18px; padding:10px;">Edit Multimedia</label>
 	<hr style="margin-bottom: 0px;">
 	<div class="x_content" style="padding:15px;">
 		<form role="form" name="myForm">
@@ -9,29 +8,29 @@
 					<tr>
 						<td width="15%"><label class='text-muted'>Title</label></td>
 						<td width="85%">
-							<input  ng-model="multimedia.name" class="form-control" placeholder="" >
+							<input  ng-model="selected.name" class="form-control" placeholder="" >
 						</td>
 					</tr>
 					<tr>
 						<td><label class='text-muted'>Upload File</label></td>
 						<td>
-							<img style="width:200px; height:200px;" ng-show="multimedia.img" ng-src="{{multimedia.img}}" />
-							<input type="file" ng-file-select="onFileSelect($files)" style="margin-left:5%" ng-model="multimedia.img">
+							<img style="width:200px; height:200px;" ng-show="selected.img" ng-src="{{selected.img}}" />
+							<input type="file" ng-file-select="onFileSelect($files)" style="margin-left:5%" ng-model="selected.img">
 						</td>
 					</tr>
 					<tr>
 						<td><label class='text-muted'>Description</label></td>
-						<td><input type="text"  ng-model="multimedia.shortdesc" class="form-control" placeholder="" ></td>
+						<td><input type="text"  ng-model="selected.shortdesc" class="form-control" placeholder="" ></td>
 					</tr>
 					<tr>
 						<td><label class="text-muted"> Tags </label></td>
 						<td>
-							<tags-input ng-model="multimedia.tags"></tags-input>
+							<tags-input ng-model="selected.tags"></tags-input>
 						</td>
 					</tr>
 					<tr>
             <td>
-              <input type="checkbox" ng-model="multimedia.avail" checked data-toggle="toggle" data-onstyle="info"><label class="text-muted">Active</label>
+              <input type="checkbox" ng-model="selected.avail" checked data-toggle="toggle" data-onstyle="info"><label class="text-muted">Active</label>
             </td>
             <td></td>
           </tr>
@@ -40,7 +39,7 @@
 		</form>
 		<div align="right">
 			<button class="btn btn-default" ng-click="cancel()">Cancel</button>
-			<button class="btn btn-info" ng-click="saveadd()">Submit</button>
+			<button class="btn btn-info" ng-click="saveedit()">Submit</button>
 		</div>
 	</div>
 </div>
