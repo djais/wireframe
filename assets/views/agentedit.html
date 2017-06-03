@@ -1,40 +1,51 @@
 
 <div  class="x_panel tile" style="background-color: white;margin-top:1%;width:97%" ng-controller="agentListCtrl" ng-init="init()" ng-cloak>
+<div class="col-xs-12 col-md-12 col-sm-12">
+  <label style="font-weight:300; font-size:18px; padding:10px;color:black">Edit Agent</label>
+  
+<label class="switch pull-right">
+<input type="checkbox" checked ng-model="status">
+<div class="slider round"></div>
+</label>
 
-   
-    <div class="col-xs-12" align="right">
-            <span>Status</span> &nbsp;<i class='fa fa-check-circle' style='color:green'></i>&nbsp;&nbsp;&nbsp;&nbsp;
-
-        <!-- <button class="btn btn-default" ng-click="route('addservice')"><i class="fa fa-handshake-o"></i> &nbsp;Services +</button> -->
-         <i class="fa fa-comments-o fa-1x" aria-hidden="true"></i>&nbsp;&nbsp;<span class="badge">{{selected.chats}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-        <i class="fa fa-thumbs-o-up fa-1x" aria-hidden="true"></i>&nbsp;&nbsp;<span class="badge">{{selected.likes}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-       <i class="fa fa-thumbs-o-down fa-1x" aria-hidden="true"></i>&nbsp;&nbsp;<span class="badge">{{selected.dislikes}}</span>
-         
-        
-      </div>
+</div>
   <div class="x_content" >
+
          <form class="form-horizontal" role="form" name="myForm">
             
               <table class="table table-hover">
                 <tbody>
                 <tr>
-                    <td width="15%" ><label class='text-muted'>Profile Picture</label><small style="color:red; font-size:12px"><sup>*required</sup></small></td> 
-                    <td width="85%">
+                    <td><label class='text-muted'>Profile Picture</label><small style="color:red; font-size:12px"><sup>*required</sup></small></td> 
+                    <td >
                       
                         <img style="width:100px; height:100px;" ng-src="{{selected.pic}}" />
                         <input type="file" ng-file-select="onFileSelect($files)" ng-model="selected.pic">
                     
                     </td>
+                    <td>
+                          
+                          <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12" align="right">
+                                  <span>Status</span> &nbsp;<i class='fa fa-check-circle' style='color:green'></i>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                              <!-- <button class="btn btn-default" ng-click="route('addservice')"><i class="fa fa-handshake-o"></i> &nbsp;Services +</button> -->
+                               <i class="fa fa-comments-o fa-1x" aria-hidden="true"></i>&nbsp;&nbsp;<span class="badge">{{selected.chats}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                              <i class="fa fa-thumbs-o-up fa-1x" aria-hidden="true"></i>&nbsp;&nbsp;<span class="badge">{{selected.likes}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                             <i class="fa fa-thumbs-o-down fa-1x" aria-hidden="true"></i>&nbsp;&nbsp;<span class="badge">{{selected.dislikes}}</span>
+                               
+                              
+                            </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td width="15%" ><label class='text-muted'>Full Name</label><small style="color:red; font-size:12px"><sup>*required</sup></small></td> 
-                    <td width="85%">
+                    <td><label class='text-muted'>Full Name</label><small style="color:red; font-size:12px"><sup>*required</sup></small></td> 
+                    <td >
                       <input  ng-model="selected.name" class="form-control" placeholder="" >
                     </td>
                   </tr>
                   <tr>
-                    <td width="15%" ><label class='text-muted'>Email</label><small style="color:red; font-size:12px"><sup>*required</sup></small></td> 
-                    <td width="85%">
+                    <td><label class='text-muted'>Email</label><small style="color:red; font-size:12px"><sup>*required</sup></small></td> 
+                    <td >
                        <input type="email" id="email" name="email" placeholder="Email" ng-model="selected.email" ng-pattern="/^.+@.+\..+$/" class="form-control">
                         <span class="error" ng-show=" myForm.email.$error.pattern">
                       Please enter a valid email id!
@@ -42,8 +53,8 @@
                     </td>
                   </tr>
                   <tr>
-                    <td width="15%" ><label class='text-muted'>Phone</label></td> 
-                    <td width="85%">
+                    <td><label class='text-muted'>Phone</label></td> 
+                    <td >
                        <input type="number"  placeholder="Phone" name="phone" ng-model="selected.phone" ng-pattern="/^\s*(?:\+?(\d{1,3}))?[- (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/" class="form-control">
                          <span class="error" ng-show=" myForm.phone.$error.pattern">
                       Please enter a valid Phone number!
@@ -52,7 +63,7 @@
                   </tr>
                   <tr>
                     <td width="15%"><label class='text-muted'>Role</label></td> 
-                    <td width="85%">
+                    <td >
                       <input type="text" placeholder="" ng-model="selected.role" class="form-control">
                     </td>
                   </tr>
@@ -63,8 +74,8 @@
               <span class="text-muted" style="margin-right:62%;font-size: 13px">Last seen 12:29 30-May-2017</span> 
             </form>
             <div align="right">
-               <button class="btn btn-info" style="margin-right:1%">Cancel</button>&nbsp;
-              <button class="btn btn-info" style="margin-right:1%"  ng-click="save(a)">Submit</button>
+               <button class="btn btn-default" style="margin-right:1%" ng-click="Cancel()">Cancel</button>&nbsp;
+              <button class="btn btn-primary" style="margin-right:1%"  ng-click="save(a)">Add</button>
             </div>     
         </div>
 

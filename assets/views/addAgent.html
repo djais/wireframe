@@ -1,7 +1,13 @@
 
 <div class="x_panel tile" style="background-color: white;margin-top:1%" ng-controller="addAgentCtrl" ng-init="init()" ng-cloak>
+ <label style="font-weight:300; font-size:18px; padding:10px;color:black">Add Product</label>
+          <hr style="margin-bottom: 0px;">
         <div class="x_content" >
-         <form class="form-horizontal" role="form" name="myForm">
+        <label class="switch pull-right">
+        <input type="checkbox" checked ng-model="status">
+        <div class="slider round"></div>
+        </label>
+         <form class="form-horizontal" role="form" name="myForm" >
             
               <table class="table table-hover">
                 <tbody>
@@ -9,15 +15,15 @@
                     <td width="15%" ><label class='text-muted'>Profile Picture</label><small style="color:red; font-size:12px"><sup>*required</sup></small></td> 
                     <td width="85%">
                       
-                        <img style="width:100px; height:100px;" ng-src="{{imageSrc}}" />
-                        <input type="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc">
+                        <img style="width:100px; height:100px;"  ng-src="{{imageSrc}}" />
+                        <input type="file" ng-file-select="onFileSelect($files)" name="img" ng-model="imageSrc">
                     
                     </td>
                   </tr>
                   <tr>
                     <td width="15%" ><label class='text-muted'>Full Name</label><small style="color:red; font-size:12px"><sup>*required</sup></small></td> 
                     <td width="85%">
-                      <input  ng-model="user.name" class="form-control" placeholder="" >
+                      <input name="fullname" ng-model="user.name" class="form-control" placeholder="" >
                     </td>
                   </tr>
                   <tr>
@@ -41,7 +47,7 @@
                   <tr>
                     <td width="15%"><label class='text-muted'>Role</label></td> 
                     <td width="85%">
-                      <input type="text" placeholder="" ng-model="user.Role" class="form-control">
+                      <input type="text" placeholder="" ng-model="user.Role" name="role" class="form-control">
                     </td>
                   </tr>
                 </tbody>
@@ -49,7 +55,8 @@
             </form>
             <div align="right">
               
-              <button class="btn btn-info" style="margin-right:1%"  ng-click="save(user,imageSrc)">Submit</button>
+              <button class="btn btn-default" style="margin-right:1%"  ng-click="reset()">Reset</button>&nbsp;
+              <button class="btn btn-primary" style="margin-right:1%"  ng-click="save(user,imageSrc)">Add</button>
             </div>     
         </div>
 
