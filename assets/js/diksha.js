@@ -5,6 +5,7 @@
 
 app.controller("productsCtrl", function ($scope, $rootScope, $http) {
   $scope.init = function () {
+    $rootScope.tabidarr = []
     $scope.tabs = [
       {
         title: 'Products',
@@ -54,15 +55,19 @@ app.controller("productListCtrl", function($scope, $rootScope,$location,$http){
 
 
   $scope.save = function () {
+    console.log($rootScope.selected);
 //$location.path("products");
 //$rootScope.addProduct = $rootScope.selected.id;
+
 for(var index = 0; index < $rootScope.products.length; index++){
   if($rootScope.products[index].id == $rootScope.selected.id){
     $rootScope.products[index] = $rootScope.selected;
+    $rootScope.onClickTab($scope.tabs[0]);
+
   }
 }
 //$location.path('products');
-$rootScope.onClickTab($scope.tabs[0]);
+//$rootScope.onClickTab($scope.tabs[0]);
 
 };
 $scope.cancelProduct = function () {
@@ -79,9 +84,9 @@ $scope.addOther = function () {
 $scope.selected.otherspecs.push({ "Label": "", "Description": "" })
 // $scope.label=$rootScope.locations[parentindex].other;
 }
-$scope.deleterefer = function(selected){
-  var index = $scope.selected.otherspecs.indexOf(selected);
-  $scope.$scope.selected.otherspecs.splice(index, 1);
+$scope.deleterefer = function(refer){
+  var index = $scope.selected.otherspecs.indexOf(refer);
+  $scope.selected.otherspecs.splice(index, 1);
 };
 
 
@@ -89,19 +94,23 @@ $scope.deleterefer = function(selected){
 /*-- addProductCtrl--*/
 app.controller("addProductCtrl", function($scope, $rootScope,$location,$http,$window){
   $scope.submit = function () {
-    console.log("data", $scope)
+    console.log("data", $rootScope.products)
     //console.log(i);
     $rootScope.addproduct = {
       name: $scope.name,
       shortdesc: $scope.sdesc,
       longdesc: $scope.ldesc,
       tags: $scope.tags,
-      //attachment: $scope.imageSrc,
-      price: $scope.price
+      img: $scope.imageSrc,
+      price: $scope.price,
+      updateTs:$scope.uploadTs = Math.floor(Date.now() / 1000),
+      avail:$scope.avail
+
+
     }
     console.log("data",$rootScope.addproduct);
   $rootScope.products.push($rootScope.addproduct);
- $location.path('products');
+ //$location.path('products');
 $rootScope.onClickTab($scope.tabs[0]);
 
 };
@@ -128,6 +137,7 @@ $rootScope.onClickTab($scope.tabs[0]);
 
 app.controller("offersCtrl", function ($scope, $rootScope, $http) {
   $scope.init = function () {
+    $rootScope.tabidarr = [];
     $scope.tabs = [
       {
         title: 'Offers',
@@ -196,21 +206,21 @@ for(var index = 0; index < $rootScope.offers.length; index++){
 };
 $scope.cancel = function () {
   $rootScope.onClickTab($scope.tabs[0]);
-};
+}
 $scope.delete = function (id) {
   $rootScope.products.splice(id,1);
 
-};
+}
 
 $scope.label=[{ "Label": "", "Description": ""}];
 $scope.addOther = function () {
 // console.log(parentindex);
 $scope.selected.otherspecs.push({ "Label": "", "Description": "" })
 // $scope.label=$rootScope.locations[parentindex].other;
-};
-$scope.deleterefer = function(selected){
-  var index = $scope.label.indexOf(selected);
-  $scope.label.splice(index, 1);
+}
+$scope.deleterefer = function(refer){
+  var index = $scope.selected.otherspecs.indexOf(refer);
+  $scope.selected.otherspecs.splice(index, 1);
 };
 
 
@@ -233,7 +243,10 @@ app.controller("addofferCtrl", function($scope, $rootScope,$http,$location) {
       offprice:$scope.offprice,
       //validity:$scope.validity,
       otherspecs:$scope.label,
-      otherspecs:$scope.desc
+      otherspecs:$scope.desc,
+      updateTs:$scope.uploadTs = Math.floor(Date.now() / 1000),
+      avail:$scope.avail
+
     }
   $rootScope.offers.push($rootScope.addoffer);
 //  $location.path('offers');

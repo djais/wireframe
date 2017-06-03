@@ -95,12 +95,12 @@
   </tr>
   <tr>
 
-  <td style='vertical-align:middle'><label class='text-muted'>Attachment
+  <td style='vertical-align:middle'><label class='text-muted'>Attachments
   <i class="fa fa-paperclip" aria-hidden="true" style="font-size:20px;"></i>
   </label></td>
   <td>
 
-    <input type="file" ng-file-select="onFileSelect($files)"  ng-model="attach">
+    <input type="file" ng-file-select="onFileSelect($files)"  ng-model="attach" multiple>
 
 
   </td>
@@ -112,11 +112,8 @@
   </tr>
   </tbody>
   </table>
-  <div class="pull-left">
-    <button class="btn btn-danger" type="reset">Reset</button>
+  <div align="right">
+  <button class="btn btn-default" type="reset">Reset</button>
+  <button class="btn btn-primary" ng-click= "submit()">Submit</button>
   </div>
   </form>
-  <div align="right">
-  <button class="btn btn-default" ng-click="canceladdoredit(trigger,'edit')">Preview</button>
-  <button class="btn btn-info" ng-click= "submit()">Submit</button>
-  </div>
