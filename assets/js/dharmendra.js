@@ -492,6 +492,9 @@ console.log($rootScope.selected);
     $rootScope.onClickTab($scope.tabs[0]);
   
   }
+  $scope.Cancel=function(){
+    $rootScope.onClickTab($scope.tabs[0]);
+  }
 
   $rootScope.delet=function(i){
     $rootScope.agents.splice(i,1);
@@ -532,6 +535,29 @@ app.controller('addAgentCtrl', function ($rootScope, $scope, $location, fileRead
        $rootScope.agents.push(agentData)
         $rootScope.onClickTab($scope.tabs[0]);
     }
+        $scope.master = {email: "",phone:"",img:""};
+  $scope.user = angular.copy($scope.master);
+    $scope.reset=function(){
+
+ 
+      $scope.user = angular.copy($scope.master);
+      $scope.myForm.$setPristine();
+  
+
+        // $scope.myForm.$setPristine();
+
+        // angular.forEach($scope.myForm, (value, key) => {
+        //   // filter out angular properties
+        //   if (key.indexOf('$') === 0) {
+        //     return;
+        //   }
+
+        //   // This clears the invalid/valid inputs
+        //   $scope.model[key] = null;
+        // });
+    
+    }
+
 
     $scope.$on("fileProgress", function (e, progress) {
       $scope.progress = progress.loaded / progress.total;
