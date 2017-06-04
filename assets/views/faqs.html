@@ -1,6 +1,7 @@
 <div class='col-xs-12' ng-controller='faqCtrl'  ng-init='init()' ng-cloak>
 
   <div class="nav-tabs-custom">
+    <div class="label label-danger col-xs-12" style="font-size:10px; padding:10px;" ng-show="taberror">{{taberror}}</div>
     <ul class="nav nav-tabs">
       <li ng-repeat="tab in tabs" ng-class="{'active':isActiveTab(tab)}" 
       ng-click="onClickTab(tab)" style="margin:2px;"><a data-toggle="tab">

@@ -29,7 +29,7 @@
           <td ng-click="addorremovetab('add',item)"> {{item.latitude}}</td>
           <td ng-click="addorremovetab('add',item)"> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
 
-          <td><button class="btn btn-danger btn-sm" ng-click="removeLoc($index)"><i class="fa fa-trash"></i></button></td>
+          <td  ng-click="removeLoc($index)"><i class="fa fa-trash-o"></i></td>
         </tr>
       </tbody>
     </table>

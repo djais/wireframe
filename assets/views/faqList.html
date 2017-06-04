@@ -6,7 +6,7 @@
 
                 <th> Author </th>
                 <th> Status </th>
-                <th> Attachment </th>
+                <th>   </th>
                 <th> Last Updated </th>
             </thead>
             <tbody>
@@ -15,8 +15,8 @@
                 <tr ng-repeat="item in faqlist" style='cursor:pointer;'>
                     <!--<tr ng-repeat="item in chats" style='cursor:pointer;' ng-click="addtab(item)">-->
 
-                    <td  ng-click="addorremovetab('add',item)"> <span style="font-size:20px"> {{item.que}}</span> <br>
-                        <span> {{item.ans | limitTo:letterLimit}} ... </span>
+                    <td  ng-click="addorremovetab('add',item)"> <h4> {{item.que}}</h4> <br>
+                        <p> {{item.ans | limitTo:letterLimit}} ... </p>
 
 
                     </td>
@@ -27,14 +27,16 @@
                         <i class='fa fa-check' style='color:green' ng-show='item.status==true'></i>
                         <i class='fa fa-ban' style='color:red' ng-show='item.status==false'></i></td>
                     <td style='text-align:center;vertical-align:middle; padding:0px; ' ng-click="addorremovetab('add',item)" >
-                        <i class="fa fa-file " ng-show='item.attachment.type==file'></i>
+                        <i class="fa fa-paperclip " ng-show='item.attachment.type==file'></i>
                     </td>
 
                     <td style='text-align:center;vertical-align:middle; padding:0px; ' ng-click="addorremovetab('add',item)"> <span>{{item.LS*1000 | date:'HH:mm dd-MMM-yyyy'}}</span><br></td>
                     <td style='text-align:center;vertical-align:middle; font-size:20px'>
-                        <td><button class="btn btn-danger btn-sm" ng-click="remove($index)"><i class="fa fa-trash"></i></button></td>
+                        <td  ng-click="remove($index)"><i class="fa fa-trash-o"></i></td>
 
                     </td>
+
+
 
 
                 </tr>
