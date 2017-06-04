@@ -1,6 +1,10 @@
 
        <div class="x_panel tile" ng-controller="offerListCtrl">
           <label style="font-weight:300; font-size:18px; padding:10px;color:black">Edit Offer</label>
+          <label class="switch pull-right">
+            <input type="checkbox" checked ng-model="avail">
+            <div class="slider round"></div>
+          </label>
           <hr style="margin-bottom: 0px;">
           <div class="x_content" style="padding:15px;">
             <form role="form" name="myForm">
@@ -19,7 +23,7 @@
                       <td>
                         <img style="width:200px; height:200px;" ng-show= "imageSrc" ng-src="{{imageSrc}}"  />
                         <img style="width:200px; height:200px;" ng-show= "!imageSrc" ng-src="{{selected.img}}" ng-model="selected.img" />
-                        <input type="file" ng-file-select="onFileSelect($files)"  ng-model="imageSrc">
+                        <input type="file" ng-file-select="onFileSelect($files)"  ng-model="selected.img">
                       </td>
 
   </tr>
@@ -101,18 +105,18 @@
 
   <div class="col-md-1">
   <button type="button" class="btn btn-default addButton" ng-show="$last" ng-click='addOther()'><i class="fa fa-plus"></i></button>
-  <button class="btn btn-default deletButton" style="margin-top:25px;"ng-show="selected.otherspecs.length>1 && !$last" ng-click="deleterefer(selected)"><i class="fa fa-trash-o"></i></button>
+  <button class="btn btn-default deletButton" style="margin-top:25px;"ng-show="selected.otherspecs.length>1 && !$last" ng-click="deleterefer(refer)"><i class="fa fa-trash-o"></i></button>
   </div>
   </td>
   </tr>
   <tr>
 
-  <td style='vertical-align:middle'><label class='text-muted'>Attachment
+  <td style='vertical-align:middle'><label class='text-muted'>Attachments
   <i class="fa fa-paperclip" aria-hidden="true" style="font-size:20px;"></i>
   </label></td>
   <td>
 
-    <input type="file" ng-file-select="onFileSelect($files)"  ng-model="selected.attach">
+    <input type="file" ng-file-select="onFileSelect($files)"  ng-model="selected.attach" multiple="">
 
 
   </td>
@@ -125,9 +129,9 @@
   </tbody>
   </table>
   </form>
-  <div align="left">
-  <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
-  <button class="btn btn-info" ng-click="save()">Save</button>
+  <div align="right">
+  <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+  <button class="btn btn-primary" ng-click="save()">Save</button>
   </div>
 </div>
 </div>

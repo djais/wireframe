@@ -1,6 +1,10 @@
 
        <div class="x_panel tile" ng-controller="addofferCtrl" ng-init='init()'>
           <label style="font-weight:300; font-size:18px; padding:10px;color:black">Add Offer</label>
+          <label class="switch pull-right">
+            <input type="checkbox" checked ng-model="avail">
+            <div class="slider round"></div>
+          </label>
           <hr style="margin-bottom: 0px;">
           <div class="x_content" style="padding:15px;">
             <form role="form" name="myForm">
@@ -105,12 +109,12 @@
   </tr>
   <tr>
 
-  <td style='vertical-align:middle'><label class='text-muted'>Attachment
+  <td style='vertical-align:middle'><label class='text-muted'>Attachments
   <i class="fa fa-paperclip" aria-hidden="true" style="font-size:20px;"></i>
   </label></td>
   <td>
 
-    <input type="file" ng-file-select="onFileSelect($files)"  ng-model="attach">
+    <input type="file" ng-file-select="onFileSelect($files)"  ng-model="attach" multiple="">
 
 
   </td>
@@ -122,14 +126,10 @@
   </tr>
   </tbody>
   </table>
-  <div class="pull-left">
-  <!-- <button type="reset" class="btn btn-default">Reset</button> -->
-  <button class="btn btn-danger" type="reset">Reset</button>
-  </div>
 
   <div align="right">
-  <button class="btn btn-default" ng-click="canceladdoredit(trigger,'edit')">Preview</button>
-  <button class="btn btn-info" ng-click="submit()">Submit</button>
+  <button class="btn btn-default" type="reset">Reset</button>
+  <button class="btn btn-primary" ng-click="submit()">Submit</button>
   </div>
   </form>
 </div>
