@@ -9,13 +9,13 @@
               <th> Last Updated </th>
             </thead>
             <tbody>
-              <tr ng-repeat="item in products" style='cursor:pointer;'ng-click="addorremovetab('add',item)" >
-                <td  style='text-align:center;vertical-align:middle, font-size:20px'> <i class='fa fa-check' style='color:green' ng-show='item.avail'></i> <i class='fa fa-ban' style='color:red' ng-show='!item.avail'></i></td>
-                <td style='text-align:center; vertical-align:middle'> <img ng-src={{item.img}} style='width:50px; height:50px;' /></td>
-                <td> <h4> {{item.name}}</h4><p>{{item.shortdesc}} </p></td>
-                <td style='text-align:center; vertical-align:middle'> {{item.price | currency:"&#8377;"}}</td>
-                <td style='text-align:center; vertical-align:middle'> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
-                <td ng-click="delete($index)" style='text-align:center;vertical-align:middle; font-size:20px'>
+              <tr ng-repeat="item in products" style='cursor:pointer;'>
+                <td ng-click="addorremovetab('add',item)" style='text-align:center;vertical-align:middle, font-size:20px;'> <i class='fa fa-check' style='color:green' ng-show='item.avail'></i> <i class='fa fa-ban' style='color:red' ng-show='!item.avail'></i></td>
+                <td ng-click="addorremovetab('add',item)"style='text-align:center; vertical-align:middle'> <img ng-src={{item.img}} style='width:50px; height:50px;' /></td>
+                <td ng-click="addorremovetab('add',item)"> <h4> {{item.name}}</h4><p>{{item.shortdesc}} </p></td>
+                <td ng-click="addorremovetab('add',item)"style='text-align:center; vertical-align:middle'> {{item.price | currency:"&#8377;"}}</td>
+                <td ng-click="addorremovetab('add',item)"style='text-align:center; vertical-align:middle'> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
+                <td ng-click="delete($index)" style='text-align:center;vertical-align:middle;'>
  				<!-- <button class="btn btn-default btn-sm" ><i class="fa fa-pencil"></i></button> -->
  			          <i class="fa fa-trash-o" ></i>
  				</td>

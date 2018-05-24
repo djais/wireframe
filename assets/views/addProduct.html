@@ -1,6 +1,10 @@
 
        <div class="x_panel tile" ng-controller="addProductCtrl" ng-cloak>
           <label style="font-weight:300; font-size:18px; padding:10px;color:black">Add Product</label>
+          <label class="switch pull-right">
+            <input type="checkbox" checked ng-model="avail">
+            <div class="slider round"></div>
+          </label>
           <hr style="margin-bottom: 0px;">
           <div class="x_content" style="padding:15px;">
             <form role="form" name="myForm">
@@ -58,7 +62,7 @@
   <div class="col-xs-2">
       <label class='text-muted' style='vertical-align:middle'>Currency</label></div>
       <div class="col-xs-6">
-        <select class="selectpicker" id="selCurrency" ng-model="currency" style="width:25%">
+        <select class="selectpicker" id="selCurrency" ng-model="selectedCurrency" style="width:25%">
           <option>&#8377;</option>
           <option>$</option>
           <option>AUD</option>

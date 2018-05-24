@@ -53,12 +53,9 @@ app.controller("productListCtrl", function($scope, $rootScope,$location,$http){
     $scope.init = function(){
     };
 
-
+/* Save editProduct*/
   $scope.save = function () {
-    console.log($rootScope.selected);
-//$location.path("products");
-//$rootScope.addProduct = $rootScope.selected.id;
-
+    //console.log($rootScope.selected);
 for(var index = 0; index < $rootScope.products.length; index++){
   if($rootScope.products[index].id == $rootScope.selected.id){
     $rootScope.products[index] = $rootScope.selected;
@@ -66,17 +63,17 @@ for(var index = 0; index < $rootScope.products.length; index++){
 
   }
 }
-//$location.path('products');
-//$rootScope.onClickTab($scope.tabs[0]);
 
-};
+}; /*End of function*/
+
 $scope.cancelProduct = function () {
   $rootScope.onClickTab($scope.tabs[0]);
 };
+
+/* Delete icon */
 $scope.delete = function (id) {
   $rootScope.products.splice(id,1);
-
-};
+}; /* End of function*/
 
 $scope.label=[{ "Label": "", "Description": ""}];
 $scope.addOther = function () {
@@ -93,9 +90,10 @@ $scope.deleterefer = function(refer){
 })
 /*-- addProductCtrl--*/
 app.controller("addProductCtrl", function($scope, $rootScope,$location,$http,$window){
+
+  //$scope.currency = [{"Rs","USA","AUD"}];
   $scope.submit = function () {
-    console.log("data", $rootScope.products)
-    //console.log(i);
+    // console.log("data", $rootScope.products)
     $rootScope.addproduct = {
       name: $scope.name,
       shortdesc: $scope.sdesc,
@@ -104,7 +102,7 @@ app.controller("addProductCtrl", function($scope, $rootScope,$location,$http,$wi
       img: $scope.imageSrc,
       price: $scope.price,
       updateTs:$scope.uploadTs = Math.floor(Date.now() / 1000),
-      avail:$scope.avail
+      avail:$scope.avail,
 
 
     }
@@ -113,7 +111,7 @@ app.controller("addProductCtrl", function($scope, $rootScope,$location,$http,$wi
  //$location.path('products');
 $rootScope.onClickTab($scope.tabs[0]);
 
-};
+}; /* End of function */
   $scope.leadme = function () {
     console.log("lead me icon clicked")
     var popup = document.getElementById("myPopup");
@@ -182,34 +180,27 @@ app.controller("offersCtrl", function ($scope, $rootScope, $http) {
 /*-- offersCtrl : --*/
 app.controller("offerListCtrl", function($scope, $rootScope,$location,$http){
     $scope.init = function(){
-      // initilization variables
-//console.log("haiiiiiiiiiii");
-console.log($rootScope.offers);
+
     };
 
   $scope.delete = function (id) {
     $rootScope.offers.splice(id,1);
 
   }
+  /* Save editOffer */
   $scope.save = function () {
-//$location.path("products");
-//$rootScope.addOffer = $rootScope.selected.id;
-for(var index = 0; index < $rootScope.offers.length; index++){
+  for(var index = 0; index < $rootScope.offers.length; index++){
   if($rootScope.offers[index].id == $rootScope.selected.id){
     $rootScope.offers[index] = $rootScope.selected;
   }
   $rootScope.onClickTab($scope.tabs[0]);
 
 }
-//$location.path('products');
 
-};
+};   /* End of Save editOffer */
+
 $scope.cancel = function () {
   $rootScope.onClickTab($scope.tabs[0]);
-}
-$scope.delete = function (id) {
-  $rootScope.products.splice(id,1);
-
 }
 
 $scope.label=[{ "Label": "", "Description": ""}];
@@ -231,6 +222,7 @@ app.controller("addofferCtrl", function($scope, $rootScope,$http,$location) {
   $scope.init = function () {
 
 };
+/* Add Offer */
   $scope.submit = function () {
     console.log("hello world")
     $rootScope.addoffer = {
@@ -252,7 +244,7 @@ app.controller("addofferCtrl", function($scope, $rootScope,$http,$location) {
 //  $location.path('offers');
   $rootScope.onClickTab($scope.tabs[0]);
 
-};
+}; /* End of function */
 $scope.leadme = function () {
   console.log("lead me icon clicked")
   var popup = document.getElementById("myPopup");

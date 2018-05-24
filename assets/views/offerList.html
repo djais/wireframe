@@ -1,5 +1,4 @@
-<div class="x_panel tile" ng-controller="offerListCtrl" ng-init="init()" ng-cloak>
-
+<div class="x_panel tile" ng-controller="offerListCtrl" ng-cloak>
         <div class="x_content" >
           <table class="table table-hover"  style="width:100%">
             <thead>
@@ -11,16 +10,15 @@
               <th> Last Updated </th>
             </thead>
             <tbody>
-              <tr ng-repeat="item in offers" style='cursor:pointer;'ng-click="addorremovetab('add',item)" >
-                <td  style='text-align:center;vertical-align:middle, font-size:20px'> <i class='fa fa-check' style='color:green' ng-show='item.avail'></i> <i class='fa fa-ban' style='color:red' ng-show='!item.avail'></i></td>
-                <td style='text-align:center; vertical-align:middle'> <img ng-src={{item.img}} style='width:50px; height:50px;' /></td>
-                <td> <h4> {{item.name}}</h4><p>{{item.shortdesc}} </p></td>
-                <td style='text-align:center; vertical-align:middle'><strike>{{item.bprice | currency:"&#8377;"}}</strike></td>
-                <td style='text-align:center; vertical-align:middle'> {{item.offprice | currency:"&#8377;"}}</td>
-                <td style='text-align:center; vertical-align:middle'> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
-                <td ng-click="delete($index)" style='text-align:center;vertical-align:middle; font-size:20px'>
-        <!-- <button class="btn btn-default btn-sm" ><i class="fa fa-pencil"></i></button> -->
-                <i class="fa fa-trash-o" ></i>
+              <tr ng-repeat="item in offers" style='cursor:pointer;'>
+                <td ng-click="addorremovetab('add',item)"  style='text-align:center;vertical-align:middle, font-size:20px;'> <i class='fa fa-check' style='color:green' ng-show='item.avail'></i> <i class='fa fa-ban' style='color:red' ng-show='!item.avail'></i></td>
+                <td ng-click="addorremovetab('add',item)"style='text-align:center; vertical-align:middle'> <img ng-src={{item.img}} style='width:50px; height:50px;' /></td>
+                <td ng-click="addorremovetab('add',item)"> <h4> {{item.name}}</h4><p>{{item.shortdesc}} </p></td>
+                <td ng-click="addorremovetab('add',item)" style='text-align:center; vertical-align:middle'><strike>{{item.bprice | currency:"&#8377;"}}</strike></td>
+                <td ng-click="addorremovetab('add',item)" style='text-align:center; vertical-align:middle'> {{item.offprice | currency:"&#8377;"}}</td>
+                <td ng-click="addorremovetab('add',item)" style='text-align:center; vertical-align:middle'> {{item.updateTs*1000 | date:'HH:mm dd-MMM-yyyy'}}</td>
+                <td  style='text-align:center;vertical-align:middle;'>
+                <i class="fa fa-trash-o" ng-click="delete($index)" ></i>
         </td>
               </tr>
             </tbody>
